@@ -128,10 +128,10 @@ export default function QuestionsPage() {
           <button
             onClick={handlePrevious}
             disabled={currentQuestionIndex === 0}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+            className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold transition-all duration-200 ${
               currentQuestionIndex === 0
                 ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                : 'bg-white text-[#003E7E] border-2 border-[#003E7E] hover:bg-[#003E7E] hover:text-white'
+                : 'btn-agoria-outline'
             }`}
           >
             <ChevronLeft size={20} />
@@ -141,9 +141,9 @@ export default function QuestionsPage() {
           <button
             onClick={handleNext}
             disabled={!currentAnswer}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+            className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold transition-all duration-200 ${
               currentAnswer
-                ? 'bg-[#FF6B35] text-white hover:bg-[#ff5520] shadow-lg hover:shadow-xl'
+                ? 'btn-agoria-primary'
                 : 'bg-gray-200 text-gray-400 cursor-not-allowed'
             }`}
           >

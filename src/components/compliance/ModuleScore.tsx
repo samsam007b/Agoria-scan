@@ -26,30 +26,30 @@ export default function ModuleScore({ id, label, score, color, weight }: ModuleS
   const percentage = score * 10; // Score sur 100 (0-10 -> 0-100%)
 
   return (
-    <div className="bg-white rounded-xl shadow-md border-l-4 p-6" style={{ borderColor: color }}>
+    <div className="card-agoria border-l-4" style={{ borderColor: color }}>
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="p-3 rounded-lg" style={{ backgroundColor: `${color}20` }}>
-            <IconComponent style={{ color }} size={24} />
+          <div className="p-3 rounded-lg" style={{ backgroundColor: color }}>
+            <IconComponent className="text-white" size={24} />
           </div>
           <div>
-            <div className="text-sm font-semibold text-gray-500 uppercase">
+            <div className="text-sm font-semibold text-[#6B6B6B] uppercase">
               Module {id} • {Math.round(weight * 100)}%
             </div>
-            <h3 className="text-lg font-bold text-[#003E7E]">{label}</h3>
+            <h3 className="text-lg font-bold text-[#1A1A1A]">{label}</h3>
           </div>
         </div>
         <div className="text-right">
           <div className="text-3xl font-bold" style={{ color }}>
             {score}
           </div>
-          <div className="text-sm text-gray-500">/ 10</div>
+          <div className="text-sm text-[#6B6B6B]">/ 10</div>
         </div>
       </div>
 
       {/* Progress bar */}
       <div className="relative">
-        <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+        <div className="w-full bg-[#F5F7FA] rounded-full h-2 overflow-hidden">
           <div
             className="h-full rounded-full transition-all duration-1000 ease-out"
             style={{
@@ -58,7 +58,7 @@ export default function ModuleScore({ id, label, score, color, weight }: ModuleS
             }}
           />
         </div>
-        <div className="mt-2 text-sm text-gray-600 font-medium">
+        <div className="mt-2 text-sm text-[#1A1A1A] font-medium">
           {percentage}% de conformité
         </div>
       </div>

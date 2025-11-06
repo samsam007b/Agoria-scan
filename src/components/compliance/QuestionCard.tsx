@@ -43,17 +43,17 @@ export default function QuestionCard({
   const IconComponent = getModuleIcon(moduleId);
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
+    <div className="card-agoria p-8">
       {/* Module Badge */}
       <div className="flex items-center gap-3 mb-6">
         <div
           className="p-3 rounded-lg"
-          style={{ backgroundColor: `${moduleColor}20` }}
+          style={{ backgroundColor: moduleColor }}
         >
-          <IconComponent style={{ color: moduleColor }} size={24} />
+          <IconComponent className="text-white" size={24} />
         </div>
         <div>
-          <div className="text-sm font-semibold text-gray-500 uppercase">
+          <div className="text-sm font-semibold text-[#6B6B6B] uppercase">
             Module {moduleId}
           </div>
           <div className="text-sm font-bold" style={{ color: moduleColor }}>
@@ -63,7 +63,7 @@ export default function QuestionCard({
       </div>
 
       {/* Question */}
-      <h2 className="text-xl md:text-2xl font-bold text-[#003E7E] mb-6 leading-snug">
+      <h2 className="text-xl md:text-2xl font-bold text-[#1A1A1A] mb-6 leading-snug">
         {questionLabel}
       </h2>
 
@@ -75,17 +75,17 @@ export default function QuestionCard({
             <button
               key={option.key}
               onClick={() => onSelect(option.key, option.score)}
-              className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
+              className={`w-full text-left p-4 rounded-lg border-2 transition-all duration-200 ${
                 isSelected
-                  ? 'border-[#0073CF] bg-blue-50 shadow-md'
-                  : 'border-gray-200 hover:border-[#0073CF] hover:bg-gray-50'
+                  ? 'border-[#1C32FF] bg-[#F5F7FA] shadow-sm'
+                  : 'border-gray-200 hover:border-[#1C32FF] hover:bg-[#F5F7FA]'
               }`}
             >
               <div className="flex items-center gap-3">
                 <div
                   className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
                     isSelected
-                      ? 'border-[#0073CF] bg-[#0073CF]'
+                      ? 'border-[#1C32FF] bg-[#1C32FF]'
                       : 'border-gray-300'
                   }`}
                 >
@@ -96,14 +96,14 @@ export default function QuestionCard({
                 <div className="flex-1">
                   <span
                     className={`font-semibold ${
-                      isSelected ? 'text-[#0073CF]' : 'text-gray-700'
+                      isSelected ? 'text-[#1C32FF]' : 'text-[#6B6B6B]'
                     }`}
                   >
                     {option.key}.
                   </span>{' '}
                   <span
                     className={`${
-                      isSelected ? 'text-[#003E7E] font-semibold' : 'text-gray-700'
+                      isSelected ? 'text-[#1A1A1A] font-semibold' : 'text-[#1A1A1A]'
                     }`}
                   >
                     {option.label}
