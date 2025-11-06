@@ -117,24 +117,27 @@ export default function ResultatsPage() {
             </h2>
             <div className="space-y-4">
               {recommendations.map((rec, index) => {
-                const priorityColors = {
+                type Priority = 'high' | 'medium' | 'low';
+
+                const priorityColors: Record<Priority, string> = {
                   high: 'border-[#D32F2F] bg-red-50',
                   medium: 'border-[#FF6B35] bg-orange-50',
                   low: 'border-[#0073CF] bg-blue-50',
                 };
-                const priorityIcons = {
+                const priorityIcons: Record<Priority, typeof AlertCircle> = {
                   high: AlertCircle,
                   medium: AlertCircle,
                   low: CheckCircle2,
                 };
-                const priorityLabels = {
+                const priorityLabels: Record<Priority, string> = {
                   high: 'Priorité haute',
                   medium: 'Priorité moyenne',
                   low: 'Priorité basse',
                 };
 
-                const Icon = priorityIcons[rec.priority];
-                const colorClass = priorityColors[rec.priority];
+                const priority = rec.priority as Priority;
+                const Icon = priorityIcons[priority];
+                const colorClass = priorityColors[priority];
 
                 return (
                   <div
@@ -148,7 +151,7 @@ export default function ResultatsPage() {
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
                           <span className="text-xs font-bold text-gray-500 uppercase">
-                            {priorityLabels[rec.priority]}
+                            {priorityLabels[priority]}
                           </span>
                         </div>
                         <h3 className="text-lg font-bold text-[#003E7E] mb-2">
