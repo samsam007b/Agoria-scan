@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Linkedin, Twitter, Facebook } from 'lucide-react';
 
 export default function AgoriaFooter() {
@@ -10,9 +11,15 @@ export default function AgoriaFooter() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo et description */}
           <div className="col-span-1 md:col-span-2">
-            <div className="text-2xl font-bold mb-4">
-              <span className="text-white">AGORIA</span>
-              <span className="text-xs ml-2 text-gray-400 font-normal">(Demo)</span>
+            <div className="flex items-center gap-2 mb-4">
+              <Image
+                src="/agoria-logo.png"
+                alt="Agoria"
+                width={100}
+                height={50}
+                className="h-10 w-auto brightness-0 invert"
+              />
+              <span className="text-xs text-gray-400 font-normal">(Demo)</span>
             </div>
             <p className="text-gray-300 text-sm mb-4">
               La fédération de l'industrie technologique belge

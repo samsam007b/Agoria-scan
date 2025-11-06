@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
@@ -28,10 +29,15 @@ export default function AgoriaHeader() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
-            <div className="text-3xl font-bold tracking-tight">
-              <span className="text-[#003E7E]">AGORIA</span>
-              <span className="text-xs ml-2 text-gray-500 font-normal">(Demo)</span>
-            </div>
+            <Image
+              src="/agoria-logo.png"
+              alt="Agoria"
+              width={120}
+              height={60}
+              priority
+              className="h-12 w-auto"
+            />
+            <span className="text-xs text-gray-500 font-normal">(Demo)</span>
           </Link>
 
           {/* Desktop Navigation */}
