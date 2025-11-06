@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F5F5F5;
+  --foreground: #263238;
+
+  /* Couleurs Agoria */
+  --agoria-blue-dark: #003E7E;
+  --agoria-blue: #0073CF;
+  --agoria-green: #7CB342;
+  --agoria-orange: #FF6B35;
+  --agoria-red: #D32F2F;
+  --agoria-gray-dark: #263238;
+  --agoria-gray-medium: #607D8B;
+  --agoria-gray-light: #F5F5F5;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
+
+  /* Couleurs custom Agoria */
+  --color-agoria-blue-dark: var(--agoria-blue-dark);
+  --color-agoria-blue: var(--agoria-blue);
+  --color-agoria-green: var(--agoria-green);
+  --color-agoria-orange: var(--agoria-orange);
+  --color-agoria-red: var(--agoria-red);
+  --color-agoria-gray-dark: var(--agoria-gray-dark);
+  --color-agoria-gray-medium: var(--agoria-gray-medium);
+  --color-agoria-gray-light: var(--agoria-gray-light);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
+}

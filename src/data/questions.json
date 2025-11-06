@@ -1,0 +1,212 @@
+{
+  "version": "1.0",
+  "modules": [
+    {
+      "id": "A",
+      "label": "Digitalisation & Sécurité",
+      "weight": 0.30,
+      "color": "#0073CF",
+      "icon": "shield",
+      "questions": [
+        {
+          "id": "A1",
+          "label": "Avons-nous une personne clairement désignée pour la cybersécurité (interne ou externe) avec un mandat écrit ?",
+          "options": [
+            {"key": "A", "label": "Oui, mandat formalisé et revu ≤12 mois", "score": 10},
+            {"key": "B", "label": "Oui, mais non documenté", "score": 6},
+            {"key": "C", "label": "En projet", "score": 3},
+            {"key": "D", "label": "Non", "score": 0}
+          ]
+        },
+        {
+          "id": "A2",
+          "label": "MFA activé pour email, outils cloud et VPN ?",
+          "options": [
+            {"key": "A", "label": "MFA partout critique", "score": 10},
+            {"key": "B", "label": "MFA partiel", "score": 6},
+            {"key": "C", "label": "MFA pilote/limité", "score": 3},
+            {"key": "D", "label": "Pas de MFA", "score": 0}
+          ]
+        },
+        {
+          "id": "A3",
+          "label": "Sauvegardes 3-2-1, chiffrées, testées trimestriellement ?",
+          "options": [
+            {"key": "A", "label": "Oui, politique et tests formalisés", "score": 10},
+            {"key": "B", "label": "Sauvegardes mais tests irréguliers", "score": 6},
+            {"key": "C", "label": "Sauvegardes ad-hoc", "score": 3},
+            {"key": "D", "label": "Aucune sauvegarde", "score": 0}
+          ]
+        },
+        {
+          "id": "A4",
+          "label": "Formation annuelle + simulations phishing ?",
+          "options": [
+            {"key": "A", "label": "Oui, annuelle + simulation ≥2/an", "score": 10},
+            {"key": "B", "label": "Oui, annuelle", "score": 6},
+            {"key": "C", "label": "Occasionnelle", "score": 3},
+            {"key": "D", "label": "Aucune", "score": 0}
+          ]
+        },
+        {
+          "id": "A5",
+          "label": "Procédure écrite incidents (72h RGPD ; NIS2 si applicable) ?",
+          "options": [
+            {"key": "A", "label": "Procédure écrite, rôles, délais, modèles", "score": 10},
+            {"key": "B", "label": "Procédure sommaire", "score": 6},
+            {"key": "C", "label": "Informel", "score": 3},
+            {"key": "D", "label": "Rien", "score": 0}
+          ]
+        },
+        {
+          "id": "A6",
+          "label": "Sommes-nous concernés par NIS2 et préparés ?",
+          "options": [
+            {"key": "A", "label": "Analyse faite, mesures en plan et suivi", "score": 10},
+            {"key": "B", "label": "Applicabilité probable, pré-analyse en cours", "score": 6},
+            {"key": "C", "label": "Inconnu", "score": 3},
+            {"key": "D", "label": "Non concernés sans justification", "score": 0}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "label": "Conformité réglementaire & sociale",
+      "weight": 0.40,
+      "color": "#7CB342",
+      "icon": "briefcase",
+      "questions": [
+        {
+          "id": "B1",
+          "label": "Numéro BCE, mentions légales, coordonnées, UBO à jour ?",
+          "options": [
+            {"key": "A", "label": "Oui, tout à jour et vérifié ≤12 mois", "score": 10},
+            {"key": "B", "label": "Partiellement à jour", "score": 6},
+            {"key": "C", "label": "À mettre à jour", "score": 3},
+            {"key": "D", "label": "Non/je ne sais pas", "score": 0}
+          ]
+        },
+        {
+          "id": "B2",
+          "label": "Contrats de travail & documents sociaux revus ≤24 mois ?",
+          "options": [
+            {"key": "A", "label": "Oui, audit juridique ≤24 mois", "score": 10},
+            {"key": "B", "label": "Conformes mais non audités récemment", "score": 6},
+            {"key": "C", "label": "Modèles hétérogènes", "score": 3},
+            {"key": "D", "label": "Non/je ne sais pas", "score": 0}
+          ]
+        },
+        {
+          "id": "B3",
+          "label": "Procédure DIMONA systématique, y compris urgence ?",
+          "options": [
+            {"key": "A", "label": "Oui, contrôles et back-up en place", "score": 10},
+            {"key": "B", "label": "Oui, mais sans procédure urgence", "score": 6},
+            {"key": "C", "label": "Parfois en retard", "score": 3},
+            {"key": "D", "label": "Non/je ne sais pas", "score": 0}
+          ]
+        },
+        {
+          "id": "B4",
+          "label": "Registre du personnel tenu conformément ?",
+          "options": [
+            {"key": "A", "label": "Conforme/audit interne", "score": 10},
+            {"key": "B", "label": "Tenue partielle", "score": 6},
+            {"key": "C", "label": "Registre obsolète/incomplet", "score": 3},
+            {"key": "D", "label": "Inexistant/je ne sais pas", "score": 0}
+          ]
+        },
+        {
+          "id": "B5",
+          "label": "Processus facturation/comptabilité conforme ?",
+          "options": [
+            {"key": "A", "label": "Conforme et contrôlé annuellement", "score": 10},
+            {"key": "B", "label": "Conforme mais non revu récemment", "score": 6},
+            {"key": "C", "label": "Lacunes identifiées", "score": 3},
+            {"key": "D", "label": "Non/je ne sais pas", "score": 0}
+          ]
+        },
+        {
+          "id": "B6",
+          "label": "Clauses contractuelles standard avec sous-traitants ?",
+          "options": [
+            {"key": "A", "label": "Oui, avec check-list onboarding", "score": 10},
+            {"key": "B", "label": "Oui, mais non systématique", "score": 6},
+            {"key": "C", "label": "En cours", "score": 3},
+            {"key": "D", "label": "Non", "score": 0}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "label": "RGPD & Gouvernance des données",
+      "weight": 0.30,
+      "color": "#FF6B35",
+      "icon": "lock",
+      "questions": [
+        {
+          "id": "C1",
+          "label": "Registre des activités de traitement tenu et à jour ?",
+          "options": [
+            {"key": "A", "label": "Oui, complet et mis à jour ≤12 mois", "score": 10},
+            {"key": "B", "label": "Oui, partiel", "score": 6},
+            {"key": "C", "label": "Ébauche", "score": 3},
+            {"key": "D", "label": "Non", "score": 0}
+          ]
+        },
+        {
+          "id": "C2",
+          "label": "DPO désigné ou point de contact privacy formalisé ?",
+          "options": [
+            {"key": "A", "label": "DPO requis & désigné / point formalisé", "score": 10},
+            {"key": "B", "label": "DPO externe/partiel", "score": 6},
+            {"key": "C", "label": "Référent informel", "score": 3},
+            {"key": "D", "label": "Aucun", "score": 0}
+          ]
+        },
+        {
+          "id": "C3",
+          "label": "Notice de confidentialité et bases légales mappées ?",
+          "options": [
+            {"key": "A", "label": "Notice publiée + mapping complet", "score": 10},
+            {"key": "B", "label": "Notice ok, mapping partiel", "score": 6},
+            {"key": "C", "label": "Notice obsolète", "score": 3},
+            {"key": "D", "label": "Non", "score": 0}
+          ]
+        },
+        {
+          "id": "C4",
+          "label": "Process de gestion des droits des personnes ?",
+          "options": [
+            {"key": "A", "label": "Procédure écrite + registre demandes", "score": 10},
+            {"key": "B", "label": "Procédure sommaire", "score": 6},
+            {"key": "C", "label": "Ad-hoc", "score": 3},
+            {"key": "D", "label": "Rien", "score": 0}
+          ]
+        },
+        {
+          "id": "C5",
+          "label": "Politique de rétention et suppression des données ?",
+          "options": [
+            {"key": "A", "label": "Politique + purge auto/testée", "score": 10},
+            {"key": "B", "label": "Politique, exécution partielle", "score": 6},
+            {"key": "C", "label": "Draft", "score": 3},
+            {"key": "D", "label": "Non", "score": 0}
+          ]
+        },
+        {
+          "id": "C6",
+          "label": "Données hébergées UE/EEE ou garanties adéquates ?",
+          "options": [
+            {"key": "A", "label": "UE/EEE ou garanties documentées", "score": 10},
+            {"key": "B", "label": "Mixte, évaluations faites", "score": 6},
+            {"key": "C", "label": "Inconnu", "score": 3},
+            {"key": "D", "label": "Hors UE sans garanties", "score": 0}
+          ]
+        }
+      ]
+    }
+  ]
+}
