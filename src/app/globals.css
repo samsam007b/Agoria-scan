@@ -1,18 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F5F5F5;
-  --foreground: #263238;
+  --background: #FFFFFF;
+  --foreground: #1A1A1A;
 
-  /* Couleurs Agoria */
-  --agoria-blue-dark: #003E7E;
-  --agoria-blue: #0073CF;
-  --agoria-green: #7CB342;
+  /* Couleurs Agoria Officielles */
+  --agoria-blue: #1C32FF;
+  --agoria-blue-dark: #0D1A99;
+  --agoria-blue-light: #4D5FFF;
+  --agoria-green: #00D084;
   --agoria-orange: #FF6B35;
-  --agoria-red: #D32F2F;
-  --agoria-gray-dark: #263238;
-  --agoria-gray-medium: #607D8B;
-  --agoria-gray-light: #F5F5F5;
+  --agoria-red: #E63946;
+  --agoria-gray-dark: #1A1A1A;
+  --agoria-gray: #6B6B6B;
+  --agoria-gray-light: #F5F7FA;
 }
 
 @theme inline {
@@ -21,13 +22,14 @@
   --font-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
 
   /* Couleurs custom Agoria */
-  --color-agoria-blue-dark: var(--agoria-blue-dark);
   --color-agoria-blue: var(--agoria-blue);
+  --color-agoria-blue-dark: var(--agoria-blue-dark);
+  --color-agoria-blue-light: var(--agoria-blue-light);
   --color-agoria-green: var(--agoria-green);
   --color-agoria-orange: var(--agoria-orange);
   --color-agoria-red: var(--agoria-red);
   --color-agoria-gray-dark: var(--agoria-gray-dark);
-  --color-agoria-gray-medium: var(--agoria-gray-medium);
+  --color-agoria-gray: var(--agoria-gray);
   --color-agoria-gray-light: var(--agoria-gray-light);
 }
 
@@ -35,4 +37,35 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Boutons style Agoria */
+.btn-agoria-primary {
+  @apply bg-[#1C32FF] text-white font-semibold px-6 py-3 rounded-md transition-all duration-200 hover:bg-[#0D1A99] hover:shadow-lg active:scale-[0.98];
+}
+
+.btn-agoria-secondary {
+  @apply bg-white text-[#1C32FF] font-semibold px-6 py-3 rounded-md border-2 border-[#1C32FF] transition-all duration-200 hover:bg-[#1C32FF] hover:text-white hover:shadow-lg active:scale-[0.98];
+}
+
+.btn-agoria-outline {
+  @apply bg-transparent text-[#1A1A1A] font-semibold px-6 py-3 rounded-md border-2 border-gray-300 transition-all duration-200 hover:border-[#1C32FF] hover:text-[#1C32FF] active:scale-[0.98];
+}
+
+/* Cartes style Agoria */
+.card-agoria {
+  @apply bg-white rounded-lg shadow-sm border border-gray-100 p-6 transition-all duration-200 hover:shadow-md;
+}
+
+/* Titres style Agoria */
+.heading-agoria-1 {
+  @apply text-4xl md:text-5xl font-bold text-[#1A1A1A] leading-tight;
+}
+
+.heading-agoria-2 {
+  @apply text-3xl md:text-4xl font-bold text-[#1A1A1A] leading-tight;
+}
+
+.heading-agoria-3 {
+  @apply text-2xl md:text-3xl font-bold text-[#1A1A1A] leading-tight;
 }

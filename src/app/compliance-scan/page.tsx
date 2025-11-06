@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Shield, Briefcase, Lock, CheckCircle, Clock, FileText, Download, ChevronRight } from 'lucide-react';
+import { Shield, Briefcase, Lock, CheckCircle, Clock, FileText, Download, ArrowRight } from 'lucide-react';
 
 export default function ComplianceScanLanding() {
   const router = useRouter();
@@ -22,8 +22,7 @@ export default function ComplianceScanLanding() {
       icon: Shield,
       title: 'Digitalisation & Sécurité',
       weight: '30%',
-      color: 'bg-[#0073CF]',
-      borderColor: 'border-[#0073CF]',
+      color: '#1C32FF',
       description: 'Évaluez vos mesures de cybersécurité, MFA, sauvegardes, formation et conformité NIS2.',
       questions: 6,
     },
@@ -32,8 +31,7 @@ export default function ComplianceScanLanding() {
       icon: Briefcase,
       title: 'Conformité réglementaire & sociale',
       weight: '40%',
-      color: 'bg-[#7CB342]',
-      borderColor: 'border-[#7CB342]',
+      color: '#00D084',
       description: 'Vérifiez vos obligations légales : BCE, contrats, DIMONA, registre du personnel, facturation.',
       questions: 6,
     },
@@ -42,95 +40,71 @@ export default function ComplianceScanLanding() {
       icon: Lock,
       title: 'RGPD & Gouvernance des données',
       weight: '30%',
-      color: 'bg-[#FF6B35]',
-      borderColor: 'border-[#FF6B35]',
+      color: '#FF6B35',
       description: 'Contrôlez votre conformité RGPD : registre, DPO, droits des personnes, rétention.',
       questions: 6,
     },
   ];
 
   const benefits = [
-    {
-      icon: Clock,
-      title: 'Rapide et simple',
-      description: 'Complétez l\'évaluation en 5-10 minutes',
-    },
-    {
-      icon: CheckCircle,
-      title: 'Score détaillé',
-      description: 'Obtenez un score global et par module',
-    },
-    {
-      icon: FileText,
-      title: 'Recommandations',
-      description: 'Recevez des actions prioritaires personnalisées',
-    },
-    {
-      icon: Download,
-      title: 'Rapport PDF',
-      description: 'Téléchargez votre rapport complet',
-    },
+    { icon: Clock, title: 'Rapide et simple', description: 'Complétez l\'évaluation en 5-10 minutes' },
+    { icon: CheckCircle, title: 'Score détaillé', description: 'Obtenez un score global et par module' },
+    { icon: FileText, title: 'Recommandations', description: 'Recevez des actions prioritaires personnalisées' },
+    { icon: Download, title: 'Rapport PDF', description: 'Téléchargez votre rapport complet' },
   ];
 
   return (
-    <div className="bg-gray-50">
-      {/* Breadcrumb */}
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center text-sm text-gray-600">
-            <a href="/" className="hover:text-[#0073CF]">Home</a>
-            <ChevronRight size={16} className="mx-2" />
-            <span className="text-[#003E7E] font-semibold">Compliance Scan</span>
-          </div>
-        </div>
-      </div>
-
+    <div className="bg-white">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-[#003E7E] to-[#0073CF] text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Compliance Scan
-          </h1>
-          <p className="text-xl md:text-2xl text-blue-100 mb-6">
-            Évaluez votre niveau de conformité en 3 modules clés
-          </p>
-          <p className="text-base text-blue-200 max-w-3xl mx-auto">
-            Un outil d'auto-évaluation gratuit et confidentiel pour identifier vos forces
-            et vos axes d'amélioration en matière de conformité.
-          </p>
+      <section className="bg-white py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="flex items-center justify-center gap-2 mb-6">
+              <h1 className="heading-agoria-1">Compliance Scan</h1>
+              <div className="w-3 h-3 bg-[#1C32FF] rounded-sm"></div>
+            </div>
+            <p className="text-xl text-[#6B6B6B] mb-4">
+              Évaluez votre niveau de conformité en 3 modules clés
+            </p>
+            <p className="text-base text-[#6B6B6B]">
+              Un outil d'auto-évaluation gratuit et confidentiel pour identifier vos forces
+              et vos axes d'amélioration en matière de conformité.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Modules */}
-      <section className="py-16">
+      <section className="py-16 bg-[#F5F7FA]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-[#003E7E] text-center mb-12">
-            Les 3 modules de l'évaluation
-          </h2>
+          <div className="flex items-center gap-2 mb-12">
+            <h2 className="heading-agoria-2">Les 3 modules de l'évaluation</h2>
+            <div className="w-3 h-3 bg-[#1C32FF] rounded-sm"></div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {modules.map((module) => {
               const IconComponent = module.icon;
               return (
-                <div
-                  key={module.id}
-                  className={`bg-white rounded-xl shadow-md border-t-4 ${module.borderColor} p-6 hover:shadow-xl transition-shadow`}
-                >
-                  <div className="flex justify-center mb-4">
-                    <div className={`${module.color} p-4 rounded-full`}>
+                <div key={module.id} className="card-agoria group">
+                  <div className="flex justify-center mb-6">
+                    <div
+                      className="p-4 rounded-lg group-hover:scale-110 transition-transform"
+                      style={{ backgroundColor: module.color }}
+                    >
                       <IconComponent className="text-white" size={32} />
                     </div>
                   </div>
                   <div className="text-center">
-                    <span className="text-sm font-semibold text-gray-500 uppercase">
+                    <span className="text-sm font-semibold text-[#6B6B6B] uppercase">
                       Module {module.id} • {module.weight}
                     </span>
-                    <h3 className="text-xl font-bold text-[#003E7E] mt-2 mb-3">
+                    <h3 className="text-xl font-bold text-[#1A1A1A] mt-2 mb-3">
                       {module.title}
                     </h3>
-                    <p className="text-gray-600 text-sm mb-4">
+                    <p className="text-[#6B6B6B] text-sm mb-4">
                       {module.description}
                     </p>
-                    <div className="text-sm text-gray-500">
+                    <div className="text-sm text-[#6B6B6B]">
                       {module.questions} questions
                     </div>
                   </div>
@@ -144,22 +118,23 @@ export default function ComplianceScanLanding() {
       {/* Avantages */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-[#003E7E] text-center mb-12">
-            Pourquoi faire le Compliance Scan ?
-          </h2>
+          <div className="flex items-center gap-2 mb-12">
+            <h2 className="heading-agoria-2">Pourquoi faire le Compliance Scan ?</h2>
+            <div className="w-3 h-3 bg-[#1C32FF] rounded-sm"></div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit, idx) => {
               const IconComponent = benefit.icon;
               return (
                 <div
                   key={idx}
-                  className="text-center p-6 rounded-lg bg-gray-50 hover:bg-blue-50 transition-colors"
+                  className="text-center p-6 rounded-lg bg-[#F5F7FA] hover:shadow-md transition-all"
                 >
                   <div className="flex justify-center mb-4">
-                    <IconComponent className="text-[#0073CF]" size={40} />
+                    <IconComponent className="text-[#1C32FF]" size={40} />
                   </div>
-                  <h3 className="font-bold text-[#003E7E] mb-2">{benefit.title}</h3>
-                  <p className="text-sm text-gray-600">{benefit.description}</p>
+                  <h3 className="font-bold text-[#1A1A1A] mb-2">{benefit.title}</h3>
+                  <p className="text-sm text-[#6B6B6B]">{benefit.description}</p>
                 </div>
               );
             })}
@@ -168,31 +143,30 @@ export default function ComplianceScanLanding() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16">
+      <section className="py-16 bg-[#F5F7FA]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-xl shadow-lg p-8 md:p-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#003E7E] text-center mb-6">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-8 md:p-12">
+            <h2 className="heading-agoria-3 text-center mb-6">
               Prêt à évaluer votre conformité ?
             </h2>
-            <p className="text-center text-gray-600 mb-8">
+            <p className="text-center text-[#6B6B6B] mb-8">
               L'évaluation comprend <strong>18 questions</strong> réparties sur 3 modules.
               <br />
               Temps estimé : <strong>5-10 minutes</strong>
             </p>
 
             {/* Checkbox RGPD */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+            <div className="bg-[#F5F7FA] border border-gray-200 rounded-lg p-6 mb-8">
               <label className="flex items-start cursor-pointer">
                 <input
                   type="checkbox"
                   checked={acceptedRGPD}
                   onChange={(e) => setAcceptedRGPD(e.target.checked)}
-                  className="mt-1 mr-3 w-5 h-5 text-[#0073CF] border-gray-300 rounded focus:ring-[#0073CF]"
+                  className="mt-1 mr-3 w-5 h-5 text-[#1C32FF] border-gray-300 rounded focus:ring-[#1C32FF]"
                 />
-                <span className="text-sm text-gray-700">
+                <span className="text-sm text-[#1A1A1A]">
                   J'accepte que mes réponses soient traitées de manière <strong>anonyme et confidentielle</strong> dans
-                  le cadre de cette auto-évaluation. Aucune donnée personnelle n'est collectée. Les résultats sont
-                  uniquement visibles par moi et ne sont pas transmis à Agoria sans mon consentement explicite.
+                  le cadre de cette auto-évaluation. Aucune donnée personnelle n'est collectée.
                 </span>
               </label>
             </div>
@@ -202,14 +176,12 @@ export default function ComplianceScanLanding() {
               <button
                 onClick={handleStart}
                 disabled={!acceptedRGPD}
-                className={`inline-flex items-center gap-2 px-8 py-4 rounded-lg font-bold text-lg transition-all transform ${
-                  acceptedRGPD
-                    ? 'bg-[#FF6B35] hover:bg-[#ff5520] text-white shadow-xl hover:shadow-2xl hover:scale-105'
-                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                className={`btn-agoria-primary inline-flex items-center gap-2 ${
+                  !acceptedRGPD ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               >
                 DÉMARRER L'ÉVALUATION
-                <ChevronRight size={24} />
+                <ArrowRight size={20} />
               </button>
             </div>
           </div>

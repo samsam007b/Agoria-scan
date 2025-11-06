@@ -6,7 +6,7 @@ export default function AgoriaFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#263238] text-white mt-auto">
+    <footer className="bg-[#1A1A1A] text-white mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo et description */}
@@ -19,29 +19,29 @@ export default function AgoriaFooter() {
                 height={50}
                 className="h-10 w-auto brightness-0 invert"
               />
-              <span className="text-xs text-gray-400 font-normal">(Demo)</span>
+              <span className="text-xs text-gray-500 font-normal">(Demo)</span>
             </div>
-            <p className="text-gray-300 text-sm mb-4">
+            <p className="text-gray-400 text-sm mb-4">
               La fédération de l'industrie technologique belge
             </p>
             <div className="flex space-x-4">
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-500 hover:text-[#1C32FF] transition-all duration-200"
                 aria-label="LinkedIn"
               >
                 <Linkedin size={20} />
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-500 hover:text-[#1C32FF] transition-all duration-200"
                 aria-label="Twitter"
               >
                 <Twitter size={20} />
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-500 hover:text-[#1C32FF] transition-all duration-200"
                 aria-label="Facebook"
               >
                 <Facebook size={20} />
