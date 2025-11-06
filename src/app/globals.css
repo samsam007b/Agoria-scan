@@ -4,7 +4,14 @@
   --background: #FFFFFF;
   --foreground: #1A1A1A;
 
-  /* Couleurs Agoria Officielles */
+  /* Nouvelle palette de couleurs */
+  --primary-blue: #1C32FF;
+  --text-dark: #1A1A1A;
+  --text-light: #A7A7A7;
+  --accent-green: #00C48C;
+  --accent-orange: #FF9B00;
+
+  /* Anciennes couleurs Agoria (rétro-compatibilité) */
   --agoria-blue: #1C32FF;
   --agoria-blue-dark: #0D1A99;
   --agoria-blue-light: #4D5FFF;
@@ -14,14 +21,28 @@
   --agoria-gray-dark: #1A1A1A;
   --agoria-gray: #6B6B6B;
   --agoria-gray-light: #F5F7FA;
+
+  /* Fonts */
+  --font-primary: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-secondary: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
 
-  /* Couleurs custom Agoria */
+  /* Fonts configuration */
+  --font-sans: var(--font-primary);
+  --font-headings: var(--font-secondary);
+
+  /* Nouvelles couleurs */
+  --color-primary-blue: var(--primary-blue);
+  --color-text-dark: var(--text-dark);
+  --color-text-light: var(--text-light);
+  --color-accent-green: var(--accent-green);
+  --color-accent-orange: var(--accent-orange);
+
+  /* Couleurs custom Agoria (rétro-compatibilité) */
   --color-agoria-blue: var(--agoria-blue);
   --color-agoria-blue-dark: var(--agoria-blue-dark);
   --color-agoria-blue-light: var(--agoria-blue-light);
@@ -36,7 +57,37 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-primary);
+}
+
+/* Typographie - Headings avec IBM Plex Sans */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-secondary);
+}
+
+h1 {
+  font-size: 4rem; /* 64px */
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 2.25rem; /* 36px */
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 1.5rem; /* 24px */
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Body text avec Inter */
+p, body {
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
+  font-family: var(--font-primary);
 }
 
 /* Boutons style Agoria - Sharp corners */
