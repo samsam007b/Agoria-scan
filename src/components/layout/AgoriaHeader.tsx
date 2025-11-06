@@ -3,20 +3,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import { Search, ChevronDown, User, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
 export default function AgoriaHeader() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const navItems = [
-    { label: 'Home', href: '/', active: true },
-    { label: 'About us', href: '#', active: false },
-    { label: 'Services', href: '#', active: false },
-    { label: 'Compliance Scan', href: '/compliance-scan', active: true },
-    { label: 'Contact', href: '#', active: false },
-  ];
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
@@ -24,11 +16,46 @@ export default function AgoriaHeader() {
   };
 
   return (
-    <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
+    <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+      {/* Top Utility Bar - Style Agoria */}
+      <div className="border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-end items-center h-10">
+            <div className="hidden md:flex items-center space-x-6 text-sm">
+              <button disabled className="text-gray-400 hover:text-gray-500 cursor-not-allowed opacity-50">
+                About us
+              </button>
+              <button disabled className="text-gray-400 hover:text-gray-500 cursor-not-allowed opacity-50">
+                Find a member
+              </button>
+              <button disabled className="text-gray-400 hover:text-gray-500 cursor-not-allowed opacity-50">
+                Contact us
+              </button>
+              <button disabled className="flex items-center gap-1 text-gray-400 hover:text-gray-500 cursor-not-allowed opacity-50">
+                <User size={16} />
+                Log in
+              </button>
+              <div className="flex items-center gap-2 border-l border-gray-200 pl-6">
+                <button disabled className="text-gray-400 hover:text-gray-500 cursor-not-allowed opacity-50">
+                  NL
+                </button>
+                <span className="text-gray-300">|</span>
+                <button disabled className="text-gray-400 hover:text-gray-500 cursor-not-allowed opacity-50">
+                  FR
+                </button>
+                <span className="text-gray-300">|</span>
+                <span className="text-[#1A1A1A] font-semibold">EN</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Navigation Bar - Style Agoria */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
+          <Link href="/" className="flex items-center space-x-2">
             <Image
               src="/agoria-logo.png"
               alt="Agoria"
@@ -41,96 +68,158 @@ export default function AgoriaHeader() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-2">
-            {navItems.map((item) => {
-              const active = isActive(item.href);
-              const isCompliance = item.href === '/compliance-scan';
-
-              if (!item.active) {
-                return (
-                  <button
-                    key={item.label}
-                    disabled
-                    className="px-5 py-2 text-sm font-medium text-gray-300 cursor-not-allowed opacity-50 relative"
-                    title="Section non disponible dans la démo"
-                  >
-                    {item.label}
-                  </button>
-                );
-              }
-
-              return (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className={`px-5 py-2.5 text-sm font-semibold transition-all duration-200 relative ${
-                    active
-                      ? 'text-[#1C32FF] bg-[#F5F7FA]'
-                      : 'text-[#1A1A1A] hover:text-[#1C32FF] hover:bg-[#F5F7FA]'
-                  }`}
-                >
-                  {item.label}
-                  {isCompliance && (
-                    <span className="absolute -top-1 -right-1 bg-[#00D084] text-white text-[10px] font-bold px-2 py-0.5">
-                      NEW
-                    </span>
-                  )}
-                </Link>
-              );
-            })}
+          <nav className="hidden lg:flex items-center space-x-8">
+            <button
+              disabled
+              className="flex items-center gap-1 text-[#1A1A1A] font-medium hover:text-[#1C32FF] transition-colors cursor-not-allowed opacity-50"
+            >
+              Domains of action
+              <ChevronDown size={16} />
+            </button>
+            <button
+              disabled
+              className="flex items-center gap-1 text-[#1A1A1A] font-medium hover:text-[#1C32FF] transition-colors cursor-not-allowed opacity-50"
+            >
+              Services
+              <ChevronDown size={16} />
+            </button>
+            <button
+              disabled
+              className="flex items-center gap-1 text-[#1A1A1A] font-medium hover:text-[#1C32FF] transition-colors cursor-not-allowed opacity-50"
+            >
+              Positioning
+              <ChevronDown size={16} />
+            </button>
+            <Link
+              href="/compliance-scan"
+              className={`flex items-center gap-1 font-medium transition-colors relative ${
+                isActive('/compliance-scan')
+                  ? 'text-[#1C32FF]'
+                  : 'text-[#1A1A1A] hover:text-[#1C32FF]'
+              }`}
+            >
+              TECH BELGIUM
+              <ChevronDown size={16} />
+              {/* Badge NEW */}
+              <span className="absolute -top-2 -right-8 bg-[#00D084] text-white text-[10px] font-bold px-2 py-0.5">
+                NEW
+              </span>
+            </Link>
+            <button
+              disabled
+              className="text-[#1A1A1A] font-medium hover:text-[#1C32FF] transition-colors cursor-not-allowed opacity-50"
+            >
+              Agenda
+            </button>
           </nav>
+
+          {/* Search Bar - Desktop */}
+          <div className="hidden lg:flex items-center">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="What are you searching for?"
+                disabled
+                className="w-80 px-4 py-2 pr-10 border border-gray-300 bg-white text-sm placeholder:text-gray-400 focus:outline-none focus:border-[#1C32FF] transition-colors cursor-not-allowed opacity-50"
+              />
+              <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+            </div>
+          </div>
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 text-[#1A1A1A] hover:bg-[#F5F7FA] transition-colors"
+            className="lg:hidden p-2 text-[#1A1A1A] hover:bg-gray-50 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-gray-100">
-            {navItems.map((item) => {
-              const active = isActive(item.href);
-              const isCompliance = item.href === '/compliance-scan';
-
-              if (!item.active) {
-                return (
-                  <button
-                    key={item.label}
-                    disabled
-                    className="w-full text-left px-4 py-3 text-sm font-medium text-gray-300 cursor-not-allowed opacity-50"
-                  >
-                    {item.label}
-                  </button>
-                );
-              }
-
-              return (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`block px-4 py-3 text-sm font-semibold relative transition-all duration-200 ${
-                    active
-                      ? 'text-[#1C32FF] bg-[#F5F7FA]'
-                      : 'text-[#1A1A1A] hover:bg-[#F5F7FA]'
-                  }`}
-                >
-                  {item.label}
-                  {isCompliance && (
-                    <span className="ml-2 bg-[#00D084] text-white text-[10px] font-bold px-2 py-0.5">
-                      NEW
-                    </span>
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
-        )}
       </div>
+
+      {/* Mobile Navigation */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden border-t border-gray-100 bg-white">
+          <nav className="px-4 py-4 space-y-2">
+            <button
+              disabled
+              className="w-full text-left px-4 py-3 text-sm font-medium text-gray-400 cursor-not-allowed opacity-50"
+            >
+              Domains of action
+            </button>
+            <button
+              disabled
+              className="w-full text-left px-4 py-3 text-sm font-medium text-gray-400 cursor-not-allowed opacity-50"
+            >
+              Services
+            </button>
+            <button
+              disabled
+              className="w-full text-left px-4 py-3 text-sm font-medium text-gray-400 cursor-not-allowed opacity-50"
+            >
+              Positioning
+            </button>
+            <Link
+              href="/compliance-scan"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`flex items-center justify-between px-4 py-3 text-sm font-medium transition-colors ${
+                isActive('/compliance-scan')
+                  ? 'text-[#1C32FF] bg-blue-50'
+                  : 'text-[#1A1A1A]'
+              }`}
+            >
+              TECH BELGIUM
+              <span className="bg-[#00D084] text-white text-[10px] font-bold px-2 py-0.5">
+                NEW
+              </span>
+            </Link>
+            <button
+              disabled
+              className="w-full text-left px-4 py-3 text-sm font-medium text-gray-400 cursor-not-allowed opacity-50"
+            >
+              Agenda
+            </button>
+          </nav>
+
+          {/* Mobile Search */}
+          <div className="px-4 pb-4">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="What are you searching for?"
+                disabled
+                className="w-full px-4 py-2 pr-10 border border-gray-300 bg-white text-sm placeholder:text-gray-400 cursor-not-allowed opacity-50"
+              />
+              <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+            </div>
+          </div>
+
+          {/* Mobile Top Bar Items */}
+          <div className="border-t border-gray-100 px-4 py-4 space-y-2 text-sm">
+            <button disabled className="block text-gray-400 cursor-not-allowed opacity-50">
+              About us
+            </button>
+            <button disabled className="block text-gray-400 cursor-not-allowed opacity-50">
+              Find a member
+            </button>
+            <button disabled className="block text-gray-400 cursor-not-allowed opacity-50">
+              Contact us
+            </button>
+            <button disabled className="flex items-center gap-1 text-gray-400 cursor-not-allowed opacity-50">
+              <User size={16} />
+              Log in
+            </button>
+            <div className="flex items-center gap-3 pt-2">
+              <button disabled className="text-gray-400 cursor-not-allowed opacity-50">
+                NL
+              </button>
+              <button disabled className="text-gray-400 cursor-not-allowed opacity-50">
+                FR
+              </button>
+              <span className="text-[#1A1A1A] font-semibold">EN</span>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
