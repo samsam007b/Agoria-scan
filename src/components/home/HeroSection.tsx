@@ -7,42 +7,44 @@ import { ArrowRight, Shield, FileCheck, Lock } from 'lucide-react';
 export default function HeroSection() {
   return (
     <>
-      {/* Hero Section - Style Agoria avec image */}
-      <section className="bg-white py-12 md:py-20 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Texte à gauche */}
-            <div className="order-2 lg:order-1">
-              <div className="flex items-center gap-2 mb-6">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#1A1A1A] leading-tight">
-                  Compliance Scan
-                </h1>
-                <div className="w-3 h-3 bg-[#1C32FF] flex-shrink-0"></div>
-              </div>
-              <p className="text-lg sm:text-xl text-[#6B6B6B] mb-8 leading-relaxed">
-                Évaluez votre niveau de conformité en 5 minutes. Un outil d'auto-évaluation gratuit pour identifier vos priorités en matière de cybersécurité, conformité réglementaire et RGPD.
-              </p>
-              <Link
-                href="/compliance-scan"
-                className="btn-agoria-primary inline-flex items-center gap-2"
-              >
-                Démarrer l'évaluation
-                <ArrowRight size={20} />
-              </Link>
-            </div>
+      {/* Hero Section - Style Agoria avec image de fond assombrie */}
+      <section className="relative bg-black py-20 md:py-32 lg:py-40 overflow-hidden">
+        {/* Image de fond */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/hero-compliance.png"
+            alt="Compliance illustration"
+            fill
+            className="object-cover opacity-40"
+            priority
+          />
+        </div>
 
-            {/* Image à droite */}
-            <div className="order-1 lg:order-2">
-              <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px]">
-                <Image
-                  src="/hero-compliance.png"
-                  alt="Compliance illustration - Balance de justice, bouclier de sécurité et checklist"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
+        {/* Overlay gradient sombre */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70 z-10"></div>
+
+        {/* Contenu */}
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-3 mb-6">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+                Compliance Scan
+              </h1>
+              <div className="w-3 h-3 bg-[#1C32FF] flex-shrink-0"></div>
             </div>
+            <p className="text-xl sm:text-2xl text-white/90 mb-4 font-medium">
+              Évaluez votre niveau de conformité en 5 minutes
+            </p>
+            <p className="text-base sm:text-lg text-white/80 mb-8 leading-relaxed">
+              Un outil d'auto-évaluation gratuit pour identifier vos priorités en matière de cybersécurité, conformité réglementaire et RGPD.
+            </p>
+            <Link
+              href="/compliance-scan"
+              className="inline-flex items-center gap-2 bg-[#1C32FF] text-white font-semibold px-8 py-4 transition-all duration-200 hover:bg-[#0D1A99] hover:shadow-xl active:scale-[0.98] text-lg"
+            >
+              Démarrer l'évaluation
+              <ArrowRight size={24} />
+            </Link>
           </div>
         </div>
       </section>
