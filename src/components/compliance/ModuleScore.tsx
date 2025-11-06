@@ -41,7 +41,7 @@ export default function ModuleScore({ id, label, score, color, weight }: ModuleS
         </div>
         <div className="text-right">
           <div className="text-3xl font-bold" style={{ color }}>
-            {score}
+            {score.toFixed(1)}
           </div>
           <div className="text-sm text-[#6B6B6B]">/ 10</div>
         </div>
@@ -59,7 +59,7 @@ export default function ModuleScore({ id, label, score, color, weight }: ModuleS
           />
         </div>
         <div className="mt-2 text-sm text-[#1A1A1A] font-medium">
-          {percentage}% de conformité
+          {percentage.toFixed(1)}% de conformité
         </div>
       </div>
     </div>

@@ -45,12 +45,12 @@ export function calculateScores(answers: Answer[]): ScoreResult {
 
     // Moyenne des scores du module (sur 10)
     const sumScores = moduleAnswers.reduce((sum, a) => sum + a.score, 0);
-    const avgScore = (sumScores / module.questions.length) * 10;
+    const avgScore = sumScores / module.questions.length;
 
     moduleScores.push({
       id: module.id,
       label: module.label,
-      score: Math.round(avgScore),
+      score: parseFloat(avgScore.toFixed(1)),
       color: module.color,
       weight: module.weight,
     });
