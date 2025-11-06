@@ -29,7 +29,7 @@ export default function ModuleScore({ id, label, score, color, weight }: ModuleS
     <div className="card-agoria border-l-4" style={{ borderColor: color }}>
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="p-3 rounded-lg" style={{ backgroundColor: color }}>
+          <div className="p-3" style={{ backgroundColor: color }}>
             <IconComponent className="text-white" size={24} />
           </div>
           <div>
@@ -49,9 +49,9 @@ export default function ModuleScore({ id, label, score, color, weight }: ModuleS
 
       {/* Progress bar */}
       <div className="relative">
-        <div className="w-full bg-[#F5F7FA] rounded-full h-2 overflow-hidden">
+        <div className="w-full bg-[#F5F7FA] h-2 overflow-hidden">
           <div
-            className="h-full rounded-full transition-all duration-1000 ease-out"
+            className="h-full transition-all duration-1000 ease-out"
             style={{
               width: `${percentage}%`,
               backgroundColor: color,

@@ -128,7 +128,7 @@ export default function QuestionsPage() {
           <button
             onClick={handlePrevious}
             disabled={currentQuestionIndex === 0}
-            className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold transition-all duration-200 ${
+            className={`flex items-center gap-2 px-6 py-3 font-semibold transition-all duration-200 ${
               currentQuestionIndex === 0
                 ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
                 : 'btn-agoria-outline'
@@ -141,7 +141,7 @@ export default function QuestionsPage() {
           <button
             onClick={handleNext}
             disabled={!currentAnswer}
-            className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold transition-all duration-200 ${
+            className={`flex items-center gap-2 px-6 py-3 font-semibold transition-all duration-200 ${
               currentAnswer
                 ? 'btn-agoria-primary'
                 : 'bg-gray-200 text-gray-400 cursor-not-allowed'

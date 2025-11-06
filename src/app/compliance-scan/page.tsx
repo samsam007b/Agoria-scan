@@ -61,7 +61,7 @@ export default function ComplianceScanLanding() {
           <div className="max-w-3xl mx-auto text-center">
             <div className="flex items-center justify-center gap-2 mb-6">
               <h1 className="heading-agoria-1">Compliance Scan</h1>
-              <div className="w-3 h-3 bg-[#1C32FF] rounded-sm"></div>
+              <div className="w-3 h-3 bg-[#1C32FF]"></div>
             </div>
             <p className="text-xl text-[#6B6B6B] mb-4">
               Évaluez votre niveau de conformité en 3 modules clés
@@ -79,7 +79,7 @@ export default function ComplianceScanLanding() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 mb-12">
             <h2 className="heading-agoria-2">Les 3 modules de l'évaluation</h2>
-            <div className="w-3 h-3 bg-[#1C32FF] rounded-sm"></div>
+            <div className="w-3 h-3 bg-[#1C32FF]"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {modules.map((module) => {
@@ -88,7 +88,7 @@ export default function ComplianceScanLanding() {
                 <div key={module.id} className="card-agoria group">
                   <div className="flex justify-center mb-6">
                     <div
-                      className="p-4 rounded-lg group-hover:scale-110 transition-transform"
+                      className="p-4 group-hover:scale-110 transition-transform"
                       style={{ backgroundColor: module.color }}
                     >
                       <IconComponent className="text-white" size={32} />
@@ -120,7 +120,7 @@ export default function ComplianceScanLanding() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 mb-12">
             <h2 className="heading-agoria-2">Pourquoi faire le Compliance Scan ?</h2>
-            <div className="w-3 h-3 bg-[#1C32FF] rounded-sm"></div>
+            <div className="w-3 h-3 bg-[#1C32FF]"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit, idx) => {
@@ -128,7 +128,7 @@ export default function ComplianceScanLanding() {
               return (
                 <div
                   key={idx}
-                  className="text-center p-6 rounded-lg bg-[#F5F7FA] hover:shadow-md transition-all"
+                  className="text-center p-6 bg-[#F5F7FA] hover:shadow-md transition-all"
                 >
                   <div className="flex justify-center mb-4">
                     <IconComponent className="text-[#1C32FF]" size={40} />
@@ -145,7 +145,7 @@ export default function ComplianceScanLanding() {
       {/* CTA Section */}
       <section className="py-16 bg-[#F5F7FA]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-8 md:p-12">
+          <div className="bg-white shadow-sm border border-gray-100 p-8 md:p-12">
             <h2 className="heading-agoria-3 text-center mb-6">
               Prêt à évaluer votre conformité ?
             </h2>
@@ -156,13 +156,13 @@ export default function ComplianceScanLanding() {
             </p>
 
             {/* Checkbox RGPD */}
-            <div className="bg-[#F5F7FA] border border-gray-200 rounded-lg p-6 mb-8">
+            <div className="bg-[#F5F7FA] border border-gray-200 p-6 mb-8">
               <label className="flex items-start cursor-pointer">
                 <input
                   type="checkbox"
                   checked={acceptedRGPD}
                   onChange={(e) => setAcceptedRGPD(e.target.checked)}
-                  className="mt-1 mr-3 w-5 h-5 text-[#1C32FF] border-gray-300 rounded focus:ring-[#1C32FF]"
+                  className="mt-1 mr-3 w-5 h-5 text-[#1C32FF] border-gray-300 focus:ring-[#1C32FF]"
                 />
                 <span className="text-sm text-[#1A1A1A]">
                   J'accepte que mes réponses soient traitées de manière <strong>anonyme et confidentielle</strong> dans

@@ -52,7 +52,7 @@ export default function ResultatsPage() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0073CF] mx-auto mb-4"></div>
+          <div className="animate-spin h-12 w-12 border-b-2 border-[#0073CF] mx-auto mb-4"></div>
           <p className="text-gray-600">Calcul de vos résultats...</p>
         </div>
       </div>
@@ -73,7 +73,7 @@ export default function ResultatsPage() {
         </div>
 
         {/* Score Global */}
-        <section className="bg-white rounded-xl shadow-lg p-8 md:p-12 mb-8">
+        <section className="bg-white shadow-lg p-8 md:p-12 mb-8">
           <div className="flex flex-col items-center">
             <ScoreGauge
               score={scoreResult.globalScore}
@@ -142,7 +142,7 @@ export default function ResultatsPage() {
                 return (
                   <div
                     key={index}
-                    className={`bg-white rounded-lg border-l-4 p-6 shadow-md ${colorClass}`}
+                    className={`bg-white border-l-4 p-6 shadow-md ${colorClass}`}
                   >
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0">
@@ -174,7 +174,7 @@ export default function ResultatsPage() {
         )}
 
         {/* CTAs */}
-        <section className="bg-gradient-to-br from-[#003E7E] to-[#0073CF] rounded-xl shadow-lg p-8 md:p-12 text-white">
+        <section className="bg-gradient-to-br from-[#003E7E] to-[#0073CF] shadow-lg p-8 md:p-12 text-white">
           <div className="text-center mb-8">
             <h2 className="text-2xl md:text-3xl font-bold mb-3">
               Et maintenant ?
@@ -187,7 +187,7 @@ export default function ResultatsPage() {
           <div className="flex flex-col md:flex-row gap-4 justify-center">
             <button
               onClick={handleDownloadPDF}
-              className="flex items-center justify-center gap-2 bg-[#FF6B35] hover:bg-[#ff5520] text-white font-bold px-8 py-4 rounded-lg shadow-xl hover:shadow-2xl transition-all transform hover:scale-105"
+              className="flex items-center justify-center gap-2 bg-[#FF6B35] hover:bg-[#ff5520] text-white font-bold px-8 py-4 shadow-xl hover:shadow-2xl transition-all transform hover:scale-105"
             >
               <Download size={20} />
               Télécharger le rapport PDF
@@ -195,7 +195,7 @@ export default function ResultatsPage() {
 
             <button
               onClick={handleRestart}
-              className="flex items-center justify-center gap-2 bg-white text-[#003E7E] font-bold px-8 py-4 rounded-lg hover:bg-blue-50 transition-all"
+              className="flex items-center justify-center gap-2 bg-white text-[#003E7E] font-bold px-8 py-4 hover:bg-blue-50 transition-all"
             >
               <RotateCcw size={20} />
               Recommencer l'évaluation

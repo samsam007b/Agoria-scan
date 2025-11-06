@@ -63,7 +63,7 @@ export default function AgoriaHeader() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className={`px-5 py-2.5 text-sm font-semibold rounded-md transition-all duration-200 relative ${
+                  className={`px-5 py-2.5 text-sm font-semibold transition-all duration-200 relative ${
                     active
                       ? 'text-[#1C32FF] bg-[#F5F7FA]'
                       : 'text-[#1A1A1A] hover:text-[#1C32FF] hover:bg-[#F5F7FA]'
@@ -71,7 +71,7 @@ export default function AgoriaHeader() {
                 >
                   {item.label}
                   {isCompliance && (
-                    <span className="absolute -top-1 -right-1 bg-[#00D084] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    <span className="absolute -top-1 -right-1 bg-[#00D084] text-white text-[10px] font-bold px-2 py-0.5">
                       NEW
                     </span>
                   )}
@@ -82,7 +82,7 @@ export default function AgoriaHeader() {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 rounded-md text-[#1A1A1A] hover:bg-[#F5F7FA] transition-colors"
+            className="md:hidden p-2 text-[#1A1A1A] hover:bg-[#F5F7FA] transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -113,7 +113,7 @@ export default function AgoriaHeader() {
                   key={item.label}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block px-4 py-3 text-sm font-semibold relative rounded-md transition-all duration-200 ${
+                  className={`block px-4 py-3 text-sm font-semibold relative transition-all duration-200 ${
                     active
                       ? 'text-[#1C32FF] bg-[#F5F7FA]'
                       : 'text-[#1A1A1A] hover:bg-[#F5F7FA]'
@@ -121,7 +121,7 @@ export default function AgoriaHeader() {
                 >
                   {item.label}
                   {isCompliance && (
-                    <span className="ml-2 bg-[#00D084] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    <span className="ml-2 bg-[#00D084] text-white text-[10px] font-bold px-2 py-0.5">
                       NEW
                     </span>
                   )}

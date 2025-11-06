@@ -47,7 +47,7 @@ export default function QuestionCard({
       {/* Module Badge */}
       <div className="flex items-center gap-3 mb-6">
         <div
-          className="p-3 rounded-lg"
+          className="p-3"
           style={{ backgroundColor: moduleColor }}
         >
           <IconComponent className="text-white" size={24} />
@@ -75,7 +75,7 @@ export default function QuestionCard({
             <button
               key={option.key}
               onClick={() => onSelect(option.key, option.score)}
-              className={`w-full text-left p-4 rounded-lg border-2 transition-all duration-200 ${
+              className={`w-full text-left p-4 border-2 transition-all duration-200 ${
                 isSelected
                   ? 'border-[#1C32FF] bg-[#F5F7FA] shadow-sm'
                   : 'border-gray-200 hover:border-[#1C32FF] hover:bg-[#F5F7FA]'
@@ -83,14 +83,14 @@ export default function QuestionCard({
             >
               <div className="flex items-center gap-3">
                 <div
-                  className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
+                  className={`w-5 h-5 border-2 flex items-center justify-center transition-all ${
                     isSelected
                       ? 'border-[#1C32FF] bg-[#1C32FF]'
                       : 'border-gray-300'
                   }`}
                 >
                   {isSelected && (
-                    <div className="w-2 h-2 bg-white rounded-full" />
+                    <div className="w-2 h-2 bg-white" />
                   )}
                 </div>
                 <div className="flex-1">
