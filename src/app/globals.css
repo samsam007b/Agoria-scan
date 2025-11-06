@@ -23,8 +23,8 @@
   --agoria-gray-light: #F5F7FA;
 
   /* Fonts */
-  --font-primary: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-secondary: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-primary: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  --font-secondary: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
 }
 
 @theme inline {
