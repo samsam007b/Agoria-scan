@@ -123,7 +123,7 @@ export default function AgoriaHeader() {
                   : 'text-[#1A1A1A] hover:text-[#1C32FF]'
               }`}
             >
-              TECH BELGIUM
+              Compliance SCAN
               <ChevronDown size={16} className="transition-transform duration-200 group-hover:rotate-180" />
               {/* Badge NEW avec animation */}
               <span className="absolute -top-2 -right-8 bg-[#00D084] text-white text-[10px] font-bold px-2 py-0.5 animate-pulse">
@@ -200,7 +200,7 @@ export default function AgoriaHeader() {
                   : 'text-[#1A1A1A]'
               }`}
             >
-              TECH BELGIUM
+              Compliance SCAN
               <span className="bg-[#00D084] text-white text-[10px] font-bold px-2 py-0.5 animate-pulse">
                 NEW
               </span>
