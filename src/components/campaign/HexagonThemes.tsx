@@ -68,64 +68,12 @@ export default function HexagonThemes({
   return (
     <div className="hexagon-container relative" style={{ width: dim.width, height: dim.height }}>
       <svg viewBox={dim.viewBox} className="w-full h-full">
-        <defs>
-          {/* Gradient bleu Agoria - version sombre */}
-          <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#0D1A99" />
-            <stop offset="50%" stopColor="#060D4D" />
-            <stop offset="100%" stopColor="#0D1A99" />
-          </linearGradient>
-
-          {/* Glow effect tech */}
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
-            <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-
-          {/* Pattern de fond tech */}
-          <pattern id="hexPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-            <circle cx="10" cy="10" r="0.5" fill="white" opacity="0.15"/>
-          </pattern>
-        </defs>
-
-        {/* Hexagone principal avec animation tech */}
-        <motion.path
-          d={hexagonPath}
-          fill="url(#blueGradient)"
-          stroke="rgba(255, 255, 255, 0.3)"
-          strokeWidth="2"
-          filter="url(#glow)"
-          initial={{ scale: 0.95, opacity: 0, rotate: -5 }}
-          animate={{
-            scale: [0.98, 1.01, 0.98],
-            opacity: 1,
-            rotate: [0, 2, 0]
-          }}
-          transition={{
-            scale: {
-              repeat: Infinity,
-              duration: 4,
-              ease: "easeInOut"
-            },
-            rotate: {
-              repeat: Infinity,
-              duration: 8,
-              ease: "easeInOut"
-            },
-            opacity: {
-              duration: 0.6
-            }
-          }}
-          className="drop-shadow-2xl"
-        />
-
-        {/* Pattern overlay */}
+        {/* Hexagone principal statique */}
         <path
           d={hexagonPath}
-          fill="url(#hexPattern)"
+          fill="transparent"
+          stroke="rgba(255, 255, 255, 0.4)"
+          strokeWidth="2"
         />
 
         {/* Dividers entre les 6 segments */}
@@ -158,33 +106,24 @@ export default function HexagonThemes({
           const IconComponent = typeof theme.icon !== 'string' ? theme.icon : null;
           const iconSize = size === 'xlarge' ? 32 : size === 'large' ? 24 : size === 'medium' ? 20 : 16;
 
-          // Animation du segment au hover
-          const outerRadius = isActive ? radius * 1.1 : radius;
-          const innerRadius = radius * 0.4;
-
           return (
             <g key={theme.id}>
-              {/* Segment cliquable avec effet zoom */}
+              {/* Segment cliquable (camembert complet du centre au bord) */}
               {interactive && (
                 <motion.path
                   d={(() => {
-                    const x1 = centerX + innerRadius * Math.cos(angleStart);
-                    const y1 = centerY + innerRadius * Math.sin(angleStart);
-                    const x2 = centerX + outerRadius * Math.cos(angleStart);
-                    const y2 = centerY + outerRadius * Math.sin(angleStart);
-                    const x3 = centerX + outerRadius * Math.cos(angleEnd);
-                    const y3 = centerY + outerRadius * Math.sin(angleEnd);
-                    const x4 = centerX + innerRadius * Math.cos(angleEnd);
-                    const y4 = centerY + innerRadius * Math.sin(angleEnd);
+                    // Segment complet : du centre aux bords de l'hexagone
+                    const x1 = centerX;
+                    const y1 = centerY;
+                    const x2 = centerX + radius * Math.cos(angleStart);
+                    const y2 = centerY + radius * Math.sin(angleStart);
+                    const x3 = centerX + radius * Math.cos(angleEnd);
+                    const y3 = centerY + radius * Math.sin(angleEnd);
 
-                    return `M ${x1},${y1} L ${x2},${y2} A ${outerRadius},${outerRadius} 0 0,1 ${x3},${y3} L ${x4},${y4} A ${innerRadius},${innerRadius} 0 0,0 ${x1},${y1} Z`;
+                    return `M ${x1},${y1} L ${x2},${y2} A ${radius},${radius} 0 0,1 ${x3},${y3} Z`;
                   })()}
-                  fill={isActive ? 'rgba(255, 255, 255, 0.15)' : 'transparent'}
-                  className="cursor-pointer"
-                  animate={{
-                    fill: isActive ? 'rgba(255, 255, 255, 0.15)' : 'transparent'
-                  }}
-                  transition={{ duration: 0.3 }}
+                  fill={isActive ? 'rgba(255, 255, 255, 0.2)' : 'transparent'}
+                  className="cursor-pointer transition-all duration-300"
                   onMouseEnter={() => setActiveTheme(theme.id)}
                   onMouseLeave={() => setActiveTheme(null)}
                   onClick={() => onThemeClick?.(theme.id)}
