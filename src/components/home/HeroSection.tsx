@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, Shield, FileCheck, Lock } from 'lucide-react';
+import ScanContext from './ScanContext';
+import { scanContextData } from '@/data/scanContextData';
 
 export default function HeroSection() {
   return (
@@ -48,6 +50,15 @@ export default function HeroSection() {
           </div>
         </div>
       </section>
+
+      {/* Campagne "Agoria célèbre la conformité" */}
+      <ScanContext
+        title={scanContextData.title}
+        intro={scanContextData.intro}
+        insights={scanContextData.insights}
+        themes={scanContextData.themes}
+        event={scanContextData.event}
+      />
 
       {/* Section Be Inspired - Style Agoria */}
       <section className="bg-[#F5F7FA] py-16 md:py-24">
