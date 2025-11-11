@@ -65,47 +65,54 @@ export default function HexagonThemes({
     <div className="hexagon-container relative" style={{ width: dim.width, height: dim.height }}>
       <svg viewBox={dim.viewBox} className="w-full h-full">
         <defs>
-          {/* Gradient bleu Agoria principal */}
+          {/* Gradient bleu Agoria - nouvelle version */}
           <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#003E7E" />
-            <stop offset="100%" stopColor="#0073CF" />
+            <stop offset="0%" stopColor="#1C32FF" />
+            <stop offset="50%" stopColor="#0D1A99" />
+            <stop offset="100%" stopColor="#1C32FF" />
           </linearGradient>
 
-          {/* Glow effect */}
+          {/* Glow effect tech */}
           <filter id="glow">
-            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
             <feMerge>
               <feMergeNode in="coloredBlur"/>
               <feMergeNode in="SourceGraphic"/>
             </feMerge>
           </filter>
 
-          {/* Pattern de fond */}
+          {/* Pattern de fond tech */}
           <pattern id="hexPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-            <circle cx="10" cy="10" r="1" fill="white" opacity="0.1"/>
+            <circle cx="10" cy="10" r="0.5" fill="white" opacity="0.15"/>
           </pattern>
         </defs>
 
-        {/* Hexagone principal avec animation pulse */}
+        {/* Hexagone principal avec animation tech */}
         <motion.path
           d={hexagonPath}
           fill="url(#blueGradient)"
-          stroke="white"
-          strokeWidth="3"
+          stroke="rgba(255, 255, 255, 0.3)"
+          strokeWidth="2"
           filter="url(#glow)"
-          initial={{ scale: 0.9, opacity: 0 }}
+          initial={{ scale: 0.95, opacity: 0, rotate: -5 }}
           animate={{
-            scale: [0.98, 1.02, 0.98],
-            opacity: 1
+            scale: [0.98, 1.01, 0.98],
+            opacity: 1,
+            rotate: [0, 2, 0]
           }}
           transition={{
             scale: {
               repeat: Infinity,
-              duration: 3,
+              duration: 4,
+              ease: "easeInOut"
+            },
+            rotate: {
+              repeat: Infinity,
+              duration: 8,
               ease: "easeInOut"
             },
             opacity: {
-              duration: 0.5
+              duration: 0.6
             }
           }}
           className="drop-shadow-2xl"
