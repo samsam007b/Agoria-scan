@@ -57,36 +57,26 @@ export default function HeroSection() {
       </section>
 
       {/* Hero Section - Hexagone + Texte */}
-      <section className="relative bg-[#0A0A0A] py-8 md:py-12 overflow-hidden">
-        {/* Gradient bleu Agoria sombre */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0D1A99]/50 via-[#060D4D]/40 to-[#0D1A99]/50"></div>
-          <div className="absolute inset-0" style={{
-            background: 'radial-gradient(circle at 30% 50%, rgba(13, 26, 153, 0.3) 0%, transparent 60%), radial-gradient(circle at 70% 50%, rgba(13, 26, 153, 0.2) 0%, transparent 60%)',
-          }}></div>
-        </div>
-
+      <section className="relative py-8 md:py-12 overflow-hidden" style={{ backgroundColor: '#060D4D' }}>
         {/* Contenu */}
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             {/* Hexagone interactif à gauche */}
             <div className="flex justify-center lg:justify-start order-2 lg:order-1">
-              <div className="transform scale-90">
-                <HexagonThemes
-                  themes={complianceThemes.map(t => ({
-                    id: t.id,
-                    position: t.position,
-                    title: t.title,
-                    shortTitle: t.shortTitle,
-                    icon: themeIcons[t.id],
-                    color: t.color,
-                    description: t.description
-                  }))}
-                  interactive={true}
-                  size="large"
-                  onThemeClick={handleThemeClick}
-                />
-              </div>
+              <HexagonThemes
+                themes={complianceThemes.map(t => ({
+                  id: t.id,
+                  position: t.position,
+                  title: t.title,
+                  shortTitle: t.shortTitle,
+                  icon: themeIcons[t.id],
+                  color: t.color,
+                  description: t.description
+                }))}
+                interactive={true}
+                size="xlarge"
+                onThemeClick={handleThemeClick}
+              />
             </div>
 
             {/* Texte à droite */}

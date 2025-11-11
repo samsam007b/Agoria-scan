@@ -180,7 +180,7 @@ export default function HexagonThemes({
           y={centerY}
           textAnchor="middle"
           dominantBaseline="central"
-          fontSize={size === 'large' ? 18 : size === 'medium' ? 14 : 10}
+          fontSize={size === 'xlarge' ? 22 : size === 'large' ? 18 : size === 'medium' ? 14 : 10}
           fontWeight="bold"
           fill="white"
           className="uppercase tracking-wider"
@@ -189,10 +189,10 @@ export default function HexagonThemes({
         </text>
         <text
           x={centerX}
-          y={centerY + (size === 'large' ? 20 : size === 'medium' ? 16 : 12)}
+          y={centerY + (size === 'xlarge' ? 26 : size === 'large' ? 20 : size === 'medium' ? 16 : 12)}
           textAnchor="middle"
           dominantBaseline="central"
-          fontSize={size === 'large' ? 24 : size === 'medium' ? 18 : 14}
+          fontSize={size === 'xlarge' ? 28 : size === 'large' ? 24 : size === 'medium' ? 18 : 14}
           fontWeight="bold"
           fill="white"
           className="uppercase"
