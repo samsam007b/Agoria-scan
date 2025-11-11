@@ -90,7 +90,7 @@ export default function ScanContext({
         </div>
 
         {/* Nos thématiques prioritaires */}
-        <div className="mt-16 md:mt-20">
+        <div id="thematiques-prioritaires" className="mt-16 md:mt-20 scroll-mt-20">
           <div className="flex items-center gap-3 mb-10">
             <h3 className="text-2xl sm:text-3xl font-bold text-[#1A1A1A]">
               Nos thématiques prioritaires

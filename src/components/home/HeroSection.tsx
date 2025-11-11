@@ -2,38 +2,68 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Lock, Leaf, Users, CircleDollarSign, Cpu, Settings } from 'lucide-react';
 import ScanContext from './ScanContext';
 import { scanContextData } from '@/data/scanContextData';
 import HexagonThemes from '@/components/campaign/HexagonThemes';
 import { complianceThemes } from '@/data/complianceThemes';
 
+// Mapping des icônes Lucide pour les thèmes
+const themeIcons: Record<string, any> = {
+  'data-protection': Lock,
+  'environmental': Leaf,
+  'social-hr': Users,
+  'financial': CircleDollarSign,
+  'digital-ai': Cpu,
+  'industrial': Settings,
+};
+
 export default function HeroSection() {
+  const handleThemeClick = (themeId: string) => {
+    // Scroll vers la section des thématiques prioritaires
+    const thematicSection = document.getElementById('thematiques-prioritaires');
+    if (thematicSection) {
+      thematicSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <>
       {/* Hero Section - Design hexagonal avec l'hexagone interactif */}
       <section className="relative bg-[#0A0A0A] py-16 md:py-20 lg:py-24 overflow-hidden">
-        {/* Gradient bleu Agoria animé */}
+        {/* Gradient bleu Agoria sombre - sans quadrillage */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#1C32FF]/40 via-[#0D1A99]/30 to-[#1C32FF]/40"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0D1A99]/50 via-[#060D4D]/40 to-[#0D1A99]/50"></div>
           <div className="absolute inset-0" style={{
-            background: 'radial-gradient(circle at 20% 50%, rgba(28, 50, 255, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(28, 50, 255, 0.2) 0%, transparent 50%)',
-          }}></div>
-        </div>
-
-        {/* Grille tech style */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'linear-gradient(rgba(28, 50, 255, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(28, 50, 255, 0.5) 1px, transparent 1px)',
-            backgroundSize: '60px 60px'
+            background: 'radial-gradient(circle at 30% 50%, rgba(13, 26, 153, 0.3) 0%, transparent 60%), radial-gradient(circle at 70% 50%, rgba(13, 26, 153, 0.2) 0%, transparent 60%)',
           }}></div>
         </div>
 
         {/* Contenu */}
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Texte à gauche */}
-            <div className="text-white">
+            {/* Hexagone interactif à gauche */}
+            <div className="flex justify-center lg:justify-start order-2 lg:order-1">
+              <div className="transform scale-75 sm:scale-90 lg:scale-100">
+                <HexagonThemes
+                  themes={complianceThemes.map(t => ({
+                    id: t.id,
+                    position: t.position,
+                    title: t.title,
+                    shortTitle: t.shortTitle,
+                    icon: themeIcons[t.id],
+                    color: t.color,
+                    description: t.description
+                  }))}
+                  interactive={true}
+                  size="xlarge"
+                  onThemeClick={handleThemeClick}
+                />
+              </div>
+            </div>
+
+            {/* Texte à droite */}
+            <div className="text-white order-1 lg:order-2">
               <div className="flex items-center gap-3 mb-6">
                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
                   Agoria célèbre la conformité
@@ -59,25 +89,6 @@ export default function HeroSection() {
                 <div className="text-sm font-semibold text-white/70 mb-1">Temps moyen</div>
                 <div className="text-2xl font-bold text-white">5 minutes</div>
                 <div className="text-sm text-white/80 mt-1">pour un diagnostic complet</div>
-              </div>
-            </div>
-
-            {/* Hexagone interactif à droite */}
-            <div className="flex justify-center lg:justify-end">
-              <div className="transform scale-90 sm:scale-100">
-                <HexagonThemes
-                  themes={complianceThemes.map(t => ({
-                    id: t.id,
-                    position: t.position,
-                    title: t.title,
-                    shortTitle: t.shortTitle,
-                    icon: t.icon,
-                    color: t.color,
-                    description: t.description
-                  }))}
-                  interactive={true}
-                  size="large"
-                />
               </div>
             </div>
           </div>

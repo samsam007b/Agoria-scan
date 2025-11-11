@@ -2,13 +2,14 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { LucideIcon } from 'lucide-react';
 
 interface Theme {
   id: string;
   position: number;
   title: string;
   shortTitle: string;
-  icon: string;
+  icon: string | LucideIcon; // Support emoji ou Lucide icon
   color: string;
   description: string;
 }
@@ -16,13 +17,15 @@ interface Theme {
 interface HexagonThemesProps {
   themes: Theme[];
   interactive?: boolean;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large' | 'xlarge';
+  onThemeClick?: (themeId: string) => void;
 }
 
 export default function HexagonThemes({
   themes,
   interactive = true,
-  size = 'large'
+  size = 'large',
+  onThemeClick
 }: HexagonThemesProps) {
   const [activeTheme, setActiveTheme] = useState<string | null>(null);
 
@@ -30,13 +33,14 @@ export default function HexagonThemes({
   const dimensions = {
     small: { width: 200, height: 200, viewBox: '0 0 200 200' },
     medium: { width: 300, height: 300, viewBox: '0 0 300 300' },
-    large: { width: 400, height: 400, viewBox: '0 0 400 400' }
+    large: { width: 400, height: 400, viewBox: '0 0 400 400' },
+    xlarge: { width: 550, height: 550, viewBox: '0 0 550 550' }
   };
 
   const dim = dimensions[size];
-  const centerX = size === 'large' ? 200 : size === 'medium' ? 150 : 100;
+  const centerX = size === 'xlarge' ? 275 : size === 'large' ? 200 : size === 'medium' ? 150 : 100;
   const centerY = centerX;
-  const radius = size === 'large' ? 120 : size === 'medium' ? 90 : 60;
+  const radius = size === 'xlarge' ? 180 : size === 'large' ? 120 : size === 'medium' ? 90 : 60;
 
   // Calcul des points de l'hexagone
   const hexagonPoints = Array.from({ length: 6 }, (_, i) => {
@@ -65,11 +69,11 @@ export default function HexagonThemes({
     <div className="hexagon-container relative" style={{ width: dim.width, height: dim.height }}>
       <svg viewBox={dim.viewBox} className="w-full h-full">
         <defs>
-          {/* Gradient bleu Agoria - nouvelle version */}
+          {/* Gradient bleu Agoria - version sombre */}
           <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#1C32FF" />
-            <stop offset="50%" stopColor="#0D1A99" />
-            <stop offset="100%" stopColor="#1C32FF" />
+            <stop offset="0%" stopColor="#0D1A99" />
+            <stop offset="50%" stopColor="#060D4D" />
+            <stop offset="100%" stopColor="#0D1A99" />
           </linearGradient>
 
           {/* Glow effect tech */}
@@ -138,43 +142,67 @@ export default function HexagonThemes({
           />
         ))}
 
-        {/* 6 points interactifs pour chaque thème */}
+        {/* 6 segments interactifs pour chaque thème */}
         {themes.map((theme, index) => {
           const angle = (Math.PI / 3) * theme.position - Math.PI / 2;
-          const iconRadius = radius * 0.7;
+          const iconRadius = radius * 0.65;
           const iconX = centerX + iconRadius * Math.cos(angle);
           const iconY = centerY + iconRadius * Math.sin(angle);
 
+          const isActive = activeTheme === theme.id;
+          const IconComponent = typeof theme.icon !== 'string' ? theme.icon : null;
+          const iconSize = size === 'xlarge' ? 32 : size === 'large' ? 24 : size === 'medium' ? 20 : 16;
+
           return (
             <g key={theme.id}>
-              {/* Zone interactive */}
+              {/* Segment cliquable (slice de camembert) */}
               {interactive && (
-                <motion.circle
-                  cx={iconX}
-                  cy={iconY}
-                  r={size === 'large' ? 20 : size === 'medium' ? 15 : 10}
-                  fill={activeTheme === theme.id ? theme.color : 'white'}
-                  stroke={theme.color}
-                  strokeWidth="2"
-                  className="cursor-pointer"
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
+                <path
+                  d={(() => {
+                    const angleStart = (Math.PI / 3) * theme.position - Math.PI / 2 - Math.PI / 6;
+                    const angleEnd = angleStart + Math.PI / 3;
+                    const outerRadius = radius;
+                    const innerRadius = radius * 0.4;
+
+                    const x1 = centerX + innerRadius * Math.cos(angleStart);
+                    const y1 = centerY + innerRadius * Math.sin(angleStart);
+                    const x2 = centerX + outerRadius * Math.cos(angleStart);
+                    const y2 = centerY + outerRadius * Math.sin(angleStart);
+                    const x3 = centerX + outerRadius * Math.cos(angleEnd);
+                    const y3 = centerY + outerRadius * Math.sin(angleEnd);
+                    const x4 = centerX + innerRadius * Math.cos(angleEnd);
+                    const y4 = centerY + innerRadius * Math.sin(angleEnd);
+
+                    return `M ${x1},${y1} L ${x2},${y2} A ${outerRadius},${outerRadius} 0 0,1 ${x3},${y3} L ${x4},${y4} A ${innerRadius},${innerRadius} 0 0,0 ${x1},${y1} Z`;
+                  })()}
+                  fill={isActive ? 'rgba(255, 255, 255, 0.1)' : 'transparent'}
+                  className="cursor-pointer transition-all duration-300"
                   onMouseEnter={() => setActiveTheme(theme.id)}
                   onMouseLeave={() => setActiveTheme(null)}
+                  onClick={() => onThemeClick?.(theme.id)}
                 />
               )}
 
-              {/* Icône du thème */}
-              <text
-                x={iconX}
-                y={iconY}
-                textAnchor="middle"
-                dominantBaseline="central"
-                fontSize={size === 'large' ? 20 : size === 'medium' ? 16 : 12}
+              {/* Icône Lucide minimaliste */}
+              <foreignObject
+                x={iconX - iconSize / 2}
+                y={iconY - iconSize / 2}
+                width={iconSize}
+                height={iconSize}
                 className="pointer-events-none"
               >
-                {theme.icon}
-              </text>
+                <div className="flex items-center justify-center w-full h-full">
+                  {IconComponent ? (
+                    <IconComponent
+                      size={iconSize}
+                      className="text-white drop-shadow-lg"
+                      strokeWidth={1.5}
+                    />
+                  ) : typeof theme.icon === 'string' ? (
+                    <span className="text-white text-xl">{theme.icon}</span>
+                  ) : null}
+                </div>
+              </foreignObject>
             </g>
           );
         })}
@@ -206,51 +234,33 @@ export default function HexagonThemes({
         </text>
       </svg>
 
-      {/* Labels autour de l'hexagone */}
-      {size === 'large' && (
-        <div className="absolute inset-0 pointer-events-none">
-          {themes.map((theme) => {
-            const pos = labelPositions[theme.position];
-            const isActive = activeTheme === theme.id;
-
-            return (
+      {/* Popup hover avec nom + CTA */}
+      {(size === 'large' || size === 'xlarge') && activeTheme && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          {themes
+            .filter((t) => t.id === activeTheme)
+            .map((theme) => (
               <motion.div
-                key={`label-${theme.id}`}
-                className="absolute"
-                style={{
-                  left: `${pos.x}px`,
-                  top: `${pos.y}px`,
-                  transform: 'translate(-50%, -50%)',
-                  textAlign: pos.align as any,
-                  minWidth: '120px'
-                }}
-                animate={{
-                  scale: isActive ? 1.1 : 1,
-                  opacity: isActive ? 1 : 0.8
-                }}
+                key={`popup-${theme.id}`}
+                initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="bg-white shadow-2xl p-6 max-w-xs pointer-events-auto"
               >
-                <div
-                  className="text-xs font-semibold px-2 py-1 rounded-full"
-                  style={{
-                    backgroundColor: isActive ? theme.color : '#f5f5f5',
-                    color: isActive ? 'white' : '#424242',
-                    transition: 'all 0.3s ease'
-                  }}
-                >
+                <h3 className="text-lg font-bold text-[#1A1A1A] mb-2">
                   {theme.shortTitle}
-                </div>
-                {isActive && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-xs text-gray-600 mt-1 max-w-[150px]"
-                  >
-                    {theme.description}
-                  </motion.div>
-                )}
+                </h3>
+                <p className="text-sm text-[#6B6B6B] mb-4">
+                  {theme.description}
+                </p>
+                <button
+                  onClick={() => onThemeClick?.(theme.id)}
+                  className="w-full bg-[#1C32FF] text-white font-semibold py-2 px-4 hover:bg-[#0D1A99] transition-colors text-sm"
+                >
+                  Voir les détails →
+                </button>
               </motion.div>
-            );
-          })}
+            ))}
         </div>
       )}
     </div>
