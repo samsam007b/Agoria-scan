@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Shield, FileCheck, Lock, Calendar } from 'lucide-react';
+import { ArrowRight, Shield, FileCheck, Lock, Calendar, Leaf, Cpu, GraduationCap, CircleDollarSign } from 'lucide-react';
 
 type Insight = {
   label: string;
@@ -34,9 +34,12 @@ interface ScanContextProps {
 }
 
 const themeIcons: Record<string, any> = {
-  'reg-social': FileCheck,
-  'rgpd': Lock,
-  'digital-sec': Shield,
+  'conformite-reglementation': FileCheck,
+  'rse-gouvernance': Leaf,
+  'digitalisation-ia': Cpu,
+  'securite-cybersecurite': Shield,
+  'competences-formation': GraduationCap,
+  'financement-gouvernance': CircleDollarSign,
 };
 
 export default function ScanContext({
@@ -95,7 +98,7 @@ export default function ScanContext({
             <div className="w-3 h-3 bg-[#1C32FF] flex-shrink-0"></div>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {themes.map((theme) => {
               const IconComponent = themeIcons[theme.id] || Shield;
               return (

@@ -27,12 +27,13 @@ export const scanContextData = {
   ],
   themes: [
     {
-      id: "reg-social",
-      title: "Conformité réglementaire & sociale",
-      why: "Exigences de base (BCE, contrats, DIMONA, marchés publics) et transparence accrue ; simplification en cours mais obligations réelles pour candidater et livrer.",
+      id: "conformite-reglementation",
+      title: "Conformité & Règlementation",
+      why: "Simplifier l'accès et la mise à jour réglementaire des PME (emploi, marchés publics, obligations sociales).",
       help: [
         "Check-lists employeur",
         "Modèles contractuels",
+        "Veille réglementaire",
         "Hygiène facturation/archivage",
       ],
       sources: [
@@ -47,31 +48,49 @@ export const scanContextData = {
       ],
     },
     {
-      id: "rgpd",
-      title: "RGPD & Gouvernance des données",
-      why: "Flux soutenu de violations notifiées, poids de l'erreur humaine, nécessité d'un registre, base légale, délais 72h.",
+      id: "rse-gouvernance",
+      title: "RSE & Gouvernance",
+      why: "Encourager des pratiques durables, éthiques et inclusives dans les organisations tech.",
       help: [
-        "Registre des traitements",
-        "Notices claires",
-        "SLA droits des personnes",
-        "Politique de rétention",
+        "Stratégie RSE",
+        "Reporting extra-financier",
+        "Politiques d'inclusion",
+        "Éthique numérique",
       ],
       sources: [
         {
-          label: "APD – Rapport annuel 2023",
-          url: "https://www.autoriteprotectiondonnees.be/publications/rapport-annuel-2023.pdf",
+          label: "SPF Économie – RSE",
+          url: "https://economie.fgov.be/fr/themes/entreprises",
         },
       ],
     },
     {
-      id: "digital-sec",
-      title: "Digitalisation & Sécurité (incl. NIS2)",
-      why: "Montée des incidents, obligations renforcées, adoption numérique hétérogène (écart petites vs grandes).",
+      id: "digitalisation-ia",
+      title: "Digitalisation & IA",
+      why: "Accompagner la transition numérique et l'adoption de l'IA en toute sécurité.",
       help: [
-        "MFA",
+        "Stratégie de transformation digitale",
+        "Adoption IA responsable",
+        "Automatisation des processus",
+        "Conformité AI Act",
+      ],
+      sources: [
+        {
+          label: "SPF Économie – Économie numérique",
+          url: "https://economie.fgov.be/fr/themes/line/economie-numerique-en-chiffres/les-entreprises-et-linternet/les-entreprises-et-les",
+        },
+      ],
+    },
+    {
+      id: "securite-cybersecurite",
+      title: "Sécurité & Cybersécurité",
+      why: "Renforcer la résilience face aux menaces numériques, conformité NIS2 et RGPD.",
+      help: [
+        "MFA et authentification forte",
         "Sauvegardes 3-2-1 testées",
         "Formation anti-phishing",
-        "Analyse d'applicabilité NIS2 et plan d'actions",
+        "Analyse d'applicabilité NIS2",
+        "Gestion des incidents",
       ],
       sources: [
         {
@@ -81,6 +100,44 @@ export const scanContextData = {
         {
           label: "SPF Économie – Cybersécurité PME",
           url: "https://economie.fgov.be/fr/themes/entreprises/pme-et-independants-en/digitalisation-des-pme/la-cybersecurite-au-sein-des",
+        },
+        {
+          label: "APD – Rapport annuel 2023",
+          url: "https://www.autoriteprotectiondonnees.be/publications/rapport-annuel-2023.pdf",
+        },
+      ],
+    },
+    {
+      id: "competences-formation",
+      title: "Compétences & Formation",
+      why: "Développer les talents internes pour maîtriser les nouvelles obligations et technologies.",
+      help: [
+        "Plans de formation conformité",
+        "Upskilling cybersécurité",
+        "Sensibilisation RGPD",
+        "Formation IA et data",
+      ],
+      sources: [
+        {
+          label: "Agoria – Formation continue",
+          url: "https://www.agoria.be",
+        },
+      ],
+    },
+    {
+      id: "financement-gouvernance",
+      title: "Financement & Gouvernance",
+      why: "Faciliter l'accès aux aides, incitants et mécanismes de soutien à la conformité.",
+      help: [
+        "Subventions digitalisation",
+        "Aides à la transition",
+        "Gouvernance financière",
+        "Audits et certification",
+      ],
+      sources: [
+        {
+          label: "SPF Économie – Aides aux entreprises",
+          url: "https://economie.fgov.be/fr/themes/entreprises",
         },
       ],
     },
