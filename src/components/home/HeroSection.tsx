@@ -29,31 +29,45 @@ export default function HeroSection() {
 
   return (
     <>
-      {/* Hero Section - Design hexagonal avec l'hexagone interactif */}
-      <section className="relative bg-[#0A0A0A] py-8 md:py-12 lg:py-14 overflow-hidden">
-        {/* Image de fond avec overlay sombre */}
+      {/* Banner Section avec image */}
+      <section className="relative bg-black py-12 md:py-16 overflow-hidden">
+        {/* Image de fond */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/hero-compliance.png"
             alt="Compliance illustration"
             fill
-            className="object-cover opacity-30"
+            className="object-cover opacity-40"
             priority
           />
         </div>
 
         {/* Overlay gradient sombre */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/80 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70 z-10"></div>
+
+        {/* Contenu */}
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-4">
+            Agoria célèbre la conformité
+          </h1>
+          <p className="text-xl sm:text-2xl text-white/90 font-medium">
+            6 domaines pour piloter votre conformité
+          </p>
+        </div>
+      </section>
+
+      {/* Hero Section - Hexagone + Texte */}
+      <section className="relative bg-[#0A0A0A] py-8 md:py-12 overflow-hidden">
+        {/* Gradient bleu Agoria sombre */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0D1A99]/50 via-[#060D4D]/40 to-[#0D1A99]/50"></div>
+          <div className="absolute inset-0" style={{
+            background: 'radial-gradient(circle at 30% 50%, rgba(13, 26, 153, 0.3) 0%, transparent 60%), radial-gradient(circle at 70% 50%, rgba(13, 26, 153, 0.2) 0%, transparent 60%)',
+          }}></div>
+        </div>
 
         {/* Contenu */}
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Titre section en haut */}
-          <div className="text-center mb-6">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
-              Agoria célèbre la conformité
-            </h1>
-          </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             {/* Hexagone interactif à gauche */}
             <div className="flex justify-center lg:justify-start order-2 lg:order-1">
@@ -77,9 +91,9 @@ export default function HeroSection() {
 
             {/* Texte à droite */}
             <div className="text-white order-1 lg:order-2">
-              <p className="text-xl sm:text-2xl text-white/90 mb-3 font-medium">
-                6 domaines pour piloter votre conformité
-              </p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+                Explorez les 6 domaines de conformité
+              </h2>
               <p className="text-base sm:text-lg text-white/80 mb-6 leading-relaxed">
                 Évaluez votre maturité sur 18 questions concrètes et obtenez un diagnostic personnalisé avec des actions prioritaires.
               </p>
