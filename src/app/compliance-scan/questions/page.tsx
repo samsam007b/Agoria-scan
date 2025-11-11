@@ -3,13 +3,13 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import questionsData from '@/data/questions.json';
+import { complianceThemes, getAllQuestions } from '@/data/complianceThemes';
 import QuestionCard from '@/components/compliance/QuestionCard';
 import ProgressBar from '@/components/compliance/ProgressBar';
 
 interface Answer {
   questionId: string;
-  moduleId: string;
+  themeId: string;
   selectedOption: string;
   score: number;
 }
@@ -19,13 +19,14 @@ export default function QuestionsPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
 
-  // Flatten all questions from all modules
-  const allQuestions = questionsData.modules.flatMap((module) =>
-    module.questions.map((question) => ({
+  // Flatten all questions from all themes
+  const allQuestions = complianceThemes.flatMap((theme) =>
+    theme.questions.map((question) => ({
       ...question,
-      moduleId: module.id,
-      moduleLabel: module.label,
-      moduleColor: module.color,
+      themeId: theme.id,
+      themeTitle: theme.shortTitle,
+      themeColor: theme.color,
+      themeIcon: theme.icon,
     }))
   );
 
@@ -47,11 +48,11 @@ export default function QuestionsPage() {
     }
   }, [answers]);
 
-  const handleSelectOption = (optionKey: string, score: number) => {
+  const handleSelectOption = (optionLabel: string, score: number) => {
     const newAnswer: Answer = {
       questionId: currentQuestion.id,
-      moduleId: currentQuestion.moduleId,
-      selectedOption: optionKey,
+      themeId: currentQuestion.themeId,
+      selectedOption: optionLabel,
       score,
     };
 
@@ -107,18 +108,19 @@ export default function QuestionsPage() {
           <ProgressBar
             current={currentQuestionIndex + 1}
             total={totalQuestions}
-            moduleColor={currentQuestion.moduleColor}
+            moduleColor={currentQuestion.themeColor}
           />
         </div>
 
         {/* Question Card */}
         <QuestionCard
           questionId={currentQuestion.id}
-          questionLabel={currentQuestion.label}
+          questionLabel={currentQuestion.text}
           options={currentQuestion.options}
-          moduleId={currentQuestion.moduleId}
-          moduleLabel={currentQuestion.moduleLabel}
-          moduleColor={currentQuestion.moduleColor}
+          moduleId={currentQuestion.themeId}
+          moduleLabel={currentQuestion.themeTitle}
+          moduleColor={currentQuestion.themeColor}
+          moduleIcon={currentQuestion.themeIcon}
           selectedOption={currentAnswer?.selectedOption}
           onSelect={handleSelectOption}
         />

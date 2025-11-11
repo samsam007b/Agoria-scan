@@ -102,25 +102,25 @@ export default function ResultatsPage() {
           </div>
         </section>
 
-        {/* Scores par Module */}
+        {/* Scores par Thème */}
         <section className="mb-8 sm:mb-12">
           <div className="flex items-center gap-3 mb-6 sm:mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#1A1A1A]">Détail par module</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#1A1A1A]">Détail par thème</h2>
             <div className="w-3 h-3 bg-[#1C32FF]"></div>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
-            {scoreResult.moduleScores.map((module: any, index: number) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {scoreResult.themeScores.map((theme: any, index: number) => (
               <div
-                key={module.id}
+                key={theme.id}
                 className="animate-fade-in-up"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <ModuleScore
-                  id={module.id}
-                  label={module.label}
-                  score={module.score}
-                  color={module.color}
-                  weight={module.weight}
+                  id={theme.id}
+                  label={theme.label}
+                  score={theme.score}
+                  color={theme.color}
+                  weight={theme.weight}
                 />
               </div>
             ))}

@@ -112,32 +112,32 @@ export function generatePDF(
 
   yPos += 20;
 
-  // Scores des modules
-  scoreResult.moduleScores.forEach((module) => {
-    const moduleColor = hexToRgb(module.color);
-    const [r, g, b] = moduleColor;
+  // Scores des thèmes
+  scoreResult.themeScores.forEach((theme) => {
+    const themeColor = hexToRgb(theme.color);
+    const [r, g, b] = themeColor;
 
-    // Box pour le module
+    // Box pour le thème
     doc.setDrawColor(r, g, b);
     doc.setLineWidth(0.5);
     doc.setFillColor(r, g, b, 0.1);
     doc.roundedRect(20, yPos, pageWidth - 40, 30, 3, 3, 'FD');
 
-    // Module ID et titre
+    // Thème ID et titre
     doc.setFontSize(12);
     doc.setTextColor(r, g, b);
     doc.setFont('helvetica', 'bold');
-    doc.text(`Module ${module.id}`, 25, yPos + 10);
+    doc.text(`Thème: ${theme.label}`, 25, yPos + 10);
 
     doc.setFontSize(10);
     doc.setTextColor(0, 62, 126);
-    doc.text(module.label, 25, yPos + 17);
+    doc.text(`${Math.round(theme.weight * 100)}% du score total`, 25, yPos + 17);
 
     // Score
     doc.setFontSize(24);
     doc.setTextColor(r, g, b);
     doc.setFont('helvetica', 'bold');
-    doc.text(`${module.score}/10`, pageWidth - 40, yPos + 18, { align: 'right' });
+    doc.text(`${theme.score}/10`, pageWidth - 40, yPos + 18, { align: 'right' });
 
     // Barre de progression
     const barWidth = pageWidth - 40;
@@ -151,7 +151,7 @@ export function generatePDF(
 
     // Progress
     doc.setFillColor(r, g, b);
-    const progress = (module.score / 10) * barWidth;
+    const progress = (theme.score / 10) * barWidth;
     doc.roundedRect(barX, barY, progress, barHeight, 2, 2, 'F');
 
     yPos += 40;

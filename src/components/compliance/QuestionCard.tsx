@@ -1,7 +1,4 @@
-import { Shield, Briefcase, Lock } from 'lucide-react';
-
 interface Option {
-  key: string;
   label: string;
   score: number;
 }
@@ -13,8 +10,9 @@ interface QuestionCardProps {
   moduleId: string;
   moduleLabel: string;
   moduleColor: string;
+  moduleIcon?: string; // Emoji icon
   selectedOption?: string;
-  onSelect: (optionKey: string, score: number) => void;
+  onSelect: (optionLabel: string, score: number) => void;
 }
 
 export default function QuestionCard({
@@ -24,37 +22,27 @@ export default function QuestionCard({
   moduleId,
   moduleLabel,
   moduleColor,
+  moduleIcon,
   selectedOption,
   onSelect,
 }: QuestionCardProps) {
-  const getModuleIcon = (id: string) => {
-    switch (id) {
-      case 'A':
-        return Shield;
-      case 'B':
-        return Briefcase;
-      case 'C':
-        return Lock;
-      default:
-        return Shield;
-    }
-  };
-
-  const IconComponent = getModuleIcon(moduleId);
 
   return (
     <div className="card-agoria p-8">
-      {/* Module Badge */}
+      {/* Theme Badge */}
       <div className="flex items-center gap-3 mb-6">
         <div
-          className="p-3"
-          style={{ backgroundColor: moduleColor }}
+          className="p-3 text-3xl flex items-center justify-center"
+          style={{
+            backgroundColor: `${moduleColor}20`,
+            border: `2px solid ${moduleColor}`
+          }}
         >
-          <IconComponent className="text-white" size={24} />
+          {moduleIcon || '📋'}
         </div>
         <div>
           <div className="text-sm font-semibold text-[#6B6B6B] uppercase">
-            Module {moduleId}
+            Thème
           </div>
           <div className="text-sm font-bold" style={{ color: moduleColor }}>
             {moduleLabel}
@@ -69,38 +57,35 @@ export default function QuestionCard({
 
       {/* Options */}
       <div className="space-y-3">
-        {options.map((option) => {
-          const isSelected = selectedOption === option.key;
+        {options.map((option, index) => {
+          const isSelected = selectedOption === option.label;
           return (
             <button
-              key={option.key}
-              onClick={() => onSelect(option.key, option.score)}
+              key={`${questionId}-opt-${index}`}
+              onClick={() => onSelect(option.label, option.score)}
               className={`w-full text-left p-4 border-2 transition-all duration-200 ${
                 isSelected
-                  ? 'border-[#1C32FF] bg-[#F5F7FA] shadow-sm'
-                  : 'border-gray-200 hover:border-[#1C32FF] hover:bg-[#F5F7FA]'
+                  ? 'bg-[#F5F7FA] shadow-sm'
+                  : 'border-gray-200 hover:bg-[#F5F7FA]'
               }`}
+              style={{
+                borderColor: isSelected ? moduleColor : undefined,
+                borderWidth: isSelected ? '2px' : '2px'
+              }}
             >
               <div className="flex items-center gap-3">
                 <div
-                  className={`w-5 h-5 border-2 flex items-center justify-center transition-all ${
-                    isSelected
-                      ? 'border-[#1C32FF] bg-[#1C32FF]'
-                      : 'border-gray-300'
-                  }`}
+                  className={`w-5 h-5 border-2 rounded-full flex items-center justify-center transition-all`}
+                  style={{
+                    borderColor: isSelected ? moduleColor : '#D1D5DB',
+                    backgroundColor: isSelected ? moduleColor : 'transparent'
+                  }}
                 >
                   {isSelected && (
-                    <div className="w-2 h-2 bg-white" />
+                    <div className="w-2 h-2 bg-white rounded-full" />
                   )}
                 </div>
                 <div className="flex-1">
-                  <span
-                    className={`font-semibold ${
-                      isSelected ? 'text-[#1C32FF]' : 'text-[#6B6B6B]'
-                    }`}
-                  >
-                    {option.key}.
-                  </span>{' '}
                   <span
                     className={`${
                       isSelected ? 'text-[#1A1A1A] font-semibold' : 'text-[#1A1A1A]'
