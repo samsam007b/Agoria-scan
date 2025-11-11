@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Shield, FileCheck, Lock } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import ScanContext from './ScanContext';
 import { scanContextData } from '@/data/scanContextData';
 import HexagonThemes from '@/components/campaign/HexagonThemes';
@@ -92,68 +92,6 @@ export default function HeroSection() {
         themes={scanContextData.themes}
         event={scanContextData.event}
       />
-
-      {/* Section Les 6 domaines de conformité */}
-      <section className="bg-[#FAFAFA] py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1A1A1A]">
-                Les 6 domaines de conformité
-              </h2>
-              <div className="w-3 h-3 bg-[#1C32FF] flex-shrink-0"></div>
-            </div>
-            <p className="text-lg text-[#6B6B6B] max-w-3xl mx-auto">
-              Chaque domaine représente un pilier essentiel de votre conformité
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {complianceThemes.map((theme, index) => (
-              <div
-                key={theme.id}
-                className="bg-white p-8 group hover:shadow-lg transition-all duration-300"
-                style={{
-                  animationDelay: `${index * 100}ms`,
-                }}
-              >
-                {/* Icône minimaliste */}
-                <div className="mb-6">
-                  <div className="text-5xl mb-4">
-                    {theme.icon}
-                  </div>
-                  <div className="h-1 w-12 bg-[#1A1A1A]"></div>
-                </div>
-
-                {/* Titre */}
-                <h3 className="text-2xl font-bold text-[#1A1A1A] mb-3">
-                  {theme.shortTitle}
-                </h3>
-
-                {/* Description */}
-                <p className="text-[#6B6B6B] text-sm leading-relaxed mb-6">
-                  {theme.description}
-                </p>
-
-                {/* Points clés - sans couleurs */}
-                <ul className="space-y-2 mb-6">
-                  {theme.keyPoints.slice(0, 3).map((point, i) => (
-                    <li key={i} className="flex items-start gap-2 text-xs text-[#6B6B6B]">
-                      <span className="text-[#1A1A1A] mt-0.5">—</span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Badge simple */}
-                <div className="text-xs text-[#6B6B6B] font-medium">
-                  {Math.round(theme.weight * 100)}% du score • 3 questions
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Section factice - Services style Agoria */}
       <section className="py-16 bg-white">
