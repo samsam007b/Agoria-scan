@@ -10,7 +10,7 @@ export default function HeroSection() {
   return (
     <>
       {/* Hero Section - Style Agoria avec image de fond assombrie */}
-      <section className="relative bg-black py-20 md:py-32 lg:py-40 overflow-hidden">
+      <section className="relative bg-black py-16 md:py-20 lg:py-24 overflow-hidden">
         {/* Image de fond */}
         <div className="absolute inset-0 z-0">
           <Image

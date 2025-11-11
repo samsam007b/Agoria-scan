@@ -1,5 +1,5 @@
 export const scanContextData = {
-  title: "Pourquoi cette campagne ?",
+  title: "Pourquoi célébrer la conformité ?",
   intro:
     "La conformité est devenue un facteur de compétitivité. Les TPE/PME tech wallonnes doivent prouver qu'elles protègent les données, sécurisent leurs systèmes et respectent des règles en évolution (NIS2, RGPD, marchés publics). Notre campagne donne un cap clair et des actions rapides.",
   insights: [
