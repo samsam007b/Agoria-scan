@@ -144,26 +144,30 @@ export default function HexagonThemes({
 
         {/* 6 segments interactifs pour chaque thème */}
         {themes.map((theme, index) => {
-          const angle = (Math.PI / 3) * theme.position - Math.PI / 2;
-          const iconRadius = radius * 0.65;
-          const iconX = centerX + iconRadius * Math.cos(angle);
-          const iconY = centerY + iconRadius * Math.sin(angle);
+          // Définition du segment : entre divider N et divider N+1
+          const angleStart = (Math.PI / 3) * theme.position - Math.PI / 2;
+          const angleEnd = angleStart + Math.PI / 3;
+
+          // Icône au centre du camembert (pas sur la ligne de division)
+          const iconAngle = (angleStart + angleEnd) / 2;
+          const iconRadius = radius * 0.7;
+          const iconX = centerX + iconRadius * Math.cos(iconAngle);
+          const iconY = centerY + iconRadius * Math.sin(iconAngle);
 
           const isActive = activeTheme === theme.id;
           const IconComponent = typeof theme.icon !== 'string' ? theme.icon : null;
           const iconSize = size === 'xlarge' ? 32 : size === 'large' ? 24 : size === 'medium' ? 20 : 16;
 
+          // Animation du segment au hover
+          const outerRadius = isActive ? radius * 1.1 : radius;
+          const innerRadius = radius * 0.4;
+
           return (
             <g key={theme.id}>
-              {/* Segment cliquable (slice de camembert) */}
+              {/* Segment cliquable avec effet zoom */}
               {interactive && (
-                <path
+                <motion.path
                   d={(() => {
-                    const angleStart = (Math.PI / 3) * theme.position - Math.PI / 2 - Math.PI / 6;
-                    const angleEnd = angleStart + Math.PI / 3;
-                    const outerRadius = radius;
-                    const innerRadius = radius * 0.4;
-
                     const x1 = centerX + innerRadius * Math.cos(angleStart);
                     const y1 = centerY + innerRadius * Math.sin(angleStart);
                     const x2 = centerX + outerRadius * Math.cos(angleStart);
@@ -175,8 +179,12 @@ export default function HexagonThemes({
 
                     return `M ${x1},${y1} L ${x2},${y2} A ${outerRadius},${outerRadius} 0 0,1 ${x3},${y3} L ${x4},${y4} A ${innerRadius},${innerRadius} 0 0,0 ${x1},${y1} Z`;
                   })()}
-                  fill={isActive ? 'rgba(255, 255, 255, 0.1)' : 'transparent'}
-                  className="cursor-pointer transition-all duration-300"
+                  fill={isActive ? 'rgba(255, 255, 255, 0.15)' : 'transparent'}
+                  className="cursor-pointer"
+                  animate={{
+                    fill: isActive ? 'rgba(255, 255, 255, 0.15)' : 'transparent'
+                  }}
+                  transition={{ duration: 0.3 }}
                   onMouseEnter={() => setActiveTheme(theme.id)}
                   onMouseLeave={() => setActiveTheme(null)}
                   onClick={() => onThemeClick?.(theme.id)}
@@ -203,6 +211,26 @@ export default function HexagonThemes({
                   ) : null}
                 </div>
               </foreignObject>
+
+              {/* Nom de la thématique au hover */}
+              {isActive && (
+                <motion.foreignObject
+                  x={iconX - 60}
+                  y={iconY + iconSize / 2 + 10}
+                  width={120}
+                  height={40}
+                  className="pointer-events-none"
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="flex items-center justify-center w-full h-full">
+                    <div className="bg-white text-[#1A1A1A] text-xs font-bold px-3 py-1.5 shadow-lg text-center rounded-sm">
+                      {theme.shortTitle}
+                    </div>
+                  </div>
+                </motion.foreignObject>
+              )}
             </g>
           );
         })}
@@ -234,35 +262,6 @@ export default function HexagonThemes({
         </text>
       </svg>
 
-      {/* Popup hover avec nom + CTA */}
-      {(size === 'large' || size === 'xlarge') && activeTheme && (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          {themes
-            .filter((t) => t.id === activeTheme)
-            .map((theme) => (
-              <motion.div
-                key={`popup-${theme.id}`}
-                initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                className="bg-white shadow-2xl p-6 max-w-xs pointer-events-auto"
-              >
-                <h3 className="text-lg font-bold text-[#1A1A1A] mb-2">
-                  {theme.shortTitle}
-                </h3>
-                <p className="text-sm text-[#6B6B6B] mb-4">
-                  {theme.description}
-                </p>
-                <button
-                  onClick={() => onThemeClick?.(theme.id)}
-                  className="w-full bg-[#1C32FF] text-white font-semibold py-2 px-4 hover:bg-[#0D1A99] transition-colors text-sm"
-                >
-                  Voir les détails →
-                </button>
-              </motion.div>
-            ))}
-        </div>
-      )}
     </div>
   );
 }
