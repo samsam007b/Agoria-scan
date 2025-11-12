@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Shield, Leaf, Users, DollarSign, Cpu, Settings, Zap } from 'lucide-react';
+import { ArrowRight, Shield, Leaf, Users, DollarSign, Cpu, Settings, Zap, AlertTriangle, Lightbulb } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import ScanContext from './ScanContext';
 import { scanContextData } from '@/data/scanContextData';
 import HexagonThemes from '@/components/campaign/HexagonThemes';
@@ -19,9 +20,86 @@ const themeIcons: Record<string, any> = {
   'industrial': Settings,
 };
 
+// Données de storytelling pour chaque thème
+const themeStories: Record<string, any> = {
+  'data-protection': {
+    hook: 'Saviez-vous que...',
+    stat: '63%',
+    statText: 'des entreprises belges risquent des amendes RGPD jusqu\'à 4% de leur CA mondial',
+    insight: 'Une simple fuite de données peut coûter des millions et détruire la confiance de vos clients en quelques heures.',
+    questions: [
+      'Avez-vous cartographié toutes vos données personnelles?',
+      'Vos processus de consentement sont-ils conformes?',
+      'Avez-vous un plan de gestion des violations?'
+    ],
+    cta: 'Où en êtes-vous sur la protection des données?'
+  },
+  'environmental': {
+    hook: 'Le saviez-vous?',
+    stat: '78%',
+    statText: 'des investisseurs privilégient désormais les entreprises avec une stratégie ESG claire',
+    insight: 'D\'ici 2025, le reporting ESG devient obligatoire pour toutes les moyennes et grandes entreprises européennes.',
+    questions: [
+      'Connaissez-vous votre empreinte carbone?',
+      'Avez-vous une stratégie de réduction validée?',
+      'Êtes-vous prêt pour le reporting CSRD?'
+    ],
+    cta: 'Évaluez votre maturité environnementale'
+  },
+  'social-hr': {
+    hook: 'Attention...',
+    stat: '85%',
+    statText: 'des talents recherchent activement des employeurs socialement responsables',
+    insight: 'La guerre des talents se gagne aussi sur votre engagement social et le bien-être de vos équipes.',
+    questions: [
+      'Garantissez-vous l\'égalité salariale?',
+      'La santé mentale est-elle une priorité?',
+      'Investissez-vous dans la formation continue?'
+    ],
+    cta: 'Testez votre attractivité RH'
+  },
+  'financial': {
+    hook: 'Tendance 2024...',
+    stat: '+23%',
+    statText: 'de hausse des contrôles fiscaux en Belgique cette année',
+    insight: 'Les autorités fiscales utilisent désormais l\'IA pour détecter les anomalies comptables et les optimisations abusives.',
+    questions: [
+      'Vos comptes sont-ils audit-ready?',
+      'Votre optimisation fiscale est-elle défendable?',
+      'Avez-vous des procédures anti-blanchiment?'
+    ],
+    cta: 'Vérifiez votre conformité financière'
+  },
+  'digital-ai': {
+    hook: 'Alerte cyber...',
+    stat: '1/3',
+    statText: 'des entreprises ont été victimes d\'une cyberattaque en 2023',
+    insight: 'Le coût moyen d\'une cyberattaque atteint 4.35M€. Et avec l\'IA, les attaques deviennent encore plus sophistiquées.',
+    questions: [
+      'Vos systèmes sont-ils cyber-résilients?',
+      'Comment gouvernez-vous l\'utilisation de l\'IA?',
+      'Avez-vous un plan de réponse aux incidents?'
+    ],
+    cta: 'Évaluez vos risques cyber et IA'
+  },
+  'industrial': {
+    hook: 'Fait prouvé...',
+    stat: '+15%',
+    statText: 'de productivité en moyenne pour les entreprises certifiées ISO',
+    insight: 'Les certifications ne sont pas qu\'une contrainte : elles optimisent vos processus et rassurent vos clients.',
+    questions: [
+      'Disposez-vous des certifications sectorielles?',
+      'La sécurité machine est-elle à jour?',
+      'Assurez-vous la traçabilité complète?'
+    ],
+    cta: 'Auditez vos normes industrielles'
+  }
+};
+
 export default function HeroSection() {
-  const [hexagonSize, setHexagonSize] = useState<'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'>('xlarge');
+  const [hexagonSize, setHexagonSize] = useState<'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'>('medium');
   const [activeSection, setActiveSection] = useState('scan');
+  const [selectedTheme, setSelectedTheme] = useState<string | null>(null);
 
   // Détection responsive pour la taille de l'hexagone
   useEffect(() => {
@@ -41,11 +119,7 @@ export default function HeroSection() {
   }, []);
 
   const handleThemeClick = (themeId: string) => {
-    // Scroll vers la section des thématiques prioritaires
-    const thematicSection = document.getElementById('thematiques-prioritaires');
-    if (thematicSection) {
-      thematicSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    setSelectedTheme(themeId);
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -62,6 +136,10 @@ export default function HeroSection() {
       });
     }
   };
+
+  const selectedThemeData = selectedTheme ? complianceThemes.find(t => t.id === selectedTheme) : null;
+  const selectedStory = selectedTheme ? themeStories[selectedTheme] : null;
+  const IconComponent = selectedTheme ? themeIcons[selectedTheme] : null;
 
   return (
     <>
@@ -145,60 +223,203 @@ export default function HeroSection() {
         </div>
       </section>
 
-      {/* Hero Section - Split Design : Hexagone bleu + CTA blanc */}
+      {/* Hero Section - Variante B: Photo + Overlay with Storytelling Flow */}
       <section id="compliance-scan" className="relative overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-          {/* Côté gauche - Hexagone sur fond gris clair */}
-          <div className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-[#F5F7FA] flex items-center justify-center order-2 lg:order-1 lg:border-r-2 lg:border-gray-300">
-            <div className="flex justify-center">
-              <HexagonThemes
-                themes={complianceThemes.map(t => ({
-                  id: t.id,
-                  position: t.position,
-                  title: t.title,
-                  shortTitle: t.shortTitle,
-                  icon: themeIcons[t.id],
-                  color: t.color,
-                  description: t.description
-                }))}
-                interactive={true}
-                size={hexagonSize}
-                onThemeClick={handleThemeClick}
+        <div className="flex flex-col lg:grid lg:grid-cols-2 min-h-[600px]">
+          {/* Côté gauche - Hexagone avec photo + overlay */}
+          <div className="relative py-8 sm:py-10 lg:py-12 flex items-center justify-center lg:border-r-2 lg:border-gray-200 overflow-hidden min-h-[400px] sm:min-h-[500px] lg:min-h-[600px]">
+            {/* Photo d'arrière-plan */}
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="/hero-compliance.png"
+                alt="Business background"
+                fill
+                className="object-cover"
+                priority
               />
+            </div>
+
+            {/* Overlay gradient bleu foncé */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1C32FF]/85 via-[#0D1A99]/80 to-[#060D4D]/90 z-10"></div>
+
+            <div className="relative text-center z-20 px-4">
+              {/* Container glassmorphism pour l'hexagone - adapté pour fond sombre */}
+              <motion.div
+                className="inline-block p-4 sm:p-6 lg:p-8 backdrop-blur-xl bg-white/20 border border-white/40 shadow-2xl"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.8 }}
+              >
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 drop-shadow-lg">
+                  Découvrez les enjeux
+                </h2>
+                <p className="text-xs sm:text-sm text-white/90 mb-6 sm:mb-8 drop-shadow-md">
+                  Cliquez pour révéler l'histoire de chaque domaine
+                </p>
+                <HexagonThemes
+                  themes={complianceThemes.map(t => ({
+                    id: t.id,
+                    position: t.position,
+                    title: t.title,
+                    shortTitle: t.shortTitle,
+                    icon: themeIcons[t.id],
+                    color: t.color,
+                    description: t.description
+                  }))}
+                  interactive={true}
+                  size={hexagonSize}
+                  onThemeClick={handleThemeClick}
+                />
+              </motion.div>
             </div>
           </div>
 
-          {/* Côté droit - CTA sur fond blanc */}
-          <div className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-white flex items-center order-1 lg:order-2">
-            <div className="w-full px-6 sm:px-8 md:px-10 lg:px-12">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1A1A1A] mb-4 sm:mb-5 leading-tight">
-                Explorez les 6 domaines de conformité
-              </h2>
-              <p className="text-base sm:text-lg text-[#6B6B6B] mb-6 sm:mb-8 leading-relaxed max-w-xl">
-                Évaluez votre maturité sur 18 questions concrètes et obtenez un diagnostic personnalisé avec des actions prioritaires.
-              </p>
-              <Link
-                href="/compliance-scan"
-                className="inline-flex items-center justify-center gap-2 bg-[#1C32FF] text-white font-bold px-6 sm:px-8 py-3.5 sm:py-4 transition-all duration-300 hover:bg-[#0D1A99] hover:shadow-[0_8px_30px_rgba(28,50,255,0.3)] active:scale-[0.98] text-base sm:text-lg group w-full sm:w-auto shadow-lg"
-              >
-                Lancer le Compliance Scan
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
+          {/* Côté droit - Storytelling avec design amélioré */}
+          <div className="relative py-8 sm:py-10 lg:py-12 bg-white flex items-center">
+            <AnimatePresence mode="wait">
+              {!selectedTheme ? (
+                // Vue par défaut avec style amélioré
+                <motion.div
+                  key="default"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="w-full px-6 sm:px-8 md:px-12"
+                >
+                  <div className="flex items-start sm:items-center gap-3 mb-6">
+                    <Lightbulb size={28} className="text-[#FFB800] flex-shrink-0 sm:w-8 sm:h-8" />
+                    <h2 className="text-2xl sm:text-3xl font-bold text-[#1A1A1A]">
+                      La conformité, c'est une histoire
+                    </h2>
+                  </div>
+                  <p className="text-base sm:text-lg text-[#6B6B6B] mb-6 sm:mb-8 leading-relaxed">
+                    Chaque domaine de conformité cache des enjeux business critiques, des opportunités de croissance, et des risques à maîtriser.
+                  </p>
+                  <p className="text-base sm:text-lg font-semibold text-[#1A1A1A] mb-6 sm:mb-8">
+                    Cliquez sur un domaine pour découvrir son histoire et comprendre pourquoi elle vous concerne.
+                  </p>
+                  <Link
+                    href="/compliance-scan"
+                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#1C32FF] to-[#0D1A99] text-white font-bold px-6 sm:px-8 py-3 sm:py-4 transition-all duration-500 hover:shadow-2xl hover:scale-105 text-base sm:text-lg group w-full sm:w-auto"
+                  >
+                    Lancer le diagnostic complet
+                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </motion.div>
+              ) : (
+                // Story du thème sélectionné
+                <motion.div
+                  key={selectedTheme}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="w-full px-6 sm:px-8 md:px-12"
+                >
+                  {selectedThemeData && IconComponent && selectedStory && (
+                    <>
+                      {/* Theme header with icon animation */}
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.2, type: 'spring' }}
+                        className="flex items-center gap-3 sm:gap-4 mb-6"
+                      >
+                        <div
+                          className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center shadow-lg flex-shrink-0"
+                          style={{ backgroundColor: selectedThemeData.color }}
+                        >
+                          <IconComponent className="text-white" size={24} strokeWidth={2} />
+                        </div>
+                        <h3 className="text-xl sm:text-2xl font-bold text-[#1A1A1A]">
+                          {selectedThemeData.title}
+                        </h3>
+                      </motion.div>
 
-              {/* Statistique clé sous le CTA */}
-              <div className="mt-6 sm:mt-8 p-4 sm:p-5 bg-[#F5F7FA] border-l-4 border-[#00D084] max-w-xl">
-                <div className="flex items-center gap-3">
-                  <div className="flex-1">
-                    <div className="text-xs sm:text-sm font-semibold text-[#6B6B6B] mb-1">Temps moyen</div>
-                    <div className="text-2xl sm:text-3xl font-bold text-[#1A1A1A]">5 minutes</div>
-                    <div className="text-xs sm:text-sm text-[#6B6B6B] mt-1">pour un diagnostic complet</div>
-                  </div>
-                  <div className="w-12 h-12 bg-[#00D084] flex items-center justify-center">
-                    <Zap className="text-white" size={24} />
-                  </div>
-                </div>
-              </div>
-            </div>
+                      {/* Hook */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                        className="mb-6"
+                      >
+                        <div className="text-sm font-bold text-[#1C32FF] mb-2 uppercase">
+                          {selectedStory.hook}
+                        </div>
+                        <div className="bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-[#FF5722] p-4 sm:p-5 shadow-md">
+                          <div className="flex items-start gap-2 sm:gap-3">
+                            <AlertTriangle size={20} className="text-[#FF5722] flex-shrink-0 mt-1 sm:w-6 sm:h-6" />
+                            <div>
+                              <div className="text-3xl sm:text-4xl font-bold text-[#FF5722] mb-2">
+                                {selectedStory.stat}
+                              </div>
+                              <div className="text-sm sm:text-base text-[#1A1A1A] font-medium">
+                                {selectedStory.statText}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+
+                      {/* Insight */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.5 }}
+                        className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-5 mb-6 italic text-sm sm:text-base text-[#6B6B6B] border-l-2 border-[#1C32FF] shadow-sm"
+                      >
+                        "{selectedStory.insight}"
+                      </motion.div>
+
+                      {/* Questions */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.7 }}
+                        className="mb-8"
+                      >
+                        <div className="text-sm font-bold text-[#1A1A1A] mb-3 uppercase">
+                          3 questions clés :
+                        </div>
+                        <ul className="space-y-3">
+                          {selectedStory.questions.map((question: string, idx: number) => (
+                            <motion.li
+                              key={idx}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: 0.8 + idx * 0.1 }}
+                              className="flex items-start gap-2 sm:gap-3"
+                            >
+                              <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-br from-[#1C32FF] to-[#0D1A99] text-white flex items-center justify-center text-xs font-bold flex-shrink-0 rounded-full mt-0.5 shadow">
+                                {idx + 1}
+                              </div>
+                              <span className="text-sm sm:text-base text-[#6B6B6B]">{question}</span>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </motion.div>
+
+                      {/* CTA */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 1 }}
+                      >
+                        <div className="text-lg sm:text-xl font-bold text-[#1A1A1A] mb-4">
+                          {selectedStory.cta}
+                        </div>
+                        <Link
+                          href="/compliance-scan"
+                          className="block w-full text-center bg-gradient-to-r from-[#1C32FF] to-[#0D1A99] text-white font-bold px-6 py-3 sm:py-4 transition-all duration-500 hover:shadow-2xl hover:scale-105 text-base sm:text-lg"
+                        >
+                          Lancer le Compliance Scan
+                        </Link>
+                      </motion.div>
+                    </>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </section>
