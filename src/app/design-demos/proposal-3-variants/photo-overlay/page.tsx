@@ -95,7 +95,8 @@ const themeStories: Record<string, any> = {
 
 export default function PhotoOverlayPage() {
   const [selectedTheme, setSelectedTheme] = useState<string | null>(null);
-  const [hexagonSize] = useState<'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'>('large');
+  // Hexagone responsive: medium sur mobile, large sur desktop
+  const [hexagonSize] = useState<'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'>('medium');
 
   const handleThemeClick = (themeId: string) => {
     setSelectedTheme(themeId);
@@ -122,9 +123,9 @@ export default function PhotoOverlayPage() {
 
       {/* Main content */}
       <section className="relative overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 min-h-[600px]">
           {/* Côté gauche - Hexagone avec photo + overlay */}
-          <div className="relative py-12 flex items-center justify-center lg:border-r-2 lg:border-gray-200 overflow-hidden">
+          <div className="relative py-8 sm:py-10 lg:py-12 flex items-center justify-center lg:border-r-2 lg:border-gray-200 overflow-hidden min-h-[400px] sm:min-h-[500px] lg:min-h-[600px]">
             {/* Photo d'arrière-plan */}
             <div className="absolute inset-0 z-0">
               <Image
@@ -139,18 +140,18 @@ export default function PhotoOverlayPage() {
             {/* Overlay gradient bleu foncé */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#1C32FF]/85 via-[#0D1A99]/80 to-[#060D4D]/90 z-10"></div>
 
-            <div className="relative text-center z-20">
+            <div className="relative text-center z-20 px-4">
               {/* Container glassmorphism pour l'hexagone - adapté pour fond sombre */}
               <motion.div
-                className="inline-block p-8 backdrop-blur-xl bg-white/20 border border-white/40 shadow-2xl"
+                className="inline-block p-4 sm:p-6 lg:p-8 backdrop-blur-xl bg-white/20 border border-white/40 shadow-2xl"
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.8 }}
               >
-                <h2 className="text-2xl font-bold text-white mb-2 drop-shadow-lg">
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 drop-shadow-lg">
                   Découvrez les enjeux
                 </h2>
-                <p className="text-sm text-white/90 mb-8 drop-shadow-md">
+                <p className="text-xs sm:text-sm text-white/90 mb-6 sm:mb-8 drop-shadow-md">
                   Cliquez pour révéler l'histoire de chaque domaine
                 </p>
                 <HexagonThemes
@@ -172,7 +173,7 @@ export default function PhotoOverlayPage() {
           </div>
 
           {/* Côté droit - Storytelling avec design amélioré */}
-          <div className="relative py-12 bg-white flex items-center">
+          <div className="relative py-8 sm:py-10 lg:py-12 bg-white flex items-center">
             <AnimatePresence mode="wait">
               {!selectedTheme ? (
                 // Vue par défaut avec style amélioré
@@ -181,23 +182,23 @@ export default function PhotoOverlayPage() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="w-full px-8 md:px-12"
+                  className="w-full px-6 sm:px-8 md:px-12"
                 >
-                  <div className="flex items-center gap-3 mb-6">
-                    <Lightbulb size={32} className="text-[#FFB800]" />
-                    <h2 className="text-3xl font-bold text-[#1A1A1A]">
+                  <div className="flex items-start sm:items-center gap-3 mb-6">
+                    <Lightbulb size={28} className="text-[#FFB800] flex-shrink-0 sm:w-8 sm:h-8" />
+                    <h2 className="text-2xl sm:text-3xl font-bold text-[#1A1A1A]">
                       La conformité, c'est une histoire
                     </h2>
                   </div>
-                  <p className="text-lg text-[#6B6B6B] mb-8 leading-relaxed">
+                  <p className="text-base sm:text-lg text-[#6B6B6B] mb-6 sm:mb-8 leading-relaxed">
                     Chaque domaine de conformité cache des enjeux business critiques, des opportunités de croissance, et des risques à maîtriser.
                   </p>
-                  <p className="text-lg font-semibold text-[#1A1A1A] mb-8">
-                    👈 Cliquez sur un domaine pour découvrir son histoire et comprendre pourquoi elle vous concerne.
+                  <p className="text-base sm:text-lg font-semibold text-[#1A1A1A] mb-6 sm:mb-8">
+                    Cliquez sur un domaine pour découvrir son histoire et comprendre pourquoi elle vous concerne.
                   </p>
                   <Link
                     href="/compliance-scan"
-                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#1C32FF] to-[#0D1A99] text-white font-bold px-8 py-4 transition-all duration-500 hover:shadow-2xl hover:scale-105 text-lg group"
+                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#1C32FF] to-[#0D1A99] text-white font-bold px-6 sm:px-8 py-3 sm:py-4 transition-all duration-500 hover:shadow-2xl hover:scale-105 text-base sm:text-lg group w-full sm:w-auto"
                   >
                     Lancer le diagnostic complet
                     <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -211,7 +212,7 @@ export default function PhotoOverlayPage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="w-full px-8 md:px-12"
+                  className="w-full px-6 sm:px-8 md:px-12"
                 >
                   {selectedThemeData && IconComponent && selectedStory && (
                     <>
@@ -220,15 +221,15 @@ export default function PhotoOverlayPage() {
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ delay: 0.2, type: 'spring' }}
-                        className="flex items-center gap-4 mb-6"
+                        className="flex items-center gap-3 sm:gap-4 mb-6"
                       >
                         <div
-                          className="w-16 h-16 flex items-center justify-center shadow-lg"
+                          className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center shadow-lg flex-shrink-0"
                           style={{ backgroundColor: selectedThemeData.color }}
                         >
-                          <IconComponent className="text-white" size={32} strokeWidth={2} />
+                          <IconComponent className="text-white" size={24} strokeWidth={2} />
                         </div>
-                        <h3 className="text-2xl font-bold text-[#1A1A1A]">
+                        <h3 className="text-xl sm:text-2xl font-bold text-[#1A1A1A]">
                           {selectedThemeData.title}
                         </h3>
                       </motion.div>
@@ -243,14 +244,14 @@ export default function PhotoOverlayPage() {
                         <div className="text-sm font-bold text-[#1C32FF] mb-2 uppercase">
                           {selectedStory.hook}
                         </div>
-                        <div className="bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-[#FF5722] p-5 shadow-md">
-                          <div className="flex items-start gap-3">
-                            <AlertTriangle size={24} className="text-[#FF5722] flex-shrink-0 mt-1" />
+                        <div className="bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-[#FF5722] p-4 sm:p-5 shadow-md">
+                          <div className="flex items-start gap-2 sm:gap-3">
+                            <AlertTriangle size={20} className="text-[#FF5722] flex-shrink-0 mt-1 sm:w-6 sm:h-6" />
                             <div>
-                              <div className="text-4xl font-bold text-[#FF5722] mb-2">
+                              <div className="text-3xl sm:text-4xl font-bold text-[#FF5722] mb-2">
                                 {selectedStory.stat}
                               </div>
-                              <div className="text-[#1A1A1A] font-medium">
+                              <div className="text-sm sm:text-base text-[#1A1A1A] font-medium">
                                 {selectedStory.statText}
                               </div>
                             </div>
@@ -263,7 +264,7 @@ export default function PhotoOverlayPage() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.5 }}
-                        className="bg-gradient-to-br from-gray-50 to-blue-50 p-5 mb-6 italic text-[#6B6B6B] border-l-2 border-[#1C32FF] shadow-sm"
+                        className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-5 mb-6 italic text-sm sm:text-base text-[#6B6B6B] border-l-2 border-[#1C32FF] shadow-sm"
                       >
                         "{selectedStory.insight}"
                       </motion.div>
@@ -285,12 +286,12 @@ export default function PhotoOverlayPage() {
                               initial={{ opacity: 0, x: -20 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 0.8 + idx * 0.1 }}
-                              className="flex items-start gap-3"
+                              className="flex items-start gap-2 sm:gap-3"
                             >
-                              <div className="w-6 h-6 bg-gradient-to-br from-[#1C32FF] to-[#0D1A99] text-white flex items-center justify-center text-xs font-bold flex-shrink-0 rounded-full mt-0.5 shadow">
+                              <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-br from-[#1C32FF] to-[#0D1A99] text-white flex items-center justify-center text-xs font-bold flex-shrink-0 rounded-full mt-0.5 shadow">
                                 {idx + 1}
                               </div>
-                              <span className="text-[#6B6B6B]">{question}</span>
+                              <span className="text-sm sm:text-base text-[#6B6B6B]">{question}</span>
                             </motion.li>
                           ))}
                         </ul>
@@ -302,12 +303,12 @@ export default function PhotoOverlayPage() {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1 }}
                       >
-                        <div className="text-xl font-bold text-[#1A1A1A] mb-4">
+                        <div className="text-lg sm:text-xl font-bold text-[#1A1A1A] mb-4">
                           {selectedStory.cta}
                         </div>
                         <Link
                           href="/compliance-scan"
-                          className="block w-full text-center bg-gradient-to-r from-[#1C32FF] to-[#0D1A99] text-white font-bold px-6 py-4 transition-all duration-500 hover:shadow-2xl hover:scale-105"
+                          className="block w-full text-center bg-gradient-to-r from-[#1C32FF] to-[#0D1A99] text-white font-bold px-6 py-3 sm:py-4 transition-all duration-500 hover:shadow-2xl hover:scale-105 text-base sm:text-lg"
                         >
                           Lancer le Compliance Scan
                         </Link>
