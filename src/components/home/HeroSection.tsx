@@ -30,7 +30,7 @@ export default function HeroSection() {
       } else if (window.innerWidth < 1024) {
         setHexagonSize('large'); // Tablet: 500px
       } else {
-        setHexagonSize('xlarge'); // Desktop: 650px
+        setHexagonSize('large'); // Desktop: 500px (réduit pour proportions)
       }
     };
 
@@ -50,7 +50,7 @@ export default function HeroSection() {
   return (
     <>
       {/* Banner Section avec image */}
-      <section className="relative bg-black py-8 sm:py-10 md:py-12 overflow-hidden">
+      <section className="relative bg-black py-12 sm:py-14 md:py-16 lg:py-20 overflow-hidden">
         {/* Image de fond */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -67,10 +67,10 @@ export default function HeroSection() {
 
         {/* Contenu */}
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight mb-2 sm:mb-3">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-3 sm:mb-4">
             Agoria célèbre la conformité
           </h1>
-          <p className="text-sm sm:text-base md:text-lg text-white/90 font-medium">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 font-medium">
             6 domaines pour piloter votre conformité
           </p>
         </div>
@@ -80,7 +80,7 @@ export default function HeroSection() {
       <section className="relative overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Côté gauche - Hexagone sur fond bleu mat Agoria */}
-          <div className="relative py-8 sm:py-10 md:py-12 lg:py-16 bg-[#060D4D] flex items-center justify-center order-2 lg:order-1">
+          <div className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-[#060D4D] flex items-center justify-center order-2 lg:order-1">
             <div className="flex justify-center">
               <HexagonThemes
                 themes={complianceThemes.map(t => ({
@@ -100,7 +100,7 @@ export default function HeroSection() {
           </div>
 
           {/* Côté droit - CTA sur fond blanc */}
-          <div className="relative py-8 sm:py-10 md:py-12 lg:py-16 bg-white flex items-center order-1 lg:order-2">
+          <div className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-white flex items-center order-1 lg:order-2">
             <div className="w-full px-6 sm:px-8 md:px-10 lg:px-12">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1A1A1A] mb-4 sm:mb-5 leading-tight">
                 Explorez les 6 domaines de conformité
