@@ -120,7 +120,6 @@ export default function QuestionsPage() {
           moduleId={currentQuestion.themeId}
           moduleLabel={currentQuestion.themeTitle}
           moduleColor={currentQuestion.themeColor}
-          moduleIcon={currentQuestion.themeIcon}
           selectedOption={currentAnswer?.selectedOption}
           onSelect={handleSelectOption}
         />

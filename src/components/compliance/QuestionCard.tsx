@@ -10,7 +10,6 @@ interface QuestionCardProps {
   moduleId: string;
   moduleLabel: string;
   moduleColor: string;
-  moduleIcon?: string; // Emoji icon
   selectedOption?: string;
   onSelect: (optionLabel: string, score: number) => void;
 }
@@ -22,7 +21,6 @@ export default function QuestionCard({
   moduleId,
   moduleLabel,
   moduleColor,
-  moduleIcon,
   selectedOption,
   onSelect,
 }: QuestionCardProps) {
@@ -32,13 +30,10 @@ export default function QuestionCard({
       {/* Theme Badge */}
       <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
         <div
-          className="p-2 sm:p-2.5 md:p-3 text-2xl sm:text-3xl flex items-center justify-center flex-shrink-0"
-          style={{
-            backgroundColor: `${moduleColor}20`,
-            border: `2px solid ${moduleColor}`
-          }}
+          className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center flex-shrink-0"
+          style={{ backgroundColor: moduleColor }}
         >
-          {moduleIcon || '📋'}
+          <div className="w-6 h-6 sm:w-7 sm:h-7 bg-white/30"></div>
         </div>
         <div>
           <div className="text-xs sm:text-sm font-semibold text-[#6B6B6B] uppercase">

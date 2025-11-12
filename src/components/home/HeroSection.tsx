@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Lock, Leaf, Users, CircleDollarSign, Cpu, Settings } from 'lucide-react';
+import { ArrowRight, Shield, Leaf, Users, DollarSign, Cpu, Settings, Zap } from 'lucide-react';
 import ScanContext from './ScanContext';
 import { scanContextData } from '@/data/scanContextData';
 import HexagonThemes from '@/components/campaign/HexagonThemes';
@@ -11,10 +11,10 @@ import { complianceThemes } from '@/data/complianceThemes';
 
 // Mapping des icônes Lucide pour les thèmes
 const themeIcons: Record<string, any> = {
-  'data-protection': Lock,
+  'data-protection': Shield,
   'environmental': Leaf,
   'social-hr': Users,
-  'financial': CircleDollarSign,
+  'financial': DollarSign,
   'digital-ai': Cpu,
   'industrial': Settings,
 };
@@ -124,7 +124,9 @@ export default function HeroSection() {
                     <div className="text-2xl sm:text-3xl font-bold text-[#1A1A1A]">5 minutes</div>
                     <div className="text-xs sm:text-sm text-[#6B6B6B] mt-1">pour un diagnostic complet</div>
                   </div>
-                  <div className="text-4xl">⚡</div>
+                  <div className="w-12 h-12 bg-[#00D084] flex items-center justify-center">
+                    <Zap className="text-white" size={24} />
+                  </div>
                 </div>
               </div>
             </div>

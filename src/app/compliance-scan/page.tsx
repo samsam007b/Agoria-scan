@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Shield, CheckCircle, FileText, Clock } from 'lucide-react';
 import { complianceThemes } from '@/data/complianceThemes';
 
 export default function ComplianceScanLanding() {
@@ -36,7 +36,9 @@ export default function ComplianceScanLanding() {
           {/* Titre centré */}
           <div className="text-center mb-8 sm:mb-10">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <span className="text-5xl sm:text-6xl">🔐</span>
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white/10 flex items-center justify-center">
+                <Shield className="text-white" size={32} />
+              </div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white">
                 Compliance Scan
               </h1>
@@ -121,17 +123,13 @@ export default function ComplianceScanLanding() {
                 key={theme.id}
                 className="bg-white border-2 border-gray-200 p-6 hover:shadow-xl transition-all duration-300 group"
               >
-                {/* En-tête avec emoji et poids */}
+                {/* En-tête avec indicateur et poids */}
                 <div className="flex items-start justify-between mb-4">
                   <div
-                    className="p-4 group-hover:scale-110 transition-transform flex items-center justify-center"
-                    style={{
-                      backgroundColor: theme.color,
-                      width: '64px',
-                      height: '64px'
-                    }}
+                    className="w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform"
+                    style={{ backgroundColor: theme.color }}
                   >
-                    <span className="text-3xl">{theme.icon}</span>
+                    <div className="w-8 h-8 bg-white/20"></div>
                   </div>
                   <div className="text-right">
                     <div className="text-xs font-bold text-[#6B6B6B] uppercase">Poids</div>
@@ -155,7 +153,7 @@ export default function ComplianceScanLanding() {
                 <div className="space-y-2 mb-4">
                   {theme.keyPoints.slice(0, 3).map((point, idx) => (
                     <div key={idx} className="flex items-start gap-2">
-                      <span className="text-xs mt-0.5" style={{ color: theme.color }}>▪</span>
+                      <div className="w-1 h-1 mt-2 flex-shrink-0" style={{ backgroundColor: theme.color }}></div>
                       <span className="text-xs text-[#1A1A1A] leading-tight">{point}</span>
                     </div>
                   ))}
@@ -176,7 +174,7 @@ export default function ComplianceScanLanding() {
         </div>
       </section>
 
-      {/* Section Bénéfices - Simplifié avec emojis */}
+      {/* Section Bénéfices */}
       <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 mb-10 sm:mb-12">
@@ -189,35 +187,42 @@ export default function ComplianceScanLanding() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                emoji: '⚡',
+                icon: Clock,
                 title: 'Rapide et simple',
                 description: 'Complétez l\'évaluation en 5 minutes chrono'
               },
               {
-                emoji: '📊',
+                icon: CheckCircle,
                 title: 'Score détaillé',
                 description: 'Score global et par domaine de conformité'
               },
               {
-                emoji: '🎯',
+                icon: FileText,
                 title: 'Recommandations',
                 description: 'Actions prioritaires personnalisées'
               },
               {
-                emoji: '📄',
+                icon: FileText,
                 title: 'Rapport PDF',
                 description: 'Téléchargez votre diagnostic complet'
               },
-            ].map((benefit, idx) => (
-              <div
-                key={idx}
-                className="text-center p-6 bg-[#F5F7FA] hover:bg-white hover:shadow-lg border-2 border-transparent hover:border-[#1C32FF] transition-all"
-              >
-                <div className="text-5xl mb-4">{benefit.emoji}</div>
-                <h3 className="font-bold text-[#1A1A1A] mb-2 text-lg">{benefit.title}</h3>
-                <p className="text-sm text-[#6B6B6B] leading-relaxed">{benefit.description}</p>
-              </div>
-            ))}
+            ].map((benefit, idx) => {
+              const IconComponent = benefit.icon;
+              return (
+                <div
+                  key={idx}
+                  className="text-center p-6 bg-[#F5F7FA] hover:bg-white hover:shadow-lg border-2 border-transparent hover:border-[#1C32FF] transition-all"
+                >
+                  <div className="flex justify-center mb-4">
+                    <div className="w-16 h-16 bg-[#1C32FF] flex items-center justify-center">
+                      <IconComponent className="text-white" size={32} />
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-[#1A1A1A] mb-2 text-lg">{benefit.title}</h3>
+                  <p className="text-sm text-[#6B6B6B] leading-relaxed">{benefit.description}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

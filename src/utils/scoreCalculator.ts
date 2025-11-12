@@ -13,7 +13,6 @@ export interface ThemeScore {
   score: number;
   color: string;
   weight: number;
-  emoji: string;
 }
 
 export interface ScoreResult {
@@ -40,7 +39,6 @@ export function calculateScores(answers: Answer[]): ScoreResult {
         score: 0,
         color: theme.color,
         weight: theme.weight,
-        emoji: theme.icon,
       });
       return;
     }
@@ -55,7 +53,6 @@ export function calculateScores(answers: Answer[]): ScoreResult {
       score: parseFloat(avgScore.toFixed(1)),
       color: theme.color,
       weight: theme.weight,
-      emoji: theme.icon,
     });
   });
 

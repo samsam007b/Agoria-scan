@@ -347,19 +347,16 @@ export function getScoreLevel(score: number) {
   if (score >= 71) return {
     label: 'Excellence',
     color: scoringColors.high,
-    emoji: '🏆',
     message: 'Votre entreprise est un modèle de conformité'
   };
   if (score >= 41) return {
     label: 'En progression',
     color: scoringColors.medium,
-    emoji: '📈',
     message: 'Des bases solides, continuez vos efforts'
   };
   return {
     label: 'Action requise',
     color: scoringColors.low,
-    emoji: '⚠️',
     message: 'Des actions prioritaires sont nécessaires'
   };
 }

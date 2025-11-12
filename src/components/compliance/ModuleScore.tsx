@@ -4,10 +4,9 @@ interface ModuleScoreProps {
   score: number;
   color: string;
   weight: number;
-  emoji?: string;
 }
 
-export default function ModuleScore({ id, label, score, color, weight, emoji }: ModuleScoreProps) {
+export default function ModuleScore({ id, label, score, color, weight }: ModuleScoreProps) {
   const percentage = score * 10; // Score sur 100 (0-10 -> 0-100%)
 
   return (
@@ -18,8 +17,11 @@ export default function ModuleScore({ id, label, score, color, weight, emoji }: 
       <div className="relative">
         <div className="flex items-start justify-between mb-6">
           <div className="flex items-center gap-3">
-            <div className="p-4 shadow-md group-hover:scale-110 transition-transform duration-300 flex items-center justify-center" style={{ backgroundColor: color, width: '64px', height: '64px' }}>
-              <span className="text-3xl">{emoji || '📋'}</span>
+            <div
+              className="shadow-md group-hover:scale-110 transition-transform duration-300 flex items-center justify-center"
+              style={{ backgroundColor: color, width: '64px', height: '64px' }}
+            >
+              <div className="w-8 h-8 bg-white/30"></div>
             </div>
             <div>
               <div className="text-xs font-bold text-[#6B6B6B] uppercase tracking-wide mb-1">
@@ -38,9 +40,9 @@ export default function ModuleScore({ id, label, score, color, weight, emoji }: 
 
         {/* Progress bar with glow effect */}
         <div className="relative">
-          <div className="w-full bg-[#F5F7FA] h-3 overflow-hidden rounded-full">
+          <div className="w-full bg-[#F5F7FA] h-3 overflow-hidden">
             <div
-              className="h-full transition-all duration-1000 ease-out rounded-full relative overflow-hidden"
+              className="h-full transition-all duration-1000 ease-out relative overflow-hidden"
               style={{
                 width: `${percentage}%`,
                 backgroundColor: color,
@@ -55,7 +57,7 @@ export default function ModuleScore({ id, label, score, color, weight, emoji }: 
               {percentage.toFixed(1)}% de conformité
             </span>
             <span className="text-xs text-[#6B6B6B] font-medium">
-              {percentage >= 70 ? '✓ Bon' : percentage >= 40 ? '⚠ Moyen' : '✗ Faible'}
+              {percentage >= 70 ? 'Bon' : percentage >= 40 ? 'Moyen' : 'Faible'}
             </span>
           </div>
         </div>
