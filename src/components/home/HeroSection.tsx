@@ -245,15 +245,15 @@ export default function HeroSection() {
             <div className="relative text-center z-20 px-4">
               {/* Titre au-dessus de l'hexagone */}
               <div className="mb-6 sm:mb-8">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 drop-shadow-lg">
-                  Découvrez les enjeux
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 drop-shadow-lg uppercase tracking-wider">
+                  Compliance HUB
                 </h2>
                 <p className="text-sm sm:text-base text-white/90 drop-shadow-md">
                   Cliquez pour révéler l'histoire de chaque domaine
                 </p>
               </div>
 
-              {/* Hexagone directement sur le fond */}
+              {/* Hexagone directement sur le fond - uniquement avec les icônes */}
               <motion.div
                 className="inline-block"
                 initial={{ scale: 0.9, opacity: 0 }}

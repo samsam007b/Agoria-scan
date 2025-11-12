@@ -191,33 +191,7 @@ export default function HexagonThemes({
           );
         })}
 
-        {/* Texte central "Compliance Hub" */}
-        <text
-          x={centerX}
-          y={centerY}
-          textAnchor="middle"
-          dominantBaseline="central"
-          fontSize={size === 'xxlarge' ? 32 : size === 'xlarge' ? 28 : size === 'large' ? 24 : size === 'medium' ? 18 : 10}
-          fontWeight="bold"
-          fill={glassEffect ? "#FFFFFF" : "#1C32FF"}
-          className="uppercase tracking-wider"
-          style={glassEffect ? { filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))' } : undefined}
-        >
-          {size !== 'small' && 'Compliance'}
-        </text>
-        <text
-          x={centerX}
-          y={centerY + (size === 'xxlarge' ? 38 : size === 'xlarge' ? 34 : size === 'large' ? 30 : size === 'medium' ? 22 : 12)}
-          textAnchor="middle"
-          dominantBaseline="central"
-          fontSize={size === 'xxlarge' ? 42 : size === 'xlarge' ? 38 : size === 'large' ? 32 : size === 'medium' ? 26 : 14}
-          fontWeight="bold"
-          fill={glassEffect ? "#FFFFFF" : "#1C32FF"}
-          className="uppercase"
-          style={glassEffect ? { filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))' } : undefined}
-        >
-          {size !== 'small' && 'HUB'}
-        </text>
+        {/* Texte central retiré - uniquement les icônes restent */}
       </svg>
 
     </div>
