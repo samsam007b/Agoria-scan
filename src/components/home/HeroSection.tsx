@@ -50,7 +50,7 @@ export default function HeroSection() {
   return (
     <>
       {/* Banner Section avec image */}
-      <section className="relative bg-black py-8 sm:py-10 md:py-14 overflow-hidden">
+      <section className="relative bg-black py-8 sm:py-10 md:py-12 overflow-hidden">
         {/* Image de fond */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -67,22 +67,21 @@ export default function HeroSection() {
 
         {/* Contenu */}
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-3 sm:mb-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-2 sm:mb-3">
             Agoria célèbre la conformité
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-white/90 font-medium">
+          <p className="text-base sm:text-lg md:text-xl text-white/90 font-medium">
             6 domaines pour piloter votre conformité
           </p>
         </div>
       </section>
 
-      {/* Hero Section - Hexagone + Texte */}
-      <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 overflow-hidden" style={{ backgroundColor: '#060D4D' }}>
-        {/* Contenu */}
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
-            {/* Hexagone interactif à gauche */}
-            <div className="flex justify-center lg:justify-start order-2 lg:order-1">
+      {/* Hero Section - Split Design : Hexagone bleu + CTA blanc */}
+      <section className="relative overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          {/* Côté gauche - Hexagone sur fond bleu mat Agoria */}
+          <div className="relative py-8 sm:py-10 md:py-12 lg:py-16 bg-[#060D4D] flex items-center justify-center order-2 lg:order-1">
+            <div className="flex justify-center">
               <HexagonThemes
                 themes={complianceThemes.map(t => ({
                   id: t.id,
@@ -98,28 +97,35 @@ export default function HeroSection() {
                 onThemeClick={handleThemeClick}
               />
             </div>
+          </div>
 
-            {/* Texte à droite */}
-            <div className="text-white order-1 lg:order-2 text-center lg:text-left">
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-3 sm:mb-4">
+          {/* Côté droit - CTA sur fond blanc */}
+          <div className="relative py-8 sm:py-10 md:py-12 lg:py-16 bg-white flex items-center order-1 lg:order-2">
+            <div className="w-full px-6 sm:px-8 md:px-10 lg:px-12">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1A1A1A] mb-4 sm:mb-5 leading-tight">
                 Explorez les 6 domaines de conformité
               </h2>
-              <p className="text-sm sm:text-base lg:text-lg text-white/80 mb-4 sm:mb-6 leading-relaxed">
+              <p className="text-base sm:text-lg text-[#6B6B6B] mb-6 sm:mb-8 leading-relaxed max-w-xl">
                 Évaluez votre maturité sur 18 questions concrètes et obtenez un diagnostic personnalisé avec des actions prioritaires.
               </p>
               <Link
                 href="/compliance-scan"
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#1C32FF] font-bold px-5 sm:px-6 py-3 sm:py-3.5 transition-all duration-300 hover:bg-[#1C32FF] hover:text-white hover:shadow-[0_0_30px_rgba(28,50,255,0.5)] active:scale-[0.98] text-sm sm:text-base group w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 bg-[#1C32FF] text-white font-bold px-6 sm:px-8 py-3.5 sm:py-4 transition-all duration-300 hover:bg-[#0D1A99] hover:shadow-[0_8px_30px_rgba(28,50,255,0.3)] active:scale-[0.98] text-base sm:text-lg group w-full sm:w-auto shadow-lg"
               >
                 Lancer le Compliance Scan
-                <ArrowRight size={18} className="sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </Link>
 
               {/* Statistique clé sous le CTA */}
-              <div className="mt-4 sm:mt-6 p-3 bg-white/10 backdrop-blur-sm border-l-4 border-[#00D084]">
-                <div className="text-xs font-semibold text-white/70 mb-1">Temps moyen</div>
-                <div className="text-lg sm:text-xl font-bold text-white">5 minutes</div>
-                <div className="text-xs text-white/80 mt-1">pour un diagnostic complet</div>
+              <div className="mt-6 sm:mt-8 p-4 sm:p-5 bg-[#F5F7FA] border-l-4 border-[#00D084] max-w-xl">
+                <div className="flex items-center gap-3">
+                  <div className="flex-1">
+                    <div className="text-xs sm:text-sm font-semibold text-[#6B6B6B] mb-1">Temps moyen</div>
+                    <div className="text-2xl sm:text-3xl font-bold text-[#1A1A1A]">5 minutes</div>
+                    <div className="text-xs sm:text-sm text-[#6B6B6B] mt-1">pour un diagnostic complet</div>
+                  </div>
+                  <div className="text-4xl">⚡</div>
+                </div>
               </div>
             </div>
           </div>
