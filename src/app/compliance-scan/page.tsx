@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { CheckCircle, Clock, FileText, Download, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { complianceThemes } from '@/data/complianceThemes';
 
 export default function ComplianceScanLanding() {
   const router = useRouter();
@@ -16,204 +17,229 @@ export default function ComplianceScanLanding() {
     router.push('/compliance-scan/questions');
   };
 
-  const modules = [
-    {
-      id: 'A',
-      emoji: '🔐',
-      title: 'Digitalisation & Sécurité',
-      weight: '30%',
-      color: '#1C32FF',
-      description: 'Évaluez vos mesures de cybersécurité, MFA, sauvegardes, formation et conformité NIS2.',
-      questions: 6,
-    },
-    {
-      id: 'B',
-      emoji: '👥',
-      title: 'Conformité réglementaire & sociale',
-      weight: '40%',
-      color: '#00D084',
-      description: 'Vérifiez vos obligations légales : BCE, contrats, DIMONA, registre du personnel, facturation.',
-      questions: 6,
-    },
-    {
-      id: 'C',
-      emoji: '🔐',
-      title: 'RGPD & Gouvernance des données',
-      weight: '30%',
-      color: '#FF6B35',
-      description: 'Contrôlez votre conformité RGPD : registre, DPO, droits des personnes, rétention.',
-      questions: 6,
-    },
-  ];
-
-  const benefits = [
-    { icon: Clock, title: 'Rapide et simple', description: 'Complétez l\'évaluation en 5-10 minutes' },
-    { icon: CheckCircle, title: 'Score détaillé', description: 'Obtenez un score global et par module' },
-    { icon: FileText, title: 'Recommandations', description: 'Recevez des actions prioritaires personnalisées' },
-    { icon: Download, title: 'Rapport PDF', description: 'Téléchargez votre rapport complet' },
-  ];
+  // Compter le nombre total de questions
+  const totalQuestions = complianceThemes.reduce((sum, theme) => sum + theme.questions.length, 0);
 
   return (
     <div className="bg-white">
-      {/* Hero with CTA */}
-      <section className="relative bg-gradient-to-br from-[#1C32FF] via-[#0D1A99] to-[#1C32FF] py-12 sm:py-16 md:py-24 lg:py-28">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
+      {/* Hero Section - Style simple et épuré */}
+      <section className="relative bg-[#060D4D] py-16 sm:py-20 md:py-24 overflow-hidden">
+        {/* Pattern de fond subtil */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+            backgroundSize: '40px 40px'
+          }}></div>
+        </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            {/* Title */}
-            <div className="text-center mb-6 sm:mb-8">
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                <span className="text-4xl sm:text-5xl">🔐</span>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-                  Compliance Scan
-                </h1>
-                <div className="hidden sm:block w-3 h-3 md:w-4 md:h-4 bg-white"></div>
-              </div>
-              <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-2 sm:mb-3 px-2">
-                Évaluez votre niveau de conformité en <strong>5-10 minutes</strong>
-              </p>
-              <p className="text-sm sm:text-base text-white/80 max-w-2xl mx-auto px-4">
-                Un outil d'auto-évaluation gratuit et confidentiel pour identifier vos forces
-                et vos axes d'amélioration en matière de conformité.
-              </p>
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Titre centré */}
+          <div className="text-center mb-8 sm:mb-10">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <span className="text-5xl sm:text-6xl">🔐</span>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white">
+                Compliance Scan
+              </h1>
+            </div>
+            <p className="text-xl sm:text-2xl text-white/90 max-w-3xl mx-auto">
+              Évaluez votre niveau de conformité en <strong>5 minutes</strong>
+            </p>
+          </div>
+
+          {/* Stats en ligne */}
+          <div className="flex justify-center gap-8 sm:gap-12 md:gap-16 mb-10 sm:mb-12">
+            <div className="text-center">
+              <div className="text-3xl sm:text-4xl font-bold text-white mb-1">{totalQuestions}</div>
+              <div className="text-sm sm:text-base text-white/70">Questions</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl sm:text-4xl font-bold text-white mb-1">6</div>
+              <div className="text-sm sm:text-base text-white/70">Thèmes</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl sm:text-4xl font-bold text-white mb-1">5 min</div>
+              <div className="text-sm sm:text-base text-white/70">Durée</div>
+            </div>
+          </div>
+
+          {/* CTA Card centrée */}
+          <div className="bg-white shadow-2xl p-6 sm:p-8 md:p-10 max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#1A1A1A] text-center mb-6">
+              Commencez maintenant
+            </h2>
+
+            {/* Checkbox RGPD */}
+            <div className="bg-[#F5F7FA] border-2 border-gray-200 p-5 sm:p-6 mb-6">
+              <label className="flex items-start cursor-pointer group">
+                <input
+                  type="checkbox"
+                  checked={acceptedRGPD}
+                  onChange={(e) => setAcceptedRGPD(e.target.checked)}
+                  className="mt-1 mr-4 w-5 h-5 flex-shrink-0 text-[#1C32FF] border-gray-300 focus:ring-[#1C32FF] cursor-pointer"
+                />
+                <span className="text-sm sm:text-base text-[#1A1A1A] leading-relaxed">
+                  J'accepte que mes réponses soient traitées de manière <strong>anonyme et confidentielle</strong> dans
+                  le cadre de cette auto-évaluation. Aucune donnée personnelle n'est collectée.
+                </span>
+              </label>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-6 sm:mb-8 md:mb-10 max-w-2xl mx-auto">
-              <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">18</div>
-                <div className="text-xs sm:text-sm text-white/80">Questions</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">3</div>
-                <div className="text-xs sm:text-sm text-white/80">Modules</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">5-10'</div>
-                <div className="text-xs sm:text-sm text-white/80">Minutes</div>
-              </div>
-            </div>
+            {/* Bouton CTA */}
+            <button
+              onClick={handleStart}
+              disabled={!acceptedRGPD}
+              className={`w-full btn-agoria-primary inline-flex items-center justify-center gap-3 text-lg py-4 ${
+                !acceptedRGPD ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
+            >
+              DÉMARRER L'ÉVALUATION
+              <ArrowRight size={22} />
+            </button>
 
-            {/* CTA Card */}
-            <div className="bg-white shadow-2xl p-5 sm:p-6 md:p-8 lg:p-10 max-w-2xl mx-auto">
-              <h2 className="text-xl sm:text-2xl font-bold text-[#1A1A1A] text-center mb-4 sm:mb-6">
-                Commencez votre évaluation maintenant
-              </h2>
+            {!acceptedRGPD && (
+              <p className="text-xs text-[#6B6B6B] text-center mt-3">
+                Veuillez accepter la clause de confidentialité pour continuer
+              </p>
+            )}
+          </div>
+        </div>
+      </section>
 
-              {/* Checkbox RGPD */}
-              <div className="bg-[#F5F7FA] border-2 border-gray-200 p-4 sm:p-5 md:p-6 mb-4 sm:mb-6">
-                <label className="flex items-start cursor-pointer group">
-                  <input
-                    type="checkbox"
-                    checked={acceptedRGPD}
-                    onChange={(e) => setAcceptedRGPD(e.target.checked)}
-                    className="mt-0.5 sm:mt-1 mr-3 sm:mr-4 w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 text-[#1C32FF] border-gray-300 focus:ring-[#1C32FF] cursor-pointer"
-                  />
-                  <span className="text-xs sm:text-sm text-[#1A1A1A] leading-relaxed">
-                    J'accepte que mes réponses soient traitées de manière <strong>anonyme et confidentielle</strong> dans
-                    le cadre de cette auto-évaluation. Aucune donnée personnelle n'est collectée.
-                  </span>
-                </label>
-              </div>
+      {/* Section Thèmes - Grid des 6 domaines */}
+      <section className="py-16 sm:py-20 bg-[#F5F7FA]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-2 mb-10 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#1A1A1A]">
+              6 domaines de conformité évalués
+            </h2>
+            <div className="w-3 h-3 bg-[#1C32FF]"></div>
+          </div>
 
-              {/* CTA Button */}
-              <button
-                onClick={handleStart}
-                disabled={!acceptedRGPD}
-                className={`w-full btn-agoria-primary inline-flex items-center justify-center gap-2 sm:gap-3 text-base sm:text-lg py-3 sm:py-4 ${
-                  !acceptedRGPD ? 'opacity-50 cursor-not-allowed' : ''
-                }`}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {complianceThemes.map((theme) => (
+              <div
+                key={theme.id}
+                className="bg-white border-2 border-gray-200 p-6 hover:shadow-xl transition-all duration-300 group"
               >
-                DÉMARRER L'ÉVALUATION
-                <ArrowRight size={20} className="sm:w-6 sm:h-6" />
-              </button>
+                {/* En-tête avec emoji et poids */}
+                <div className="flex items-start justify-between mb-4">
+                  <div
+                    className="p-4 group-hover:scale-110 transition-transform flex items-center justify-center"
+                    style={{
+                      backgroundColor: theme.color,
+                      width: '64px',
+                      height: '64px'
+                    }}
+                  >
+                    <span className="text-3xl">{theme.icon}</span>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-xs font-bold text-[#6B6B6B] uppercase">Poids</div>
+                    <div className="text-lg font-bold" style={{ color: theme.color }}>
+                      {Math.round(theme.weight * 100)}%
+                    </div>
+                  </div>
+                </div>
 
-              {!acceptedRGPD && (
-                <p className="text-xs text-[#6B6B6B] text-center mt-2 sm:mt-3">
-                  Veuillez accepter la clause de confidentialité pour continuer
+                {/* Titre */}
+                <h3 className="text-xl font-bold text-[#1A1A1A] mb-3 leading-tight">
+                  {theme.shortTitle}
+                </h3>
+
+                {/* Description */}
+                <p className="text-sm text-[#6B6B6B] mb-4 leading-relaxed">
+                  {theme.description}
                 </p>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Modules */}
-      <section className="py-10 sm:py-12 md:py-16 bg-[#F5F7FA]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2 mb-8 sm:mb-10 md:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A1A1A]">
-              Les 3 modules de l'évaluation
-            </h2>
-            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-[#1C32FF] flex-shrink-0"></div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {modules.map((module) => {
-              return (
-                <div key={module.id} className="card-agoria group">
-                  <div className="flex justify-center mb-4 sm:mb-6">
-                    <div
-                      className="p-3 sm:p-4 group-hover:scale-110 transition-transform flex items-center justify-center"
-                      style={{
-                        backgroundColor: module.color,
-                        width: '72px',
-                        height: '72px',
-                      }}
-                    >
-                      <span className="text-4xl">{module.emoji}</span>
+                {/* Points clés */}
+                <div className="space-y-2 mb-4">
+                  {theme.keyPoints.slice(0, 3).map((point, idx) => (
+                    <div key={idx} className="flex items-start gap-2">
+                      <span className="text-xs mt-0.5" style={{ color: theme.color }}>▪</span>
+                      <span className="text-xs text-[#1A1A1A] leading-tight">{point}</span>
                     </div>
-                  </div>
-                  <div className="text-center">
-                    <span className="text-xs sm:text-sm font-semibold text-[#6B6B6B] uppercase">
-                      Module {module.id} • {module.weight}
-                    </span>
-                    <h3 className="text-lg sm:text-xl font-bold text-[#1A1A1A] mt-2 mb-2 sm:mb-3">
-                      {module.title}
-                    </h3>
-                    <p className="text-[#6B6B6B] text-xs sm:text-sm mb-3 sm:mb-4">
-                      {module.description}
-                    </p>
-                    <div className="text-xs sm:text-sm text-[#6B6B6B]">
-                      {module.questions} questions
-                    </div>
-                  </div>
+                  ))}
                 </div>
-              );
-            })}
+
+                {/* Footer avec nombre de questions */}
+                <div className="pt-4 border-t border-gray-200 flex items-center justify-between">
+                  <span className="text-xs text-[#6B6B6B]">
+                    {theme.questions.length} questions
+                  </span>
+                  <span className="text-xs font-semibold" style={{ color: theme.color }}>
+                    {theme.stat}
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Avantages */}
-      <section className="py-10 sm:py-12 md:py-16 bg-white">
+      {/* Section Bénéfices - Simplifié avec emojis */}
+      <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2 mb-8 sm:mb-10 md:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A1A1A]">
-              Pourquoi faire le Compliance Scan ?
+          <div className="flex items-center gap-2 mb-10 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#1A1A1A]">
+              Ce que vous obtenez
             </h2>
-            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-[#1C32FF] flex-shrink-0"></div>
+            <div className="w-3 h-3 bg-[#1C32FF]"></div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {benefits.map((benefit, idx) => {
-              const IconComponent = benefit.icon;
-              return (
-                <div
-                  key={idx}
-                  className="text-center p-5 sm:p-6 bg-[#F5F7FA] hover:shadow-md transition-all"
-                >
-                  <div className="flex justify-center mb-3 sm:mb-4">
-                    <IconComponent className="text-[#1C32FF]" size={36} />
-                  </div>
-                  <h3 className="font-bold text-[#1A1A1A] mb-2 text-base sm:text-lg">{benefit.title}</h3>
-                  <p className="text-xs sm:text-sm text-[#6B6B6B]">{benefit.description}</p>
-                </div>
-              );
-            })}
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                emoji: '⚡',
+                title: 'Rapide et simple',
+                description: 'Complétez l\'évaluation en 5 minutes chrono'
+              },
+              {
+                emoji: '📊',
+                title: 'Score détaillé',
+                description: 'Score global et par domaine de conformité'
+              },
+              {
+                emoji: '🎯',
+                title: 'Recommandations',
+                description: 'Actions prioritaires personnalisées'
+              },
+              {
+                emoji: '📄',
+                title: 'Rapport PDF',
+                description: 'Téléchargez votre diagnostic complet'
+              },
+            ].map((benefit, idx) => (
+              <div
+                key={idx}
+                className="text-center p-6 bg-[#F5F7FA] hover:bg-white hover:shadow-lg border-2 border-transparent hover:border-[#1C32FF] transition-all"
+              >
+                <div className="text-5xl mb-4">{benefit.emoji}</div>
+                <h3 className="font-bold text-[#1A1A1A] mb-2 text-lg">{benefit.title}</h3>
+                <p className="text-sm text-[#6B6B6B] leading-relaxed">{benefit.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
+      {/* Call to Action final */}
+      <section className="py-16 sm:py-20 bg-gradient-to-br from-[#1C32FF] to-[#0D1A99]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+            Prêt à évaluer votre conformité ?
+          </h2>
+          <p className="text-lg sm:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+            Identifiez vos forces et axes d'amélioration en quelques minutes.
+          </p>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="bg-white text-[#1C32FF] font-bold px-8 py-4 text-lg hover:shadow-2xl transition-all duration-300 inline-flex items-center gap-3"
+          >
+            Commencer maintenant
+            <ArrowRight size={22} />
+          </button>
+        </div>
+      </section>
     </div>
   );
 }
