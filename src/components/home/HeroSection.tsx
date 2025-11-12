@@ -65,75 +65,77 @@ export default function HeroSection() {
 
   return (
     <>
-      {/* Banner Section avec image et navigation */}
-      <section className="relative bg-gradient-to-br from-[#1C32FF] via-[#0D1A99] to-[#1C32FF] overflow-hidden">
+      {/* Banner Section - Style Agoria.be avec gradient vibrant */}
+      <section className="relative bg-gradient-to-br from-[#7B68EE] via-[#FF69B4] to-[#4169E1] overflow-hidden">
         {/* Image de fond */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/hero-compliance.png"
             alt="Compliance illustration"
             fill
-            className="object-cover opacity-20"
+            className="object-cover opacity-30"
             priority
           />
         </div>
 
-        {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#1C32FF]/50 to-[#0D1A99] z-10"></div>
+        {/* Overlay gradient pour profondeur */}
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-600/20 via-transparent to-blue-900/40 z-10"></div>
 
         {/* Contenu */}
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="py-16 sm:py-20 md:py-24 lg:py-28 text-center">
-            <div className="inline-block mb-3 sm:mb-4">
-              <div className="w-12 h-1 bg-white/30 mx-auto mb-4"></div>
+          <div className="py-20 sm:py-24 md:py-28 lg:py-32 text-center">
+            <div className="inline-block mb-4">
+              <div className="text-xs sm:text-sm font-bold text-white/80 uppercase tracking-wider mb-2">
+                · AGORIA
+              </div>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 sm:mb-5">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-5 sm:mb-6">
               Agoria célèbre la conformité
             </h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 font-medium max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white font-medium max-w-4xl mx-auto">
               6 domaines pour piloter votre conformité
             </p>
           </div>
 
-          {/* Navigation Tabs - Style Agoria */}
+          {/* Navigation Tabs - Style Agoria.be */}
           <div className="pb-0">
-            <div className="flex justify-center gap-0 border-t border-white/20">
+            <div className="flex justify-center gap-0 border-t border-white/30">
               <button
                 onClick={() => scrollToSection('compliance-scan')}
-                className={`flex-1 max-w-[200px] px-4 sm:px-6 py-4 sm:py-5 text-sm sm:text-base font-semibold transition-all duration-200 ${
+                className={`flex-1 max-w-[220px] px-5 sm:px-7 py-5 sm:py-6 text-sm sm:text-base font-bold transition-all duration-300 ${
                   activeSection === 'scan'
-                    ? 'bg-white text-[#1C32FF]'
-                    : 'bg-transparent text-white hover:bg-white/10'
+                    ? 'bg-white text-[#7B68EE] shadow-lg'
+                    : 'bg-white/5 text-white hover:bg-white/15 backdrop-blur-sm'
                 }`}
               >
                 Compliance Scan
               </button>
               <button
                 onClick={() => scrollToSection('campagne-conformite')}
-                className={`flex-1 max-w-[200px] px-4 sm:px-6 py-4 sm:py-5 text-sm sm:text-base font-semibold transition-all duration-200 border-l border-white/20 ${
+                className={`flex-1 max-w-[220px] px-5 sm:px-7 py-5 sm:py-6 text-sm sm:text-base font-bold transition-all duration-300 border-l border-white/30 ${
                   activeSection === 'campagne'
-                    ? 'bg-white text-[#1C32FF]'
-                    : 'bg-transparent text-white hover:bg-white/10'
+                    ? 'bg-white text-[#7B68EE] shadow-lg'
+                    : 'bg-white/5 text-white hover:bg-white/15 backdrop-blur-sm'
                 }`}
               >
                 Campagne
               </button>
               <button
                 onClick={() => scrollToSection('thematiques-prioritaires')}
-                className={`flex-1 max-w-[200px] px-4 sm:px-6 py-4 sm:py-5 text-sm sm:text-base font-semibold transition-all duration-200 border-l border-white/20 ${
+                className={`flex-1 max-w-[220px] px-5 sm:px-7 py-5 sm:py-6 text-sm sm:text-base font-bold transition-all duration-300 border-l border-white/30 ${
                   activeSection === 'themes'
-                    ? 'bg-white text-[#1C32FF]'
-                    : 'bg-transparent text-white hover:bg-white/10'
+                    ? 'bg-white text-[#7B68EE] shadow-lg'
+                    : 'bg-white/5 text-white hover:bg-white/15 backdrop-blur-sm'
                 }`}
               >
                 Thématiques
               </button>
               <button
                 onClick={() => scrollToSection('evenement-conformite')}
-                className={`flex-1 max-w-[200px] px-4 sm:px-6 py-4 sm:py-5 text-sm sm:text-base font-semibold transition-all duration-200 border-l border-white/20 ${
+                className={`flex-1 max-w-[220px] px-5 sm:px-7 py-5 sm:py-6 text-sm sm:text-base font-bold transition-all duration-300 border-l border-white/30 ${
                   activeSection === 'evenement'
-                    ? 'bg-white text-[#1C32FF]'
-                    : 'bg-transparent text-white hover:bg-white/10'
+                    ? 'bg-white text-[#7B68EE] shadow-lg'
+                    : 'bg-white/5 text-white hover:bg-white/15 backdrop-blur-sm'
                 }`}
               >
                 Événement
