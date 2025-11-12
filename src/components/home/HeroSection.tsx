@@ -243,19 +243,23 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-gradient-to-br from-[#1C32FF]/85 via-[#0D1A99]/80 to-[#060D4D]/90 z-10"></div>
 
             <div className="relative text-center z-20 px-4">
-              {/* Container glassmorphism pour l'hexagone - adapté pour fond sombre */}
+              {/* Titre au-dessus de l'hexagone */}
+              <div className="mb-6 sm:mb-8">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 drop-shadow-lg">
+                  Découvrez les enjeux
+                </h2>
+                <p className="text-sm sm:text-base text-white/90 drop-shadow-md">
+                  Cliquez pour révéler l'histoire de chaque domaine
+                </p>
+              </div>
+
+              {/* Hexagone directement sur le fond */}
               <motion.div
-                className="inline-block p-4 sm:p-6 lg:p-8 backdrop-blur-xl bg-white/20 border border-white/40 shadow-2xl"
+                className="inline-block"
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.8 }}
               >
-                <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 drop-shadow-lg">
-                  Découvrez les enjeux
-                </h2>
-                <p className="text-xs sm:text-sm text-white/90 mb-6 sm:mb-8 drop-shadow-md">
-                  Cliquez pour révéler l'histoire de chaque domaine
-                </p>
                 <HexagonThemes
                   themes={complianceThemes.map(t => ({
                     id: t.id,
@@ -269,6 +273,7 @@ export default function HeroSection() {
                   interactive={true}
                   size={hexagonSize}
                   onThemeClick={handleThemeClick}
+                  glassEffect={true}
                 />
               </motion.div>
             </div>

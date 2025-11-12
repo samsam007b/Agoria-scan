@@ -19,13 +19,15 @@ interface HexagonThemesProps {
   interactive?: boolean;
   size?: 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge';
   onThemeClick?: (themeId: string) => void;
+  glassEffect?: boolean;
 }
 
 export default function HexagonThemes({
   themes,
   interactive = true,
   size = 'large',
-  onThemeClick
+  onThemeClick,
+  glassEffect = false
 }: HexagonThemesProps) {
   const [activeTheme, setActiveTheme] = useState<string | null>(null);
 
@@ -69,12 +71,20 @@ export default function HexagonThemes({
   return (
     <div className="hexagon-container relative" style={{ width: dim.width, height: dim.height }}>
       <svg viewBox={dim.viewBox} className="w-full h-full">
-        {/* Hexagone principal statique */}
+        {/* Hexagone principal avec glassmorphism si activé */}
+        <defs>
+          {glassEffect && (
+            <filter id="glass-blur" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="8" />
+            </filter>
+          )}
+        </defs>
         <path
           d={hexagonPath}
-          fill="transparent"
-          stroke="#1C32FF"
+          fill={glassEffect ? "rgba(255, 255, 255, 0.15)" : "transparent"}
+          stroke={glassEffect ? "rgba(255, 255, 255, 0.3)" : "#1C32FF"}
           strokeWidth="3"
+          style={glassEffect ? { backdropFilter: 'blur(12px)' } : undefined}
         />
 
         {/* Dividers entre les 6 segments */}
@@ -85,9 +95,9 @@ export default function HexagonThemes({
             y1={centerY}
             x2={point.x}
             y2={point.y}
-            stroke="#1C32FF"
+            stroke={glassEffect ? "rgba(255, 255, 255, 0.25)" : "#1C32FF"}
             strokeWidth="2"
-            opacity="0.4"
+            opacity={glassEffect ? "0.6" : "0.4"}
           />
         ))}
 
@@ -123,7 +133,7 @@ export default function HexagonThemes({
 
                     return `M ${x1},${y1} L ${x2},${y2} A ${radius},${radius} 0 0,1 ${x3},${y3} Z`;
                   })()}
-                  fill={isActive ? 'rgba(28, 50, 255, 0.15)' : 'transparent'}
+                  fill={isActive ? (glassEffect ? 'rgba(255, 255, 255, 0.25)' : 'rgba(28, 50, 255, 0.15)') : 'transparent'}
                   className="cursor-pointer transition-all duration-300 touch-none"
                   style={{ WebkitTapHighlightColor: 'transparent' }}
                   onMouseEnter={() => setActiveTheme(theme.id)}
@@ -149,11 +159,11 @@ export default function HexagonThemes({
                   {IconComponent ? (
                     <IconComponent
                       size={iconSize}
-                      className="text-[#1C32FF] drop-shadow-lg"
+                      className={glassEffect ? "text-white drop-shadow-lg" : "text-[#1C32FF] drop-shadow-lg"}
                       strokeWidth={2}
                     />
                   ) : typeof theme.icon === 'string' ? (
-                    <span className="text-[#1C32FF] text-xl">{theme.icon}</span>
+                    <span className={glassEffect ? "text-white text-xl" : "text-[#1C32FF] text-xl"}>{theme.icon}</span>
                   ) : null}
                 </div>
               </foreignObject>
@@ -189,8 +199,9 @@ export default function HexagonThemes({
           dominantBaseline="central"
           fontSize={size === 'xxlarge' ? 32 : size === 'xlarge' ? 28 : size === 'large' ? 24 : size === 'medium' ? 18 : 10}
           fontWeight="bold"
-          fill="#1C32FF"
+          fill={glassEffect ? "#FFFFFF" : "#1C32FF"}
           className="uppercase tracking-wider"
+          style={glassEffect ? { filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))' } : undefined}
         >
           {size !== 'small' && 'Compliance'}
         </text>
@@ -201,8 +212,9 @@ export default function HexagonThemes({
           dominantBaseline="central"
           fontSize={size === 'xxlarge' ? 42 : size === 'xlarge' ? 38 : size === 'large' ? 32 : size === 'medium' ? 26 : 14}
           fontWeight="bold"
-          fill="#1C32FF"
+          fill={glassEffect ? "#FFFFFF" : "#1C32FF"}
           className="uppercase"
+          style={glassEffect ? { filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))' } : undefined}
         >
           {size !== 'small' && 'HUB'}
         </text>
