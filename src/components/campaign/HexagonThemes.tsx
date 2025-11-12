@@ -32,16 +32,16 @@ export default function HexagonThemes({
   // Tailles selon le format
   const dimensions = {
     small: { width: 200, height: 200, viewBox: '0 0 200 200' },
-    medium: { width: 350, height: 350, viewBox: '0 0 350 350' },
-    large: { width: 500, height: 500, viewBox: '0 0 500 500' },
-    xlarge: { width: 650, height: 650, viewBox: '0 0 650 650' },
-    xxlarge: { width: 750, height: 750, viewBox: '0 0 750 750' }
+    medium: { width: 450, height: 450, viewBox: '0 0 450 450' },
+    large: { width: 600, height: 600, viewBox: '0 0 600 600' },
+    xlarge: { width: 800, height: 800, viewBox: '0 0 800 800' },
+    xxlarge: { width: 900, height: 900, viewBox: '0 0 900 900' }
   };
 
   const dim = dimensions[size];
-  const centerX = size === 'xxlarge' ? 375 : size === 'xlarge' ? 325 : size === 'large' ? 250 : size === 'medium' ? 175 : 100;
+  const centerX = size === 'xxlarge' ? 450 : size === 'xlarge' ? 400 : size === 'large' ? 300 : size === 'medium' ? 225 : 100;
   const centerY = centerX;
-  const radius = size === 'xxlarge' ? 250 : size === 'xlarge' ? 210 : size === 'large' ? 160 : size === 'medium' ? 110 : 60;
+  const radius = size === 'xxlarge' ? 300 : size === 'xlarge' ? 260 : size === 'large' ? 200 : size === 'medium' ? 145 : 60;
 
   // Calcul des points de l'hexagone
   const hexagonPoints = Array.from({ length: 6 }, (_, i) => {
@@ -105,7 +105,7 @@ export default function HexagonThemes({
 
           const isActive = activeTheme === theme.id;
           const IconComponent = typeof theme.icon !== 'string' ? theme.icon : null;
-          const iconSize = size === 'xxlarge' ? 40 : size === 'xlarge' ? 36 : size === 'large' ? 28 : size === 'medium' ? 22 : 16;
+          const iconSize = size === 'xxlarge' ? 48 : size === 'xlarge' ? 42 : size === 'large' ? 34 : size === 'medium' ? 26 : 16;
 
           return (
             <g key={theme.id}>
@@ -187,7 +187,7 @@ export default function HexagonThemes({
           y={centerY}
           textAnchor="middle"
           dominantBaseline="central"
-          fontSize={size === 'xxlarge' ? 28 : size === 'xlarge' ? 24 : size === 'large' ? 20 : size === 'medium' ? 16 : 10}
+          fontSize={size === 'xxlarge' ? 32 : size === 'xlarge' ? 28 : size === 'large' ? 24 : size === 'medium' ? 18 : 10}
           fontWeight="bold"
           fill="white"
           className="uppercase tracking-wider"
@@ -196,10 +196,10 @@ export default function HexagonThemes({
         </text>
         <text
           x={centerX}
-          y={centerY + (size === 'xxlarge' ? 34 : size === 'xlarge' ? 30 : size === 'large' ? 24 : size === 'medium' ? 20 : 12)}
+          y={centerY + (size === 'xxlarge' ? 38 : size === 'xlarge' ? 34 : size === 'large' ? 30 : size === 'medium' ? 22 : 12)}
           textAnchor="middle"
           dominantBaseline="central"
-          fontSize={size === 'xxlarge' ? 36 : size === 'xlarge' ? 32 : size === 'large' ? 28 : size === 'medium' ? 22 : 14}
+          fontSize={size === 'xxlarge' ? 42 : size === 'xlarge' ? 38 : size === 'large' ? 32 : size === 'medium' ? 26 : 14}
           fontWeight="bold"
           fill="white"
           className="uppercase"
