@@ -29,6 +29,7 @@ export const scanContextData = {
     {
       id: "conformite-reglementation",
       title: "Conformité & Règlementation",
+      color: "#FF6B35", // Orange (Social & RH thème proche)
       why: "Simplifier l'accès et la mise à jour réglementaire des PME (emploi, marchés publics, obligations sociales).",
       help: [
         "Check-lists employeur",
@@ -50,6 +51,7 @@ export const scanContextData = {
     {
       id: "rse-gouvernance",
       title: "RSE & Gouvernance",
+      color: "#7CB342", // Vert (Environnement)
       why: "Encourager des pratiques durables, éthiques et inclusives dans les organisations tech.",
       help: [
         "Stratégie RSE",
@@ -67,6 +69,7 @@ export const scanContextData = {
     {
       id: "digitalisation-ia",
       title: "Digitalisation & IA",
+      color: "#00BCD4", // Cyan (Digital & IA)
       why: "Accompagner la transition numérique et l'adoption de l'IA en toute sécurité.",
       help: [
         "Stratégie de transformation digitale",
@@ -84,6 +87,7 @@ export const scanContextData = {
     {
       id: "securite-cybersecurite",
       title: "Sécurité & Cybersécurité",
+      color: "#0073CF", // Bleu (Data Protection & Cyber)
       why: "Renforcer la résilience face aux menaces numériques, conformité NIS2 et RGPD.",
       help: [
         "MFA et authentification forte",
@@ -110,6 +114,7 @@ export const scanContextData = {
     {
       id: "competences-formation",
       title: "Compétences & Formation",
+      color: "#9C27B0", // Violet (Financial proche)
       why: "Développer les talents internes pour maîtriser les nouvelles obligations et technologies.",
       help: [
         "Plans de formation conformité",
@@ -127,6 +132,7 @@ export const scanContextData = {
     {
       id: "financement-gouvernance",
       title: "Financement & Gouvernance",
+      color: "#FFC107", // Jaune (Industrial)
       why: "Faciliter l'accès aux aides, incitants et mécanismes de soutien à la conformité.",
       help: [
         "Subventions digitalisation",

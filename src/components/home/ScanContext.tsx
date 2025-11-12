@@ -104,7 +104,20 @@ export default function ScanContext({
               return (
                 <div
                   key={theme.id}
-                  className="bg-white border border-gray-200 p-5 sm:p-6 md:p-8 transition-all duration-200 hover:shadow-xl active:shadow-2xl group"
+                  className="bg-white border-2 border-gray-200 p-5 sm:p-6 md:p-8 transition-all duration-300 hover:shadow-xl active:shadow-2xl group hover:border-opacity-100"
+                  style={{
+                    borderLeftColor: 'var(--hover-color)',
+                    borderLeftWidth: '4px',
+                    '--hover-color': theme.color,
+                  } as React.CSSProperties & { '--hover-color': string }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderLeftColor = theme.color;
+                    e.currentTarget.style.backgroundColor = `${theme.color}08`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderLeftColor = '#e5e7eb';
+                    e.currentTarget.style.backgroundColor = 'white';
+                  }}
                 >
                   <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
                     <div className="p-2.5 sm:p-3 bg-[#1C32FF] group-hover:scale-110 transition-transform flex-shrink-0">

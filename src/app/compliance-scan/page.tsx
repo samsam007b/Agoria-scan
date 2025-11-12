@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Shield, Briefcase, Lock, CheckCircle, Clock, FileText, Download, ArrowRight } from 'lucide-react';
+import { CheckCircle, Clock, FileText, Download, ArrowRight } from 'lucide-react';
 
 export default function ComplianceScanLanding() {
   const router = useRouter();
@@ -19,7 +19,7 @@ export default function ComplianceScanLanding() {
   const modules = [
     {
       id: 'A',
-      icon: Shield,
+      emoji: '🔐',
       title: 'Digitalisation & Sécurité',
       weight: '30%',
       color: '#1C32FF',
@@ -28,7 +28,7 @@ export default function ComplianceScanLanding() {
     },
     {
       id: 'B',
-      icon: Briefcase,
+      emoji: '👥',
       title: 'Conformité réglementaire & sociale',
       weight: '40%',
       color: '#00D084',
@@ -37,7 +37,7 @@ export default function ComplianceScanLanding() {
     },
     {
       id: 'C',
-      icon: Lock,
+      emoji: '🔐',
       title: 'RGPD & Gouvernance des données',
       weight: '30%',
       color: '#FF6B35',
@@ -150,15 +150,18 @@ export default function ComplianceScanLanding() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {modules.map((module) => {
-              const IconComponent = module.icon;
               return (
                 <div key={module.id} className="card-agoria group">
                   <div className="flex justify-center mb-4 sm:mb-6">
                     <div
-                      className="p-3 sm:p-4 group-hover:scale-110 transition-transform"
-                      style={{ backgroundColor: module.color }}
+                      className="p-3 sm:p-4 group-hover:scale-110 transition-transform flex items-center justify-center"
+                      style={{
+                        backgroundColor: module.color,
+                        width: '72px',
+                        height: '72px',
+                      }}
                     >
-                      <IconComponent className="text-white" size={28} />
+                      <span className="text-4xl">{module.emoji}</span>
                     </div>
                   </div>
                   <div className="text-center">

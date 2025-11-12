@@ -1,0 +1,28 @@
+# robots.txt - Déréférencement complet
+# Ce site prototype ne doit PAS être indexé par les moteurs de recherche
+
+User-agent: *
+Disallow: /
+
+# Bloquer tous les crawlers courants
+User-agent: Googlebot
+Disallow: /
+
+User-agent: Bingbot
+Disallow: /
+
+User-agent: Slurp
+Disallow: /
+
+User-agent: DuckDuckBot
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: YandexBot
+Disallow: /
+
+# Désindexer toutes les pages
+Disallow: /compliance-scan
+Disallow: /evenement

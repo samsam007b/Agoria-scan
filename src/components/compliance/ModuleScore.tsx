@@ -1,28 +1,13 @@
-import { Shield, Briefcase, Lock } from 'lucide-react';
-
 interface ModuleScoreProps {
   id: string;
   label: string;
   score: number;
   color: string;
   weight: number;
+  emoji?: string;
 }
 
-export default function ModuleScore({ id, label, score, color, weight }: ModuleScoreProps) {
-  const getIcon = (id: string) => {
-    switch (id) {
-      case 'A':
-        return Shield;
-      case 'B':
-        return Briefcase;
-      case 'C':
-        return Lock;
-      default:
-        return Shield;
-    }
-  };
-
-  const IconComponent = getIcon(id);
+export default function ModuleScore({ id, label, score, color, weight, emoji }: ModuleScoreProps) {
   const percentage = score * 10; // Score sur 100 (0-10 -> 0-100%)
 
   return (
@@ -33,12 +18,12 @@ export default function ModuleScore({ id, label, score, color, weight }: ModuleS
       <div className="relative">
         <div className="flex items-start justify-between mb-6">
           <div className="flex items-center gap-3">
-            <div className="p-4 shadow-md group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: color }}>
-              <IconComponent className="text-white" size={28} />
+            <div className="p-4 shadow-md group-hover:scale-110 transition-transform duration-300 flex items-center justify-center" style={{ backgroundColor: color, width: '64px', height: '64px' }}>
+              <span className="text-3xl">{emoji || '📋'}</span>
             </div>
             <div>
               <div className="text-xs font-bold text-[#6B6B6B] uppercase tracking-wide mb-1">
-                Module {id} • {Math.round(weight * 100)}%
+                Thème • {Math.round(weight * 100)}%
               </div>
               <h3 className="text-lg font-bold text-[#1A1A1A]">{label}</h3>
             </div>

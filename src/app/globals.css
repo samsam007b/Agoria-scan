@@ -92,15 +92,15 @@ p, body {
 
 /* Boutons style Agoria - Sharp corners */
 .btn-agoria-primary {
-  @apply bg-[#1C32FF] text-white font-semibold px-6 py-3 transition-all duration-200 hover:bg-[#0D1A99] hover:shadow-lg active:scale-[0.98];
+  @apply bg-[#1C32FF] text-white font-semibold px-6 py-3 transition-all duration-200 hover:bg-[#0D1A99] hover:shadow-lg active:scale-[0.98] focus-visible:outline focus-visible:outline-3 focus-visible:outline-[#1C32FF] focus-visible:outline-offset-2;
 }
 
 .btn-agoria-secondary {
-  @apply bg-white text-[#1C32FF] font-semibold px-6 py-3 border-2 border-[#1C32FF] transition-all duration-200 hover:bg-[#1C32FF] hover:text-white hover:shadow-lg active:scale-[0.98];
+  @apply bg-white text-[#1C32FF] font-semibold px-6 py-3 border-2 border-[#1C32FF] transition-all duration-200 hover:bg-[#1C32FF] hover:text-white hover:shadow-lg active:scale-[0.98] focus-visible:outline focus-visible:outline-3 focus-visible:outline-[#1C32FF] focus-visible:outline-offset-2;
 }
 
 .btn-agoria-outline {
-  @apply bg-transparent text-[#1A1A1A] font-semibold px-6 py-3 border-2 border-gray-300 transition-all duration-200 hover:border-[#1C32FF] hover:text-[#1C32FF] active:scale-[0.98];
+  @apply bg-transparent text-[#1A1A1A] font-semibold px-6 py-3 border-2 border-gray-300 transition-all duration-200 hover:border-[#1C32FF] hover:text-[#1C32FF] active:scale-[0.98] focus-visible:outline focus-visible:outline-3 focus-visible:outline-[#1C32FF] focus-visible:outline-offset-2;
 }
 
 /* Cartes style Agoria - Sharp corners */

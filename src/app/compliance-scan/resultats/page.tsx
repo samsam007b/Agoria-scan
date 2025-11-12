@@ -121,6 +121,7 @@ export default function ResultatsPage() {
                   score={theme.score}
                   color={theme.color}
                   weight={theme.weight}
+                  emoji={theme.emoji}
                 />
               </div>
             ))}
