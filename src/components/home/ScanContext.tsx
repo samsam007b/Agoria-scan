@@ -13,6 +13,7 @@ type Insight = {
 type ThemeItem = {
   id: string;
   title: string;
+  color: string;
   why: string;
   help: string[];
   sources: { label: string; url: string }[];
