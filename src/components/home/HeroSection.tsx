@@ -99,43 +99,43 @@ export default function HeroSection() {
 
           {/* Navigation Tabs - Style Agoria.be */}
           <div className="pb-0">
-            <div className="flex justify-center gap-0 border-t border-white/30">
+            <div className="flex justify-end gap-0">
               <button
                 onClick={() => scrollToSection('compliance-scan')}
-                className={`flex-1 max-w-[220px] px-5 sm:px-7 py-5 sm:py-6 text-sm sm:text-base font-bold transition-all duration-300 ${
+                className={`px-5 sm:px-6 md:px-8 py-3 sm:py-4 text-xs sm:text-sm md:text-base font-bold transition-all duration-200 ${
                   activeSection === 'scan'
-                    ? 'bg-white text-[#7B68EE] shadow-lg'
-                    : 'bg-white/5 text-white hover:bg-white/15 backdrop-blur-sm'
+                    ? 'bg-[#4169E1] text-white'
+                    : 'bg-[#1C32FF] text-white hover:bg-[#4169E1]'
                 }`}
               >
                 Compliance Scan
               </button>
               <button
                 onClick={() => scrollToSection('campagne-conformite')}
-                className={`flex-1 max-w-[220px] px-5 sm:px-7 py-5 sm:py-6 text-sm sm:text-base font-bold transition-all duration-300 border-l border-white/30 ${
+                className={`px-5 sm:px-6 md:px-8 py-3 sm:py-4 text-xs sm:text-sm md:text-base font-bold transition-all duration-200 ${
                   activeSection === 'campagne'
-                    ? 'bg-white text-[#7B68EE] shadow-lg'
-                    : 'bg-white/5 text-white hover:bg-white/15 backdrop-blur-sm'
+                    ? 'bg-[#4169E1] text-white'
+                    : 'bg-[#1C32FF] text-white hover:bg-[#4169E1]'
                 }`}
               >
                 Campagne
               </button>
               <button
                 onClick={() => scrollToSection('thematiques-prioritaires')}
-                className={`flex-1 max-w-[220px] px-5 sm:px-7 py-5 sm:py-6 text-sm sm:text-base font-bold transition-all duration-300 border-l border-white/30 ${
+                className={`px-5 sm:px-6 md:px-8 py-3 sm:py-4 text-xs sm:text-sm md:text-base font-bold transition-all duration-200 ${
                   activeSection === 'themes'
-                    ? 'bg-white text-[#7B68EE] shadow-lg'
-                    : 'bg-white/5 text-white hover:bg-white/15 backdrop-blur-sm'
+                    ? 'bg-[#4169E1] text-white'
+                    : 'bg-[#1C32FF] text-white hover:bg-[#4169E1]'
                 }`}
               >
                 Thématiques
               </button>
               <button
                 onClick={() => scrollToSection('evenement-conformite')}
-                className={`flex-1 max-w-[220px] px-5 sm:px-7 py-5 sm:py-6 text-sm sm:text-base font-bold transition-all duration-300 border-l border-white/30 ${
+                className={`px-5 sm:px-6 md:px-8 py-3 sm:py-4 text-xs sm:text-sm md:text-base font-bold transition-all duration-200 ${
                   activeSection === 'evenement'
-                    ? 'bg-white text-[#7B68EE] shadow-lg'
-                    : 'bg-white/5 text-white hover:bg-white/15 backdrop-blur-sm'
+                    ? 'bg-[#4169E1] text-white'
+                    : 'bg-[#1C32FF] text-white hover:bg-[#4169E1]'
                 }`}
               >
                 Événement
