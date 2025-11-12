@@ -21,6 +21,7 @@ const themeIcons: Record<string, any> = {
 
 export default function HeroSection() {
   const [hexagonSize, setHexagonSize] = useState<'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'>('xlarge');
+  const [activeSection, setActiveSection] = useState('scan');
 
   // Détection responsive pour la taille de l'hexagone
   useEffect(() => {
@@ -47,37 +48,103 @@ export default function HeroSection() {
     }
   };
 
+  const scrollToSection = (sectionId: string) => {
+    setActiveSection(sectionId);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80; // Offset pour le header
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <>
-      {/* Banner Section avec image */}
-      <section className="relative bg-black py-12 sm:py-14 md:py-16 lg:py-20 overflow-hidden">
+      {/* Banner Section avec image et navigation */}
+      <section className="relative bg-gradient-to-br from-[#1C32FF] via-[#0D1A99] to-[#1C32FF] overflow-hidden">
         {/* Image de fond */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/hero-compliance.png"
             alt="Compliance illustration"
             fill
-            className="object-cover opacity-40"
+            className="object-cover opacity-20"
             priority
           />
         </div>
 
-        {/* Overlay gradient sombre */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70 z-10"></div>
+        {/* Overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#1C32FF]/50 to-[#0D1A99] z-10"></div>
 
         {/* Contenu */}
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-3 sm:mb-4">
-            Agoria célèbre la conformité
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 font-medium">
-            6 domaines pour piloter votre conformité
-          </p>
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="py-16 sm:py-20 md:py-24 lg:py-28 text-center">
+            <div className="inline-block mb-3 sm:mb-4">
+              <div className="w-12 h-1 bg-white/30 mx-auto mb-4"></div>
+            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 sm:mb-5">
+              Agoria célèbre la conformité
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 font-medium max-w-3xl mx-auto">
+              6 domaines pour piloter votre conformité
+            </p>
+          </div>
+
+          {/* Navigation Tabs - Style Agoria */}
+          <div className="pb-0">
+            <div className="flex justify-center gap-0 border-t border-white/20">
+              <button
+                onClick={() => scrollToSection('compliance-scan')}
+                className={`flex-1 max-w-[200px] px-4 sm:px-6 py-4 sm:py-5 text-sm sm:text-base font-semibold transition-all duration-200 ${
+                  activeSection === 'scan'
+                    ? 'bg-white text-[#1C32FF]'
+                    : 'bg-transparent text-white hover:bg-white/10'
+                }`}
+              >
+                Compliance Scan
+              </button>
+              <button
+                onClick={() => scrollToSection('campagne-conformite')}
+                className={`flex-1 max-w-[200px] px-4 sm:px-6 py-4 sm:py-5 text-sm sm:text-base font-semibold transition-all duration-200 border-l border-white/20 ${
+                  activeSection === 'campagne'
+                    ? 'bg-white text-[#1C32FF]'
+                    : 'bg-transparent text-white hover:bg-white/10'
+                }`}
+              >
+                Campagne
+              </button>
+              <button
+                onClick={() => scrollToSection('thematiques-prioritaires')}
+                className={`flex-1 max-w-[200px] px-4 sm:px-6 py-4 sm:py-5 text-sm sm:text-base font-semibold transition-all duration-200 border-l border-white/20 ${
+                  activeSection === 'themes'
+                    ? 'bg-white text-[#1C32FF]'
+                    : 'bg-transparent text-white hover:bg-white/10'
+                }`}
+              >
+                Thématiques
+              </button>
+              <button
+                onClick={() => scrollToSection('evenement-conformite')}
+                className={`flex-1 max-w-[200px] px-4 sm:px-6 py-4 sm:py-5 text-sm sm:text-base font-semibold transition-all duration-200 border-l border-white/20 ${
+                  activeSection === 'evenement'
+                    ? 'bg-white text-[#1C32FF]'
+                    : 'bg-transparent text-white hover:bg-white/10'
+                }`}
+              >
+                Événement
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Hero Section - Split Design : Hexagone bleu + CTA blanc */}
-      <section className="relative overflow-hidden">
+      <section id="compliance-scan" className="relative overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Côté gauche - Hexagone sur fond bleu mat Agoria */}
           <div className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-[#060D4D] flex items-center justify-center order-2 lg:order-1">

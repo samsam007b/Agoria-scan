@@ -51,7 +51,7 @@ export default function ScanContext({
   event,
 }: ScanContextProps) {
   return (
-    <section className="w-full bg-white py-10 sm:py-12 md:py-16 lg:py-20">
+    <section id="campagne-conformite" className="w-full bg-white py-10 sm:py-12 md:py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Titre principal */}
         <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
@@ -185,7 +185,7 @@ export default function ScanContext({
         </div>
 
         {/* Événement - Journée de la conformité */}
-        <div className="mt-10 sm:mt-12 md:mt-16 bg-[#F5F7FA] p-5 sm:p-6 md:p-8 lg:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 sm:gap-8">
+        <div id="evenement-conformite" className="mt-10 sm:mt-12 md:mt-16 bg-[#F5F7FA] p-5 sm:p-6 md:p-8 lg:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 sm:gap-8">
           <div className="flex-1">
             <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
               <Calendar className="text-[#1C32FF] flex-shrink-0" size={28} />
