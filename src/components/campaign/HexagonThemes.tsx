@@ -73,8 +73,8 @@ export default function HexagonThemes({
         <path
           d={hexagonPath}
           fill="transparent"
-          stroke="rgba(255, 255, 255, 0.4)"
-          strokeWidth="2"
+          stroke="#1C32FF"
+          strokeWidth="3"
         />
 
         {/* Dividers entre les 6 segments */}
@@ -85,9 +85,9 @@ export default function HexagonThemes({
             y1={centerY}
             x2={point.x}
             y2={point.y}
-            stroke="white"
-            strokeWidth="1"
-            opacity="0.3"
+            stroke="#1C32FF"
+            strokeWidth="2"
+            opacity="0.4"
           />
         ))}
 
@@ -123,7 +123,7 @@ export default function HexagonThemes({
 
                     return `M ${x1},${y1} L ${x2},${y2} A ${radius},${radius} 0 0,1 ${x3},${y3} Z`;
                   })()}
-                  fill={isActive ? 'rgba(255, 255, 255, 0.2)' : 'transparent'}
+                  fill={isActive ? 'rgba(28, 50, 255, 0.15)' : 'transparent'}
                   className="cursor-pointer transition-all duration-300 touch-none"
                   style={{ WebkitTapHighlightColor: 'transparent' }}
                   onMouseEnter={() => setActiveTheme(theme.id)}
@@ -149,11 +149,11 @@ export default function HexagonThemes({
                   {IconComponent ? (
                     <IconComponent
                       size={iconSize}
-                      className="text-white drop-shadow-lg"
-                      strokeWidth={1.5}
+                      className="text-[#1C32FF] drop-shadow-lg"
+                      strokeWidth={2}
                     />
                   ) : typeof theme.icon === 'string' ? (
-                    <span className="text-white text-xl">{theme.icon}</span>
+                    <span className="text-[#1C32FF] text-xl">{theme.icon}</span>
                   ) : null}
                 </div>
               </foreignObject>
@@ -189,7 +189,7 @@ export default function HexagonThemes({
           dominantBaseline="central"
           fontSize={size === 'xxlarge' ? 32 : size === 'xlarge' ? 28 : size === 'large' ? 24 : size === 'medium' ? 18 : 10}
           fontWeight="bold"
-          fill="white"
+          fill="#1C32FF"
           className="uppercase tracking-wider"
         >
           {size !== 'small' && 'Compliance'}
@@ -201,7 +201,7 @@ export default function HexagonThemes({
           dominantBaseline="central"
           fontSize={size === 'xxlarge' ? 42 : size === 'xlarge' ? 38 : size === 'large' ? 32 : size === 'medium' ? 26 : 14}
           fontWeight="bold"
-          fill="white"
+          fill="#1C32FF"
           className="uppercase"
         >
           {size !== 'small' && 'HUB'}
