@@ -101,10 +101,10 @@ export default function QuestionsPage() {
   const currentAnswer = getCurrentAnswer();
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 py-4 sm:py-6 md:py-8">
+      <div className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         {/* Progress Bar */}
-        <div className="mb-8">
+        <div className="mb-4 sm:mb-6 md:mb-8">
           <ProgressBar
             current={currentQuestionIndex + 1}
             total={totalQuestions}
@@ -126,36 +126,40 @@ export default function QuestionsPage() {
         />
 
         {/* Navigation Buttons */}
-        <div className="flex justify-between items-center mt-8">
+        <div className="flex justify-between items-center gap-3 mt-4 sm:mt-6 md:mt-8">
           <button
             onClick={handlePrevious}
             disabled={currentQuestionIndex === 0}
-            className={`flex items-center gap-2 px-6 py-3 font-semibold transition-all duration-200 ${
+            className={`flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 font-semibold transition-all duration-200 text-sm sm:text-base ${
               currentQuestionIndex === 0
                 ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                : 'btn-agoria-outline'
+                : 'btn-agoria-outline active:scale-95'
             }`}
+            style={{ WebkitTapHighlightColor: 'transparent' }}
           >
-            <ChevronLeft size={20} />
-            Précédent
+            <ChevronLeft size={18} className="sm:w-5 sm:h-5" />
+            <span className="hidden sm:inline">Précédent</span>
+            <span className="sm:hidden">Préc.</span>
           </button>
 
           <button
             onClick={handleNext}
             disabled={!currentAnswer}
-            className={`flex items-center gap-2 px-6 py-3 font-semibold transition-all duration-200 ${
+            className={`flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 font-semibold transition-all duration-200 text-sm sm:text-base ${
               currentAnswer
-                ? 'btn-agoria-primary'
+                ? 'btn-agoria-primary active:scale-95'
                 : 'bg-gray-200 text-gray-400 cursor-not-allowed'
             }`}
+            style={{ WebkitTapHighlightColor: 'transparent' }}
           >
-            {isLastQuestion ? 'Voir les résultats' : 'Suivant'}
-            <ChevronRight size={20} />
+            <span className="hidden sm:inline">{isLastQuestion ? 'Voir les résultats' : 'Suivant'}</span>
+            <span className="sm:hidden">{isLastQuestion ? 'Résultats' : 'Suiv.'}</span>
+            <ChevronRight size={18} className="sm:w-5 sm:h-5" />
           </button>
         </div>
 
         {/* Question Counter (mobile) */}
-        <div className="mt-6 text-center text-sm text-gray-500">
+        <div className="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-gray-500">
           Question {currentQuestionIndex + 1} / {totalQuestions}
         </div>
       </div>

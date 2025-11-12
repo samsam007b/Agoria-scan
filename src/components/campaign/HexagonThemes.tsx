@@ -123,9 +123,15 @@ export default function HexagonThemes({
                     return `M ${x1},${y1} L ${x2},${y2} A ${radius},${radius} 0 0,1 ${x3},${y3} Z`;
                   })()}
                   fill={isActive ? 'rgba(255, 255, 255, 0.2)' : 'transparent'}
-                  className="cursor-pointer transition-all duration-300"
+                  className="cursor-pointer transition-all duration-300 touch-none"
+                  style={{ WebkitTapHighlightColor: 'transparent' }}
                   onMouseEnter={() => setActiveTheme(theme.id)}
                   onMouseLeave={() => setActiveTheme(null)}
+                  onTouchStart={() => setActiveTheme(theme.id)}
+                  onTouchEnd={() => {
+                    setTimeout(() => setActiveTheme(null), 300);
+                    onThemeClick?.(theme.id);
+                  }}
                   onClick={() => onThemeClick?.(theme.id)}
                 />
               )}
