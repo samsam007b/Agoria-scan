@@ -78,6 +78,9 @@ export default function HeroSection() {
           />
         </div>
 
+        {/* Voile transparent pour ajouter de l'ombre */}
+        <div className="absolute inset-0 bg-black/20 z-10"></div>
+
         {/* Contenu */}
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="py-20 sm:py-24 md:py-28 lg:py-32 text-center">
