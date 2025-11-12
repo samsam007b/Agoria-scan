@@ -20,17 +20,17 @@ const themeIcons: Record<string, any> = {
 };
 
 export default function HeroSection() {
-  const [hexagonSize, setHexagonSize] = useState<'small' | 'medium' | 'large' | 'xlarge'>('xlarge');
+  const [hexagonSize, setHexagonSize] = useState<'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'>('xlarge');
 
   // Détection responsive pour la taille de l'hexagone
   useEffect(() => {
     const updateSize = () => {
       if (window.innerWidth < 640) {
-        setHexagonSize('medium'); // Mobile: 300px
+        setHexagonSize('medium'); // Mobile: 350px
       } else if (window.innerWidth < 1024) {
-        setHexagonSize('large'); // Tablet: 400px
+        setHexagonSize('large'); // Tablet: 500px
       } else {
-        setHexagonSize('xlarge'); // Desktop: 550px
+        setHexagonSize('xlarge'); // Desktop: 650px
       }
     };
 
