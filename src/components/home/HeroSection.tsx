@@ -73,13 +73,10 @@ export default function HeroSection() {
             src="/hero-compliance.png"
             alt="Compliance illustration"
             fill
-            className="object-cover opacity-30"
+            className="object-cover"
             priority
           />
         </div>
-
-        {/* Overlay gradient pour profondeur */}
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-600/20 via-transparent to-blue-900/40 z-10"></div>
 
         {/* Contenu */}
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -148,8 +145,8 @@ export default function HeroSection() {
       {/* Hero Section - Split Design : Hexagone bleu + CTA blanc */}
       <section id="compliance-scan" className="relative overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2">
-          {/* Côté gauche - Hexagone sur fond bleu mat Agoria */}
-          <div className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-[#060D4D] flex items-center justify-center order-2 lg:order-1">
+          {/* Côté gauche - Hexagone sur fond gris clair */}
+          <div className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-[#F5F7FA] flex items-center justify-center order-2 lg:order-1 lg:border-r-2 lg:border-gray-300">
             <div className="flex justify-center">
               <HexagonThemes
                 themes={complianceThemes.map(t => ({
