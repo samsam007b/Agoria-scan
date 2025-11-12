@@ -64,7 +64,7 @@ export default function ComplianceScanLanding() {
             {/* Title */}
             <div className="text-center mb-6 sm:mb-8">
               <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                <Shield className="text-white" size={36} />
+                <span className="text-4xl sm:text-5xl">🔐</span>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white">
                   Compliance Scan
                 </h1>
