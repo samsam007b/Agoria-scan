@@ -1,3 +1,15 @@
+import { Shield, Leaf, Users, DollarSign, Cpu, Settings, LucideIcon } from 'lucide-react';
+
+// Mapping des icônes Lucide pour les thèmes
+const themeIcons: Record<string, LucideIcon> = {
+  'data-protection': Shield,
+  'environmental': Leaf,
+  'social-hr': Users,
+  'financial': DollarSign,
+  'digital-ai': Cpu,
+  'industrial': Settings,
+};
+
 interface ModuleScoreProps {
   id: string;
   label: string;
@@ -8,6 +20,7 @@ interface ModuleScoreProps {
 
 export default function ModuleScore({ id, label, score, color, weight }: ModuleScoreProps) {
   const percentage = score * 10; // Score sur 100 (0-10 -> 0-100%)
+  const IconComponent = themeIcons[id] || Shield;
 
   return (
     <div className="relative bg-white shadow-lg hover:shadow-2xl transition-all duration-300 p-6 border-t-4 overflow-hidden group transform hover:-translate-y-2" style={{ borderColor: color }}>
@@ -21,7 +34,7 @@ export default function ModuleScore({ id, label, score, color, weight }: ModuleS
               className="shadow-md group-hover:scale-110 transition-transform duration-300 flex items-center justify-center"
               style={{ backgroundColor: color, width: '64px', height: '64px' }}
             >
-              <div className="w-8 h-8 bg-white/30"></div>
+              <IconComponent className="text-white" size={32} strokeWidth={1.5} />
             </div>
             <div>
               <div className="text-xs font-bold text-[#6B6B6B] uppercase tracking-wide mb-1">

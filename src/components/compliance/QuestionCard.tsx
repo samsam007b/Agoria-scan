@@ -1,3 +1,15 @@
+import { Shield, Leaf, Users, DollarSign, Cpu, Settings, LucideIcon } from 'lucide-react';
+
+// Mapping des icônes Lucide pour les thèmes
+const themeIcons: Record<string, LucideIcon> = {
+  'data-protection': Shield,
+  'environmental': Leaf,
+  'social-hr': Users,
+  'financial': DollarSign,
+  'digital-ai': Cpu,
+  'industrial': Settings,
+};
+
 interface Option {
   label: string;
   score: number;
@@ -24,6 +36,7 @@ export default function QuestionCard({
   selectedOption,
   onSelect,
 }: QuestionCardProps) {
+  const IconComponent = themeIcons[moduleId] || Shield;
 
   return (
     <div className="card-agoria p-4 sm:p-6 md:p-8">
@@ -33,7 +46,7 @@ export default function QuestionCard({
           className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center flex-shrink-0"
           style={{ backgroundColor: moduleColor }}
         >
-          <div className="w-6 h-6 sm:w-7 sm:h-7 bg-white/30"></div>
+          <IconComponent className="text-white" size={24} strokeWidth={1.5} />
         </div>
         <div>
           <div className="text-xs sm:text-sm font-semibold text-[#6B6B6B] uppercase">

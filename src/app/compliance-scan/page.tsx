@@ -2,8 +2,18 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowRight, Shield, CheckCircle, FileText, Clock } from 'lucide-react';
+import { ArrowRight, Shield, CheckCircle, FileText, Clock, Leaf, Users, DollarSign, Cpu, Settings, LucideIcon } from 'lucide-react';
 import { complianceThemes } from '@/data/complianceThemes';
+
+// Mapping des icônes Lucide pour les thèmes
+const themeIcons: Record<string, LucideIcon> = {
+  'data-protection': Shield,
+  'environmental': Leaf,
+  'social-hr': Users,
+  'financial': DollarSign,
+  'digital-ai': Cpu,
+  'industrial': Settings,
+};
 
 export default function ComplianceScanLanding() {
   const router = useRouter();
@@ -118,19 +128,21 @@ export default function ComplianceScanLanding() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {complianceThemes.map((theme) => (
-              <div
-                key={theme.id}
-                className="bg-white border-2 border-gray-200 p-6 hover:shadow-xl transition-all duration-300 group"
-              >
-                {/* En-tête avec indicateur et poids */}
-                <div className="flex items-start justify-between mb-4">
-                  <div
-                    className="w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform"
-                    style={{ backgroundColor: theme.color }}
-                  >
-                    <div className="w-8 h-8 bg-white/20"></div>
-                  </div>
+            {complianceThemes.map((theme) => {
+              const IconComponent = themeIcons[theme.id] || Shield;
+              return (
+                <div
+                  key={theme.id}
+                  className="bg-white border-2 border-gray-200 p-6 hover:shadow-xl transition-all duration-300 group"
+                >
+                  {/* En-tête avec indicateur et poids */}
+                  <div className="flex items-start justify-between mb-4">
+                    <div
+                      className="w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform"
+                      style={{ backgroundColor: theme.color }}
+                    >
+                      <IconComponent className="text-white" size={32} strokeWidth={1.5} />
+                    </div>
                   <div className="text-right">
                     <div className="text-xs font-bold text-[#6B6B6B] uppercase">Poids</div>
                     <div className="text-lg font-bold" style={{ color: theme.color }}>
@@ -169,7 +181,8 @@ export default function ComplianceScanLanding() {
                   </span>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
