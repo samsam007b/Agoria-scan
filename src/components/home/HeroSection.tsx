@@ -223,6 +223,32 @@ export default function HeroSection() {
         </div>
       </section>
 
+      {/* Banner événement */}
+      <section className="bg-gradient-to-b from-gray-100 to-gray-50 py-6 sm:py-8 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-center sm:text-left">
+              <div className="flex items-center gap-2 justify-center sm:justify-start mb-2">
+                <Zap className="text-[#1C32FF]" size={20} />
+                <span className="text-sm font-bold text-[#1C32FF] uppercase tracking-wider">
+                  Événement du 13 novembre
+                </span>
+              </div>
+              <p className="text-base sm:text-lg text-[#1A1A1A] font-semibold">
+                Rejoignez-nous pour célébrer la conformité avec Agoria
+              </p>
+            </div>
+            <button
+              onClick={() => scrollToSection('evenement-conformite')}
+              className="inline-flex items-center gap-2 bg-[#1C32FF] text-white font-bold px-6 py-3 hover:bg-[#0D1A99] transition-all duration-300 hover:shadow-lg whitespace-nowrap"
+            >
+              En savoir plus
+              <ArrowRight size={18} />
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* Hero Section - Variante B: Photo + Overlay with Storytelling Flow */}
       <section id="compliance-scan" className="relative overflow-hidden">
         <div className="flex flex-col lg:grid lg:grid-cols-2 min-h-[600px]">
@@ -231,7 +257,7 @@ export default function HeroSection() {
             {/* Photo d'arrière-plan */}
             <div className="absolute inset-0 z-0">
               <Image
-                src="/hero-compliance.png"
+                src="/compliance-celebration.jpg"
                 alt="Business background"
                 fill
                 className="object-cover"
