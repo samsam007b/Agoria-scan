@@ -224,17 +224,17 @@ export default function HeroSection() {
       </section>
 
       {/* Banner événement */}
-      <section className="bg-gradient-to-b from-gray-700 to-gray-600 py-6 sm:py-8 border-b border-gray-500">
+      <section className="bg-gradient-to-b from-gray-300 to-gray-200 py-6 sm:py-8 border-b border-gray-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-center sm:text-left">
               <div className="flex items-center gap-2 justify-center sm:justify-start mb-2">
-                <Zap className="text-yellow-400" size={20} />
-                <span className="text-sm font-bold text-yellow-400 uppercase tracking-wider">
+                <Zap className="text-[#1C32FF]" size={20} />
+                <span className="text-sm font-bold text-[#1C32FF] uppercase tracking-wider">
                   Événement du 20 mars
                 </span>
               </div>
-              <p className="text-base sm:text-lg text-white font-semibold">
+              <p className="text-base sm:text-lg text-gray-800 font-semibold">
                 Rejoignez-nous pour célébrer la conformité avec Agoria
               </p>
             </div>
