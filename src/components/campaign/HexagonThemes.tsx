@@ -72,21 +72,22 @@ export default function HexagonThemes({
 
   // Fonction pour calculer la rotation nécessaire
   const calculateRotation = (themePosition: number) => {
-    // Position 0 = top (-90° car l'hexagone commence en haut)
+    // Position 0 = top (0° dans notre système)
     // Chaque position = 60° (360° / 6)
     // On veut que le CENTRE du triangle soit à 90° (droite) ou 180° (bas)
 
-    // L'hexagone démarre avec position 0 en haut, donc à -90°
     // Pour avoir le centre du triangle (pas le bord), on ajoute 30° (moitié de 60°)
     const triangleCenterOffset = 30;
-    const baseAngle = themePosition * 60 - 90; // -90 car position 0 est en haut
+    const currentAngle = themePosition * 60; // Angle actuel du thème
 
     if (isMobile) {
       // Sur mobile : centre du triangle à 180° (bas)
-      return 180 - baseAngle - triangleCenterOffset;
+      // currentAngle + rotation = 180
+      return 180 - currentAngle - triangleCenterOffset;
     } else {
       // Sur desktop : centre du triangle à 90° (droite)
-      return 90 - baseAngle - triangleCenterOffset;
+      // currentAngle + rotation = 90
+      return 90 - currentAngle - triangleCenterOffset;
     }
   };
 
