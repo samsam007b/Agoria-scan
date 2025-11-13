@@ -72,18 +72,21 @@ export default function HexagonThemes({
 
   // Fonction pour calculer la rotation nécessaire
   const calculateRotation = (themePosition: number) => {
-    // Position 0 = top (0°)
+    // Position 0 = top (-90° car l'hexagone commence en haut)
     // Chaque position = 60° (360° / 6)
-    const baseAngle = themePosition * 60;
+    // On veut que le CENTRE du triangle soit à 90° (droite) ou 180° (bas)
+
+    // L'hexagone démarre avec position 0 en haut, donc à -90°
+    // Pour avoir le centre du triangle (pas le bord), on ajoute 30° (moitié de 60°)
+    const triangleCenterOffset = 30;
+    const baseAngle = themePosition * 60 - 90; // -90 car position 0 est en haut
 
     if (isMobile) {
-      // Sur mobile : pointer vers le bas (180°)
-      // Donc on veut que l'icône soit en bas → rotation pour que position actuelle aille en bas
-      return 180 - baseAngle;
+      // Sur mobile : centre du triangle à 180° (bas)
+      return 180 - baseAngle - triangleCenterOffset;
     } else {
-      // Sur desktop : pointer vers la droite (90°)
-      // Donc on veut que l'icône soit à droite → rotation pour que position actuelle aille à droite
-      return 90 - baseAngle;
+      // Sur desktop : centre du triangle à 90° (droite)
+      return 90 - baseAngle - triangleCenterOffset;
     }
   };
 
@@ -212,7 +215,7 @@ export default function HexagonThemes({
                 />
               )}
 
-              {/* Icône Lucide minimaliste */}
+              {/* Icône Lucide minimaliste avec contre-rotation */}
               <foreignObject
                 x={iconX - iconSize / 2}
                 y={iconY - iconSize / 2}
@@ -220,7 +223,12 @@ export default function HexagonThemes({
                 height={iconSize}
                 className="pointer-events-none"
               >
-                <div className="flex items-center justify-center w-full h-full">
+                <motion.div
+                  className="flex items-center justify-center w-full h-full"
+                  animate={{ rotate: -rotation }}
+                  transition={{ duration: 0.8, ease: 'easeInOut' }}
+                  style={{ transformOrigin: 'center center' }}
+                >
                   {IconComponent ? (
                     <IconComponent
                       size={iconSize}
@@ -230,7 +238,7 @@ export default function HexagonThemes({
                   ) : typeof theme.icon === 'string' ? (
                     <span className={glassEffect ? "text-white text-xl" : "text-[#1C32FF] text-xl"}>{theme.icon}</span>
                   ) : null}
-                </div>
+                </motion.div>
               </foreignObject>
 
               {/* Nom de la thématique au hover */}
