@@ -178,7 +178,7 @@ export default function HeroSection() {
 
           {/* Navigation Tabs - Style Agoria.be */}
           <div className="pb-0">
-            <div className="flex justify-end gap-0">
+            <div className="flex justify-start lg:justify-end gap-0 overflow-x-auto">
               <button
                 onClick={() => scrollToSection('compliance-scan')}
                 className={`px-5 sm:px-6 md:px-8 py-3 sm:py-4 text-xs sm:text-sm md:text-base font-bold transition-all duration-200 ${
