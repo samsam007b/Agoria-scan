@@ -9,6 +9,7 @@ import ScanContext from './ScanContext';
 import { scanContextData } from '@/data/scanContextData';
 import HexagonThemes from '@/components/campaign/HexagonThemes';
 import { complianceThemes } from '@/data/complianceThemes';
+import EventGallery from '@/components/event/EventGallery';
 
 // Mapping des icônes Lucide pour les thèmes
 const themeIcons: Record<string, any> = {
@@ -463,6 +464,9 @@ export default function HeroSection() {
         themes={scanContextData.themes}
         event={scanContextData.event}
       />
+
+      {/* Événement - La Journée de la conformité */}
+      <EventGallery />
 
       {/* Section factice - Services style Agoria */}
       <section className="py-16 bg-white">

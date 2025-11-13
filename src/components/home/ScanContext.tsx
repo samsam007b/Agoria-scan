@@ -184,40 +184,6 @@ export default function ScanContext({
           </Link>
         </div>
 
-        {/* Événement - Journée de la conformité */}
-        <div id="evenement-conformite" className="mt-10 sm:mt-12 md:mt-16 bg-[#F5F7FA] p-5 sm:p-6 md:p-8 lg:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 sm:gap-8">
-          <div className="flex-1">
-            <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-              <Calendar className="text-[#1C32FF] flex-shrink-0" size={28} />
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1A1A1A]">
-                {event.title}
-              </h3>
-            </div>
-            <p className="text-sm sm:text-base text-[#6B6B6B] mb-3 sm:mb-4">
-              Un rendez-vous pour passer de l'intention à l'exécution
-            </p>
-            <ul className="space-y-1.5 sm:space-y-2">
-              {event.bullets.map((bullet, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-2 text-sm sm:text-base text-[#1A1A1A] font-medium"
-                >
-                  <span className="text-[#1C32FF] mt-0.5 sm:mt-1 flex-shrink-0">•</span>
-                  <span>{bullet}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="flex-shrink-0">
-            <Link
-              href={event.cta_url}
-              className="inline-flex items-center justify-center gap-2 bg-[#1C32FF] px-5 sm:px-6 py-3 text-white font-semibold hover:bg-[#0D1A99] active:scale-95 transition-all shadow-lg hover:shadow-xl text-sm sm:text-base w-full sm:w-auto"
-            >
-              {event.cta_label}
-              <ArrowRight size={18} className="sm:w-5 sm:h-5" />
-            </Link>
-          </div>
-        </div>
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
 
@@ -30,6 +30,18 @@ export default function HexagonThemes({
   glassEffect = false
 }: HexagonThemesProps) {
   const [activeTheme, setActiveTheme] = useState<string | null>(null);
+  const [rotation, setRotation] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Détection mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024); // lg breakpoint
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Tailles selon le format
   const dimensions = {
@@ -58,6 +70,53 @@ export default function HexagonThemes({
     .map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x},${p.y}`)
     .join(' ') + ' Z';
 
+  // Fonction pour calculer la rotation nécessaire
+  const calculateRotation = (themePosition: number) => {
+    // Position 0 = top (0°)
+    // Chaque position = 60° (360° / 6)
+    const baseAngle = themePosition * 60;
+
+    if (isMobile) {
+      // Sur mobile : pointer vers le bas (180°)
+      // Donc on veut que l'icône soit en bas → rotation pour que position actuelle aille en bas
+      return 180 - baseAngle;
+    } else {
+      // Sur desktop : pointer vers la droite (90°)
+      // Donc on veut que l'icône soit à droite → rotation pour que position actuelle aille à droite
+      return 90 - baseAngle;
+    }
+  };
+
+  // Handler de click sur un thème
+  const handleThemeClick = (theme: Theme) => {
+    const newRotation = calculateRotation(theme.position);
+    setRotation(newRotation);
+
+    // Appeler le callback parent
+    onThemeClick?.(theme.id);
+
+    // Sur mobile, scroll vers la carte en dessous après une courte pause
+    if (isMobile) {
+      setTimeout(() => {
+        // Trouver l'élément parent qui contient l'hexagone et la carte
+        const hexagonContainer = document.querySelector('.hexagon-container');
+        if (hexagonContainer) {
+          const parentSection = hexagonContainer.closest('section');
+          if (parentSection) {
+            // Calculer la position du bas de l'hexagone
+            const hexagonRect = hexagonContainer.getBoundingClientRect();
+            const scrollTarget = window.scrollY + hexagonRect.bottom + 20; // +20px de marge
+
+            window.scrollTo({
+              top: scrollTarget,
+              behavior: 'smooth'
+            });
+          }
+        }
+      }, 400); // Attendre que la rotation commence
+    }
+  };
+
   // Positions des labels autour de l'hexagone
   const labelPositions = [
     { x: centerX, y: centerY - radius - 30, align: 'center' }, // top
@@ -70,7 +129,13 @@ export default function HexagonThemes({
 
   return (
     <div className="hexagon-container relative" style={{ width: dim.width, height: dim.height }}>
-      <svg viewBox={dim.viewBox} className="w-full h-full">
+      <motion.svg
+        viewBox={dim.viewBox}
+        className="w-full h-full"
+        animate={{ rotate: rotation }}
+        transition={{ duration: 0.8, ease: 'easeInOut' }}
+        style={{ transformOrigin: 'center center' }}
+      >
         {/* Hexagone principal avec glassmorphism si activé */}
         <defs>
           {glassEffect && (
@@ -141,9 +206,9 @@ export default function HexagonThemes({
                   onTouchStart={() => setActiveTheme(theme.id)}
                   onTouchEnd={() => {
                     setTimeout(() => setActiveTheme(null), 300);
-                    onThemeClick?.(theme.id);
+                    handleThemeClick(theme);
                   }}
-                  onClick={() => onThemeClick?.(theme.id)}
+                  onClick={() => handleThemeClick(theme)}
                 />
               )}
 
@@ -192,7 +257,7 @@ export default function HexagonThemes({
         })}
 
         {/* Texte central retiré - uniquement les icônes restent */}
-      </svg>
+      </motion.svg>
 
     </div>
   );
